@@ -15,24 +15,18 @@ I built this portfolio to showcase my **frontend expertise** and explore the cap
 ## 🛠️ Tech Stack  
 
 🔹 **Technologies:** React, Next.js, TypeScript, Tailwind CSS, React Hook Form, Email.js, Framer Motion  
-🔹 **Hosting:** Netlify  
+🔹 **Hosting:** Vercel , AWS Amplify 
 
 ---
 
-## 📸 Gallery  
+# Gallery
 
-✨ **Here’s a sneak peek of the portfolio:**  
+![Portfolio Screenshot1](./asifp1.png)
 
-![Portfolio Screenshot 1](./asifp1.png)  
+[Portfolio Screenshot2](./asifp2.png) 
 
-<!-- Uncomment to add more screenshots -->
-![Portfolio Screenshot 2](./asifp2.png)
-
-![Portfolio Screenshot 2](./asifp3.png)  
-
-🎯 **[View Live Demo](https://asif.netlify.app)**  
-
----
+![Portfolio Screenshot2](./asifp3.png)
+[View Live Demo](https://asifolio.vercel.app)
 
 ## ✅ To-Do List  
 
@@ -53,13 +47,13 @@ Follow these simple steps to set up the project on your local machine:
 ### 1️⃣ Clone the repository  
 
 ```bash
-git clone https://github.com/asif-mp3/asif-folio.git
+git clone https://github.com/asif-mp3/Asifolio.git
 ```
 
 ### 2️⃣ Navigate to the project directory  
 
 ```bash
-cd asif-folio
+cd Asifolio
 ```
 
 ### 3️⃣ Install dependencies  
@@ -86,7 +80,7 @@ npm run dev
 
 💬 Got questions or concerns? Reach out to me on:  
 🔗 **[X/Twitter](https://x.com/asifitee)**  
-🔗 **[LinkedIn](https://www.linkedin.com/in/asif2107/)**  
+🔗 **[LinkedIn](https://linkedin.com/in/asif2107)**  
 
 I'd be happy to assist! 😊  
 
