@@ -70,6 +70,9 @@ export default function Header() {
             <Link target="_blank" href="https://x.com/asifitee">
               <Icon icon="akar-icons:x-fill" />
             </Link>
+            <Link target="_blank" href="mailto:asifoned@gmail.com">
+              <Icon icon="ic:baseline-email" />
+            </Link>
           </div>
         </div>
       </div>
