@@ -11,16 +11,21 @@ export default function Header() {
   const { sectionInView } = useView();
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
+  const handleLogoClick = () => {
+    window.location.reload();
+  };
+
   return (
     <>
       <div className="fixed max-w-[90%] xl:max-w-[1223px] w-full z-10 select-none">
-        <div className="flex justify-between items-center px-6 py-4 rounded-2xl bg-linear-to-r from-[#d9d9d91f] to-[#7373731f] mt-4 sm:mt-8 std-backdrop-blur">
+        <div className="flex justify-between items-center px-6 py-4 rounded-2xl bg-[#ffffff10] backdrop-blur-lg mt-4 sm:mt-8">
           <Image
             src="/ade-logo.svg"
             width={32}
             height={36}
             alt="logo"
-            className="select-none"
+            className="select-none cursor-pointer"
+            onClick={handleLogoClick}
           />
           <Icon
             onClick={() => setMenuOpen(!menuOpen)}
