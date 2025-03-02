@@ -16,10 +16,10 @@ export default function MobileMenu({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="grid  z-10 items-center grid-cols-2 sm:hidden px-6 py-5 fixed top-12 rounded-2xl bg-linear-to-r from-[#d9d9d91f]  max-w-[90%] w-full to-[#7373731f] mt-12 sm:mt-16 std-backdrop-blur"
+      className="fixed z-10 sm:hidden px-6 py-8 top-16 rounded-2xl bg-linear-to-r from-[#d9d9d91f] to-[#7373731f] max-w-[90%] w-full mt-4 std-backdrop-blur"
     >
       <ul
-        className="flex flex-col gap-4 lg:gap-12 text-white/25"
+        className="flex flex-col gap-5 text-white/25 mb-6"
         onClick={() => onMenuOpen(false)}
       >
         <Link
@@ -32,7 +32,13 @@ export default function MobileMenu({
           href="#work"
           className={`${sectionInView === "work" && "text-white"} w-fit`}
         >
-          Work
+          Projects
+        </Link>
+        <Link
+          href="#certificates"
+          className={`${sectionInView === "certificates" && "text-white"} w-fit`}
+        >
+          Certificates
         </Link>
         <Link
           href="#about"
@@ -42,38 +48,43 @@ export default function MobileMenu({
         </Link>
         <Link
           href="#contact"
-          className={`${sectionInView === "contact" && "text-white"}  w-fit`}
+          className={`${sectionInView === "contact" && "text-white"} w-fit`}
         >
           Contact
         </Link>
       </ul>
 
-      <div className="flex flex-col gap-3 z-20 items-center justify-center">
-        <Link
-          className="p-4 flex-1 flex justify-center w-full rounded-xl h-fit text-4xl visited:bg-[#E3D3BE] bg-linear-to-r from-[#d9d9d915] to-[#7373731f] std-backdrop-blur"
-          target="_blank"
-          href="https://www.linkedin.com/in/asif2107/"
-          data-blobity-radius="10"
-        >
-          <Icon icon="hugeicons:linkedin-01" />
-        </Link>
-
-        <div className="flex gap-3 w-full">
+      <div className="flex flex-col gap-4">
+        <div className="flex gap-4">
           <Link
-            className="p-4 flex justify-center w-full rounded-xl h-fit text-2xl bg-linear-to-r from-[#d9d9d915] to-[#7373731f] std-backdrop-blur"
+            className="p-4 flex-1 flex justify-center items-center rounded-xl bg-linear-to-r from-[#d9d9d915] to-[#7373731f] std-backdrop-blur"
             target="_blank"
-            href="https://github.com/asif-mp3"
-            data-blobity-radius="10"
+            href="https://www.linkedin.com/in/asif2107/"
           >
-            <Icon icon="hugeicons:github" />
+            <Icon icon="hugeicons:linkedin-01" className="text-2xl" />
           </Link>
           <Link
-            className="p-4 flex justify-center w-full rounded-xl h-fit text-2xl bg-linear-to-r from-[#d9d9d915] to-[#7373731f] std-backdrop-blur"
+            className="p-4 flex-1 flex justify-center items-center rounded-xl bg-linear-to-r from-[#d9d9d915] to-[#7373731f] std-backdrop-blur"
+            target="_blank"
+            href="https://github.com/asif-mp3"
+          >
+            <Icon icon="hugeicons:github" className="text-2xl" />
+          </Link>
+        </div>
+        <div className="flex gap-4">
+          <Link
+            className="p-4 flex-1 flex justify-center items-center rounded-xl bg-linear-to-r from-[#d9d9d915] to-[#7373731f] std-backdrop-blur"
             target="_blank"
             href="https://x.com/asifitee"
-            data-blobity-radius="10"
           >
-            <Icon icon="akar-icons:x-fill" />
+            <Icon icon="akar-icons:x-fill" className="text-2xl" />
+          </Link>
+          <Link
+            className="p-4 flex-1 flex justify-center items-center rounded-xl bg-linear-to-r from-[#d9d9d915] to-[#7373731f] std-backdrop-blur"
+            target="_blank"
+            href="mailto:asifoned@gmail.com"
+          >
+            <Icon icon="ic:baseline-email" className="text-2xl" />
           </Link>
         </div>
       </div>
