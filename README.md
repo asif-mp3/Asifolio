@@ -26,7 +26,7 @@ I built this portfolio to showcase my **frontend expertise** and explore the cap
 ![Portfolio Screenshot 1](./asifp1.png)  
 
 <!-- Uncomment to add more screenshots -->
-![Portfolio Screenshot 2](./asifp3.png)
+![Portfolio Screenshot 2](./asifp2.png)
 
 ![Portfolio Screenshot 2](./asifp3.png)  
 
