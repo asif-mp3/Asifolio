@@ -85,8 +85,8 @@ npm run dev
 📌 If you're not modifying the design much, please credit me as the original designer.  
 
 💬 Got questions or concerns? Reach out to me on:  
-🔗 **[X/Twitter](https://x.com/Asif_the_great)**  
-🔗 **[LinkedIn](https://linkedin.com/in/mohamed-asif)**  
+🔗 **[X/Twitter](https://x.com/asifitee)**  
+🔗 **[LinkedIn](https://www.linkedin.com/in/asif2107/)**  
 
 I'd be happy to assist! 😊  
 
@@ -96,7 +96,7 @@ I'd be happy to assist! 😊
 
 Although I’m currently **not accepting PRs**, I highly appreciate **your feedback & suggestions**. If you have ideas for improvements, let's connect!  
 
-👉 Say hello on **[X/Twitter](https://x.com/Asif_the_great)** and let's chat!  
+👉 Say hello on **[X/Twitter](https://x.com/asifitee)** and let's chat!  
 
 Your feedback **fuels growth** and helps others who are inspired to build their own portfolios. 🚀  
 
