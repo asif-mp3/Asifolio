@@ -22,15 +22,6 @@ export default function Works() {
       img: "/oil.png",
     },
     {
-      title: "Financial Fraud Detection",
-      gitLink: "https://github.com/asif-mp3/Fraud-Scout",
-      liveLink: "https://github.com/asif-mp3/Fraud-Scout",
-      about:
-        "FraudScout is an AI-driven fraud detection system that identifies anomalies in financial transactions using machine learning. It features real-time monitoring, risk assessment, and an interactive dashboard for data visualization.",
-      stack: ["next.js", "typescript", "framer motion", "tailwindcss"],
-      img: "/frr.png",
-    },
-    {
       title: "AWS - Cheque Processing",
       gitLink: "https://github.com/asif-mp3/aws-web-based-cheque-processing",
       liveLink: "https://cheque-mate-doc.vercel.app/",
@@ -38,6 +29,24 @@ export default function Works() {
       "Cheque-Mate is a fully AWS-powered solution that automates cheque verification using Textract for OCR, S3 for storage, and Lambda for seamless processing. With SNS for real-time alerts and RDS for secure data management, it delivers a highly scalable, efficient, and secure cheque processing system for financial institutions.",  
       stack: ["React", "Textract", "Lambda", "RDS", "Other AWS Services"],
       img: "/VALIDN CREDENTIALS VIEW DASHBOARD.png",
+    },
+    {
+      "title": "ASIFOLIO",
+      "gitLink": "https://github.com/asif-mp3/Asifolio.git",
+      "liveLink": "https://asifolio.vercel.app/",
+      "about": 
+      "Asifolio is Asif's portfolio website showcasing projects, skills, and achievements. Built with Next.js for optimized performance, Tailwind CSS for styling, and Framer Motion for smooth animations, it delivers an interactive and responsive user experience. The portfolio is deployed on Vercel, ensuring fast load times and seamless navigation.",
+      "stack": ["Next.js", "Tailwind CSS", "Framer Motion", "Vercel"],
+      "img": "/asifp1.png"
+    },
+    {
+      title: "Financial Fraud Detection",
+      gitLink: "https://github.com/asif-mp3/Fraud-Scout",
+      liveLink: "https://github.com/asif-mp3/Fraud-Scout",
+      about:
+        "FraudScout is an AI-driven fraud detection system that identifies anomalies in financial transactions using machine learning. It features real-time monitoring, risk assessment, and an interactive dashboard for data visualization.",
+      stack: ["next.js", "typescript", "framer motion", "tailwindcss"],
+      img: "/frr.png",
     },
   ];
 
