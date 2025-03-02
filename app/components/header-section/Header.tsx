@@ -41,12 +41,12 @@ export default function Header() {
             >
               Projects
             </Link>
-            {/* <Link
+            <Link
               href="#certificates"
               className={`${sectionInView === "certificates" && "text-white"} `}
             >
               Certificates
-            </Link> */}
+            </Link>
             <Link
               href="#about"
               className={`${sectionInView === "about" && "text-white"} `}

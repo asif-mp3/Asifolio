@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Hero from "./components/hero-section/Hero"
 import Works from "./components/work-section/Works"
-// import Certificates from "./components/work-section/Certificates"
+import Certificates from "./components/work-section/Certificates"
 import About from "./components/about-section/About"
 import Contact from "./components/contact+footer/Contact"
 import Footer from "./components/contact+footer/Footer"
@@ -106,7 +106,7 @@ export default function Home() {
       {/* <BackgroundAnimation /> */}
       <Hero />
       <Works />
-      {/* <Certificates /> */}
+      <Certificates />
       <About />
       <Contact />
       <Footer />
