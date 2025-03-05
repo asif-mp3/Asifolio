@@ -63,7 +63,7 @@ export default function Hero() {
   const rotate = useTransform(scrollYProgress, [0, 1], ["0deg", "-15deg"])
 
   return (
-    <div className="pt-12 md:pt-14">
+    <div className="pt-24 md:pt-14"> {/* Increased padding for mobile */}
       <motion.section
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -180,4 +180,3 @@ export default function Hero() {
     </div>
   )
 }
-
