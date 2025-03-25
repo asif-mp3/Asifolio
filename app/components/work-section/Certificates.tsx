@@ -8,6 +8,15 @@ import { format } from "date-fns";
 
 const certificates = [
   {
+    title: "Google: Foundations of Cybersecurity",
+    issuer: "Google",
+    date: "2025-03-23",
+    description: "Earned the Foundations of Cybersecurity certification by Google on Coursera, gaining expertise in cybersecurity principles, INFOSEC, and the NIST Cybersecurity Framework.",
+    skills: ["Cybersecurity","INFOSEC","CSF","Risk Management"],
+    image: "/cyberg.jpeg",
+    link: "https://www.coursera.org/account/accomplishments/verify/YU2WUX3EDFWE",
+  },
+  {
     title: "Azure AI-900: Microsoft AI Fundamentals",
     issuer: "Microsoft",
     date: "2024-04-20",
@@ -17,15 +26,6 @@ const certificates = [
     link: "https://drive.google.com/file/d/1XiEKw013Na4a0UoEnRjyh_oy7KiniZxj/view?usp=sharing",
   },
   {
-    title: "Supervised Machine Learning: Regression and Classification",
-    issuer: "DeepLearning.AI",
-    date: "2025-03-05",
-    description: "Explores fundamental supervised learning techniques, including linear regression, logistic regression, and optimization algorithms, taught by Andrew Ng.",
-    skills: ["Linear Regression", "Logistic Regression", "Gradient Descent"],
-    image: "/ml_andrew.jpeg",
-    link: "https://coursera.org/share/3c450b82f786504df292321f778960e4",
-  },
-  {
     title: "Full Stack Web Development",
     issuer: "Udemy",
     date: "2024-03-30",
@@ -33,6 +33,15 @@ const certificates = [
     skills: ["React.js", "Node.js", "MongoDB"],
     image: "/full stack img.jpg",
     link: "https://www.udemy.com/certificate/UC-281fff44-5721-4581-9d81-96e1eea63333/",
+  },
+  {
+    title: "Adv. Machine Learning: Regression and Classification",
+    issuer: "DeepLearning.AI",
+    date: "2025-03-05",
+    description: "Explores fundamental supervised learning techniques, including linear regression, logistic regression, and optimization algorithms, taught by Andrew Ng.",
+    skills: ["Linear Regression", "Logistic Regression", "Gradient Descent"],
+    image: "/macl.jpg",
+    link: "https://coursera.org/share/3c450b82f786504df292321f778960e4",
   },
   {
     title: "Advanced SQL & Database Optimization",
@@ -49,7 +58,7 @@ const certificates = [
       date: "2024-11-05",
       description: "Successfully completed with a 93.75% grade, covering AI prompt engineering fundamentals.",
       skills: ["Artificial Intelligence (AI)", "Prompt Engineering", "ChatGPT", "Prompt Patterns", "Generative AI"],
-      image: "/prompt img.png",
+      image: "/prompt.png",
       link: "https://www.coursera.org/account/accomplishments/verify/T4GY61DH6ZWK",
     },
     {

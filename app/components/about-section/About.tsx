@@ -57,7 +57,7 @@ About Me & Expertise
               Tech Stack
             </AnimatedTitle>
             <AnimatedBody className="text-white/60 text-base md:text-xl leading-8">
-              MERN, Python, SQL, AWS, JavaScript (ES6+), TypeScript, React, Next.js,
+              MERN, Python, SQL, AWS, JavaScript (ES6+), Flutter, TypeScript, React, Next.js,
               Git/GitHub.
             </AnimatedBody>
           </div>
@@ -83,8 +83,7 @@ About Me & Expertise
               Data Science & AI
             </AnimatedTitle>
             <AnimatedBody className="text-white/60 text-base md:text-xl leading-8">
-              Pandas, NumPy, Scikit-learn, TensorFlow, OpenCV, AI-900 Certified,
-              Data Engineering.
+              Pandas, NumPy, Scikit-learn, Spacy, TensorFlow, OpenCV, Data Engineering.
             </AnimatedBody>
           </div>
         </div>

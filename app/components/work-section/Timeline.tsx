@@ -39,11 +39,11 @@ const TimelineData = [
     jobType: "Certification",
     duration: "Sept 2023",
     stuffIDid: [
-      "Achieved a score of 940/1000, mastering AI concepts like Machine Learning, NLP, and Computer Vision.",
+      "Achieved a score of 918/1000, mastering AI concepts like Machine Learning, NLP, and Computer Vision.",
       "Gained hands-on experience in deploying AI models using Azure cloud services.",
       "Learned AI workloads, responsible AI practices, and automation in cloud computing.",
     ],
-  },
+  },  
   {
     companyImg: "/icons8-codechef (1).svg",
     jobTitle: "Coding Club Member",
