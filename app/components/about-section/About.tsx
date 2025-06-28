@@ -5,7 +5,7 @@ import { useView } from "@/contexts/ViewContext";
 import { useInView } from "react-intersection-observer";
 import AnimatedBody from "../ui/AnimatedBody";
 import AnimatedTitle from "../ui/AnimatedTitle";
-
+<section> </section>
 const syne = Syne({ subsets: ["latin"] });
 
 export default function About() {
