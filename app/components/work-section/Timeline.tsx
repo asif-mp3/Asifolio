@@ -105,7 +105,7 @@ export default function Timeline() {
           {ClubData.map((club, index) => (
             <FolioCard
               key={index}
-              image={club.companyImg}
+              img={club.companyImg}
               title={club.title}
               role={club.role}
               duration={club.duration}
