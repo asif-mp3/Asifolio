@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import type React from "react"
-import { AnimatePresence, motion, type MotionProps } from "motion/react"
+import { motion, AnimatePresence, type MotionProps } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 type CharacterSet = string[] | readonly string[]
@@ -33,10 +33,6 @@ export function HyperText({
   characterSet = DEFAULT_CHARACTER_SET,
   ...props
 }: HyperTextProps) {
-  const MotionComponent = motion.create(Component, {
-    forwardMotionProps: true,
-  })
-
   const [displayText, setDisplayText] = useState<string[]>(() => children.split(""))
   const [isAnimating, setIsAnimating] = useState(false)
   const iterationCount = useRef(0)
@@ -51,34 +47,26 @@ export function HyperText({
 
   useEffect(() => {
     if (!startOnView) {
-      const startTimeout = setTimeout(() => {
-        setIsAnimating(true)
-      }, delay)
+      const startTimeout = setTimeout(() => setIsAnimating(true), delay)
       return () => clearTimeout(startTimeout)
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setTimeout(() => {
-            setIsAnimating(true)
-          }, delay)
+          setTimeout(() => setIsAnimating(true), delay)
           observer.disconnect()
         }
       },
-      { threshold: 0.1, rootMargin: "-30% 0px -30% 0px" },
+      { threshold: 0.1, rootMargin: "-30% 0px -30% 0px" }
     )
 
-    if (elementRef.current) {
-      observer.observe(elementRef.current)
-    }
-
+    if (elementRef.current) observer.observe(elementRef.current)
     return () => observer.disconnect()
   }, [delay, startOnView])
 
   useEffect(() => {
     if (!isAnimating) return
-
     const maxIterations = children.length
     const startTime = performance.now()
     let animationFrameId: number
@@ -88,14 +76,14 @@ export function HyperText({
       const progress = Math.min(elapsed / duration, 1)
       iterationCount.current = progress * maxIterations
 
-      setDisplayText((currentText) =>
+      setDisplayText(currentText =>
         currentText.map((letter, index) =>
           letter === " "
             ? letter
             : index <= iterationCount.current
               ? children[index]
-              : characterSet[getRandomInt(characterSet.length)],
-        ),
+              : characterSet[getRandomInt(characterSet.length)]
+        )
       )
 
       if (progress < 1) {
@@ -110,19 +98,19 @@ export function HyperText({
   }, [children, duration, isAnimating, characterSet])
 
   return (
-    <MotionComponent
+    <Component
       ref={elementRef}
-      className={cn("overflow-hidden py-2 text-4xl font-bold", className)}
+      className={cn("overflow-hidden py-2 text-2xl sm:text-3xl md:text-4xl font-medium", className)}
       onMouseEnter={handleAnimationTrigger}
       {...props}
     >
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {displayText.map((letter, index) => (
           <motion.span key={index} className={cn("font-mono", letter === " " ? "w-3" : "")}>
             {letter.toUpperCase()}
           </motion.span>
         ))}
       </AnimatePresence>
-    </MotionComponent>
+    </Component>
   )
 }
