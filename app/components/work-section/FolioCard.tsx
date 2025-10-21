@@ -1,8 +1,10 @@
 "use client"
+
 import { Icon } from "@iconify/react/dist/iconify.js"
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
+import Tag from "./Tag"
 import { useInView } from "react-intersection-observer"
 
 // @ts-ignore
@@ -14,7 +16,7 @@ export default function FolioCard({
   gitLink,
   liveLink,
   about,
-  stack,
+  stack, // ✅ now required
 }: {
   img: string
   title: string
@@ -35,13 +37,13 @@ export default function FolioCard({
       initial={{ opacity: 0, y: 12 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
       transition={{ duration: 0.7 }}
-      className="w-full rounded-[20px] std-backdrop-blur bg-linear-to-r from-[#d9d9d91f] to-[#7373731f] flex gap-4 items-start p-6 duration-700 hover:shadow-2xl transition-shadow border border-white/5 cursor-pointer group"
+      className="w-full rounded-[20px] std-backdrop-blur bg-linear-to-r from-[#d9d9d91f] to-[#7373731f] grid grid-cols-1 items-start lg:grid-cols-12 gap-5 xl:gap-8 p-6 duration-700 hover:shadow-2xl transition-shadow border border-white/5 cursor-pointer group"
       data-no-blobity
       whileHover={{ scale: 0.98, borderRadius: "24px" }}
     >
       {/* Image Section */}
-      <div className="relative w-32 flex-shrink-0 rounded-[10px] overflow-hidden bg-gradient-to-br from-gray-800/50 to-gray-900/50 group">
-        <div className="relative w-full aspect-square flex items-center justify-center">
+      <div className="relative w-full lg:col-span-5 rounded-[10px] overflow-hidden bg-gradient-to-br from-gray-800/50 to-gray-900/50 group">
+        <div className="relative w-full aspect-[4/3] flex items-center justify-center">
           <Image
             src={img || "/placeholder.svg"}
             fill
@@ -54,9 +56,9 @@ export default function FolioCard({
       </div>
 
       {/* Content Section */}
-      <div className="flex flex-col gap-3 flex-1">
+      <div className="flex flex-col gap-4 lg:col-span-7">
         {/* Title & Actions */}
-        <div className="flex justify-between items-start gap-4">
+        <div className="flex items-start justify-between gap-4">
           <h2 className="text-2xl sm:text-3xl xl:text-4xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
             {title}
           </h2>
@@ -102,24 +104,24 @@ export default function FolioCard({
         </div>
 
         {/* About Section */}
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-3">
           {typeof about === "string" ? (
-            <p className="text-base sm:text-lg text-white/80 leading-relaxed">{about}</p>
+            <p className="text-base sm:text-lg text-white/80 leading-relaxed text-justify">{about}</p>
           ) : (
             about
           )}
         </div>
 
         {/* Tech Stack Tags */}
-        <div className="flex flex-wrap gap-2 md:gap-3 mt-1">
+        <div className="flex gap-2 md:gap-3 flex-wrap mt-3">
           {stack.map((tech, index) => (
-            <span
+            <div
               key={index}
-              className="bg-purple-700/30 text-purple-200 px-3 py-1 rounded-full text-sm font-semibold hover:scale-105 hover:-translate-y-0.5 transition-transform duration-200 cursor-default"
+              className="hover:scale-105 hover:-translate-y-0.5 transition-transform duration-200"
               data-no-blobity
             >
-              {tech}
-            </span>
+              <Tag>{tech}</Tag>
+            </div>
           ))}
         </div>
       </div>
