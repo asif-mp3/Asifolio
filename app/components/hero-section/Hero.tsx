@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useView } from "@/contexts/ViewContext";
-import { HyperText } from "@/components/ui/hyper-text"; // adjust path if needed
+import { HyperText } from "@/app/components/ui/hyper-text"; // adjust path if needed
 
 const roles = [
   "AWS Engineer",
