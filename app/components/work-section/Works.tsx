@@ -49,8 +49,7 @@ export default function Works() {
       liveLink: "https://main.d2oxvljh00najc.amplifyapp.com/",
       about:
         "Serverless KYC solution that streamlines data extraction and face matching, reducing manual effort by 80%. Leverages AWS Textract for OCR and Rekognition for identity validation, orchestrated via Step Functions with robust API endpoints.",
-      stack: ["AWS Lambda", "Textract", "Rekognition", "DynamoDB", "S3", "API Gateway"],
-      img: "/kyc_auto.png",
+      img: "/kyc-img.jpg",
       showInfo: false,
     },
     {
@@ -59,8 +58,15 @@ export default function Works() {
       liveLink: "https://www.youtube.com/watch?v=h8ATo3vHwoQ",
       about:
         "Integrated AIS and Sentinel-1 APIs to process 500+ satellite images daily for real-time maritime monitoring. Trained CNN achieving 97.3% accuracy, reducing false positives by 85% with real-time visualization and analytical reporting.",
-      stack: ["React Native", "CNN", "Material UI", "AIS", "Sentinel-1 SAR", "MySQL"],
       img: "/oil2.png",
+      showInfo: false,
+    },
+    {
+      title: "E-commerce Product Recommender",
+      gitLink:"https://github.com/asif-mp3/smart-shop",
+      liveLink: "https://smart-shop-steel.vercel.app",
+      about: "Elegant Next.js app that delivers personalized AI-driven product recommendations. It leverages user behavior, onboarding preferences, and product catalog data, applying content-based, collaborative, and profile-driven filtering. Recommendations come with AI-generated explanations via Google Gemini, offering a dashboard-like browsing experience with search, filters, and sorting for seamless product discovery."
+      img: "/smartshop.png",
       showInfo: false,
     },
     {
@@ -69,7 +75,6 @@ export default function Works() {
       liveLink: "https://github.com/asif-mp3/placement-calendar-automation",
       about:
         "Automated placement email parsing to verify eligibility and create calendar events with reminders, reducing manual effort by 90%. Ensures accurate event creation by parsing Excel/PDF attachments and email content using regex and Drive API.",
-      stack: ["Google Apps Script", "Gmail API", "Calendar API", "JavaScript", "Drive API"],
       img: "/calendar.png",
       showInfo: true,
       infoMessage:
@@ -81,7 +86,6 @@ export default function Works() {
       liveLink: "https://github.com/asif-mp3/Resume-Parser-and-Job-Recommendation-System",
       about:
         "Python-based NLP tool transforming unstructured resume PDFs into structured datasets using spaCy, regex, and PdfPlumber. Extracted key candidate metrics and developed regex similarity model to recommend job matches with scalable talent analysis.",
-      stack: ["Python", "spaCy", "PdfPlumber", "Regex", "scikit-learn", "pandas"],
       img: "/smart_resume.png",
       showInfo: false,
     },
@@ -91,7 +95,6 @@ export default function Works() {
       liveLink: "https://cheque-mate-doc.vercel.app/",
       about:
         "Fully AWS-powered serverless solution automating cheque verification using Textract for OCR, S3 for storage, Lambda for processing logic, RDS for data management, and CloudWatch with SNS for real-time monitoring and alerts.",
-      stack: ["React", "AWS Textract", "Lambda", "S3", "RDS", "CloudWatch", "SNS"],
       img: "/cheque_mate.png",
       showInfo: false,
     },
@@ -101,13 +104,11 @@ export default function Works() {
       liveLink: "https://github.com/asif-mp3/Smart-Medication-Dispenser",
       about:
         "Embedded system project designed to solve medication non-adherence using automation and Bluetooth control. Features Arduino-based dispensing with mobile app integration for scheduling and real-time alerts to improve patient compliance.",
-      stack: ["Arduino UNO", "L298N Motor Driver", "HC-05 Bluetooth", "C++"],
       img: "/medic_dispenser.png",
       showInfo: false,
     },
   ]
 
-  // Calculate pagination
   const totalPages = Math.ceil(works.length / projectsPerPage)
   const startIndex = (currentPage - 1) * projectsPerPage
   const endIndex = startIndex + projectsPerPage
@@ -158,14 +159,7 @@ export default function Works() {
           {currentProjects.map((work, index) => (
             <AnimatedCard key={`${currentPage}-${index}`} index={index}>
               <div className="relative">
-                <FolioCard
-                  img={work.img}
-                  title={work.title}
-                  gitLink={work.gitLink}
-                  liveLink={work.liveLink}
-                  about={work.about}
-                  stack={work.stack}
-                />
+                <FolioCard img={work.img} title={work.title} gitLink={work.gitLink} liveLink={work.liveLink} about={work.about} stack={[]} />
                 {work.showInfo && (
                   <motion.div
                     initial={{ opacity: 0, x: 20 }}
@@ -177,24 +171,15 @@ export default function Works() {
                     className="absolute top-[-16px] right-4 z-[5]"
                   >
                     <motion.button
-                      whileHover={{
-                        scale: 1.05,
-                        y: -2,
-                      }}
+                      whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
                       onClick={() => handleInfoClick(work)}
                       className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-600 text-white text-xs font-semibold shadow-lg hover:shadow-xl transition-all cursor-pointer border border-red-700"
                       aria-label="Show project info"
                     >
                       <motion.div
-                        animate={{
-                          rotate: [0, 15, -15, 0],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Number.POSITIVE_INFINITY,
-                          ease: "easeInOut",
-                        }}
+                        animate={{ rotate: [0, 15, -15, 0] }}
+                        transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
                       >
                         <Info className="h-3.5 w-3.5" />
                       </motion.div>
@@ -258,6 +243,7 @@ export default function Works() {
         )}
       </AnimatePresence>
 
+      {/* Pagination */}
       <div className="flex justify-center items-center gap-4 md:gap-8 mt-8">
         <motion.button
           type="button"
