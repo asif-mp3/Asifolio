@@ -15,14 +15,14 @@ export default function FolioCard({
   gitLink,
   liveLink,
   about,
-  stack, // optional
+  stack, // required
 }: {
   img: string
   title: string
   gitLink?: string
   liveLink: string
-  about: string | React.ReactNode // ✅ now accepts both string and JSX
-  stack?: string[]
+  about: string | React.ReactNode
+  stack: string[] // now required
 }) {
   const { ref, inView } = useInView({
     threshold: 0.3,
@@ -104,7 +104,6 @@ export default function FolioCard({
 
         {/* About Section */}
         <div className="flex flex-col gap-3">
-          {/* ✅ now supports both string or JSX for about */}
           {typeof about === "string" ? (
             <p className="text-base sm:text-lg text-white/80 leading-relaxed text-justify">{about}</p>
           ) : (
@@ -113,19 +112,17 @@ export default function FolioCard({
         </div>
 
         {/* Tech Stack Tags */}
-        {stack && stack.length > 0 && (
-          <div className="flex gap-2 md:gap-3 flex-wrap">
-            {stack.map((tech, index) => (
-              <div
-                key={index}
-                className="hover:scale-105 hover:-translate-y-0.5 transition-transform duration-200"
-                data-no-blobity
-              >
-                <Tag>{tech}</Tag>
-              </div>
-            ))}
-          </div>
-        )}
+        <div className="flex gap-2 md:gap-3 flex-wrap">
+          {stack.map((tech, index) => (
+            <div
+              key={index}
+              className="bg-purple-700/30 text-purple-200 px-3 py-1 rounded-full text-sm font-semibold hover:scale-105 hover:-translate-y-0.5 transition-transform duration-200 cursor-default"
+              data-no-blobity
+            >
+              {tech}
+            </div>
+          ))}
+        </div>
       </div>
     </motion.div>
   )
