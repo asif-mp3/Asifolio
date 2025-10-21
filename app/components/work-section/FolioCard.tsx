@@ -1,129 +1,94 @@
 "use client";
 
-import { Syne } from "next/font/google";
+import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
-import Title from "../ui/Title";
-import TimelineItem from "./TimelineItem";
-import FolioCard from "./FolioCard";
+import { Icon } from "@iconify/react";
+import React from "react";
 
-const syne = Syne({ subsets: ["latin"] });
+interface FolioCardProps {
+  img: string;
+  title: string;
+  gitLink?: string;
+  liveLink: string;
+  about: string | React.ReactNode;
+  stack: string[];
+}
 
-// =================== DATA ===================
-
-const TimelineData = [
-  {
-    companyImg: "/VITLOGO.png",
-    jobTitle: "B.Tech CSE Student",
-    company: "VIT Chennai",
-    jobType: "Education",
-    duration: "2022 - 2026",
-    stuffIDid: [
-      "Pursuing Computer Science and Engineering with focus on Cloud Architecture, Machine Learning, and Full-Stack Development.",
-      "Delivered 7+ projects integrating AWS cloud services and machine learning into real-world applications.",
-      "Secured 38th rank among 673 teams in VITISH hackathon and represented VIT at Smart India Hackathon 2024 nationals.",
-    ],
-  },
-  {
-    companyImg: "/nstore_logo.png",
-    jobTitle: "AWS Engineer Intern",
-    company: "nStore Retech Pvt. Ltd.",
-    jobType: "Internship",
-    duration: "May 2025 – July 2025",
-    stuffIDid: [
-      "Architected serverless Cheque Processing System using AWS Textract, Lambda, S3, RDS, and API Gateway.",
-      "Designed KYC verification system leveraging Textract OCR and Rekognition face matching — 80% manual effort reduction.",
-      "Implemented CloudWatch + SNS for anomaly alerts; explored CI/CD with Terraform and CodePipeline.",
-    ],
-  },
-  {
-    companyImg: "/SIH-logo.png",
-    jobTitle: "Smart India Hackathon 2024",
-    company: "Ministry of Education",
-    jobType: "Hackathon",
-    duration: "Dec 2024",
-    stuffIDid: [
-      "Developed oil spill detection system using CNN with 97.3% accuracy via AIS and Sentinel-1 SAR data integration.",
-      "Built React Native frontend with real-time visualization processing 500+ satellite images/day.",
-      "Filed utility patent (App No. 202541080926) for Smart Buoy System with automated oil spill detection.",
-    ],
-  },
-];
-
-// =================== CLUBS ===================
-
-const ClubsData = [
-  {
-    img: "/tamil-mandram-logo.png",
-    title: "Arignar Anna Tamil Mandram",
-    liveLink: "#",
-    about: (
-      <div className="flex flex-col gap-1 text-white/80 text-sm sm:text-base">
-        <p className="font-semibold text-white/90">Co-Lead | VIT Chennai</p>
-        <p className="italic text-white/60">2023 - 2025</p>
-        <p>• Directed content strategy and organized successful cultural events including Pongal celebration.</p>
-        <p>• Delivered stage speeches and presentations to inspire and engage audiences at various cultural programs.</p>
-      </div>
-    ),
-    stack: ["Leadership", "Cultural", "Public Speaking"],
-  },
-  {
-    img: "/icons8-codechef (1).svg",
-    title: "CodeChef Student Chapter",
-    liveLink: "#",
-    about: (
-      <div className="flex flex-col gap-1 text-white/80 text-sm sm:text-base">
-        <p className="font-semibold text-white/90">Club Member | VIT Chennai</p>
-        <p className="italic text-white/60">2024 - 2025</p>
-        <p>• Coordinated marketing campaigns and promoted coding events to boost student participation.</p>
-        <p>• Participated in competitive programming contests, improving algorithmic and problem-solving skills.</p>
-      </div>
-    ),
-    stack: ["Competitive Programming", "Marketing", "Community"],
-  },
-];
-
-// =================== COMPONENT ===================
-
-export default function Timeline() {
+export default function FolioCard({
+  img,
+  title,
+  gitLink,
+  liveLink,
+  about,
+  stack,
+}: FolioCardProps) {
   return (
-    <section className="relative w-full py-20 px-6 sm:px-12 md:px-24 text-white">
-      <div className="max-w-6xl mx-auto">
-        {/* Experience + Education */}
-        <div className="text-left mb-6">
-          <Title>my experience</Title>
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.7 }}
+      className="w-full flex flex-col lg:flex-row gap-4 items-start p-6 rounded-xl bg-white/5 hover:shadow-2xl cursor-pointer duration-300"
+    >
+      {/* Image Section */}
+      <div className="flex-shrink-0 w-full lg:w-48 rounded-lg overflow-hidden bg-gray-800/50">
+        <div className="relative w-full aspect-square">
+          <Image
+            src={img || "/placeholder.svg"}
+            fill
+            alt={title}
+            className="object-contain p-2"
+          />
         </div>
-
-        <div className="flex mt-6 gap-4">
-          {/* Vertical line */}
-          <div className="w-1 bg-gradient-to-b from-white to-transparent rounded" />
-
-          {/* Timeline Items */}
-          <div className="flex flex-col gap-8">
-            {TimelineData.map((item, index) => (
-              <TimelineItem key={index} {...item} />
-            ))}
-          </div>
-        </div>
-
-        {/* Clubs Section */}
-        <motion.div
-          className="mt-24 flex flex-col gap-10"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="text-left mb-6">
-            <Title>club involvement</Title>
-          </div>
-
-          <div className="flex flex-col gap-6">
-            {ClubsData.map((club, index) => (
-              <FolioCard key={index} {...club} />
-            ))}
-          </div>
-        </motion.div>
       </div>
-    </section>
+
+      {/* Content Section */}
+      <div className="flex flex-col flex-1 gap-3">
+        {/* Title & Links */}
+        <div className="flex justify-between items-start gap-2">
+          <h3 className="text-2xl sm:text-3xl font-bold text-white">
+            {title}
+          </h3>
+          <div className="flex gap-2 text-2xl sm:text-3xl">
+            <Link
+              href={liveLink}
+              target="_blank"
+              className="text-blue-400 hover:text-blue-300"
+              aria-label="View Live Demo"
+            >
+              <Icon icon="line-md:external-link-rounded" />
+            </Link>
+            {gitLink && (
+              <Link
+                href={gitLink}
+                target="_blank"
+                className="text-white/70 hover:text-white"
+                aria-label="View GitHub Repo"
+              >
+                <Icon icon="mingcute:github-line" />
+              </Link>
+            )}
+          </div>
+        </div>
+
+        {/* About Section */}
+        <div className="text-white/80 text-sm sm:text-base">
+          {typeof about === "string" ? <p>{about}</p> : about}
+        </div>
+
+        {/* Tech Stack */}
+        <div className="flex flex-wrap gap-2 mt-2">
+          {stack.map((tech, idx) => (
+            <span
+              key={idx}
+              className="bg-purple-700/30 text-purple-200 px-3 py-1 rounded-full text-xs font-semibold"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+      </div>
+    </motion.div>
   );
 }
