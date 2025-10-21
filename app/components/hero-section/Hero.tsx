@@ -5,8 +5,9 @@ import { useEffect, useRef, useState } from "react"
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { useView } from "@/contexts/ViewContext"
+import { HyperText } from "@/components/ui/hyper-text"
 
-const roles = ["AWS Engineer","Full Stack Developer", "UI/UX Designer", "Problem Solver", "Data Science Enthusiast"]
+const roles = ["AWS Engineer", "Full Stack Developer", "UI/UX Designer", "Problem Solver", "Data Science Enthusiast"]
 
 export default function Hero() {
   const [isImageHovered, setIsImageHovered] = useState(false)
@@ -40,10 +41,12 @@ export default function Hero() {
 
   const { setSectionInView } = useView()
 
+  // For scroll-based rotation
   const imgRef = useRef(null)
   const { scrollYProgress } = useScroll({
     target: imgRef,
   })
+  const rotate = useTransform(scrollYProgress, [0, 1], ["0deg", "-15deg"])
 
   const { ref, inView } = useInView({
     threshold: 0.4,
@@ -60,10 +63,8 @@ export default function Hero() {
     return () => clearInterval(interval)
   }, [inView, setSectionInView])
 
-  const rotate = useTransform(scrollYProgress, [0, 1], ["0deg", "-15deg"])
-
   return (
-    <div className="pt-24 md:pt-14"> {/* Increased padding for mobile */}
+    <div className="pt-24 md:pt-14">
       <motion.section
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -84,13 +85,17 @@ export default function Hero() {
               <Image src="/hand-wave.svg" width={30} height={30} alt="hand-waving" />
             </motion.div>
           </motion.div>
+
           <motion.h1
             className="text-[32px] smm:text-[40px] md:text-5xl lg:text-6xl xl:text-7xl leading-tight font-bold"
             initial={{ opacity: 0 }}
             animate={animateIn1}
           >
             <p className="text-white/60 inline">I&apos;m </p>
-            <span id="name" className="bg-linear-to-br bg-clip-text text-transparent from-[#7CC0C4] via-[#548FBA] to-[#3C84C7]">
+            <span
+              id="name"
+              className="bg-linear-to-br bg-clip-text text-transparent from-[#7CC0C4] via-[#548FBA] to-[#3C84C7]"
+            >
               Mohamed Asif
             </span>
             <div className="h-16 mt-2 mb-4">
@@ -103,7 +108,13 @@ export default function Hero() {
                   transition={{ duration: 0.5 }}
                   className="text-2xl smm:text-3xl md:text-4xl font-medium bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
                 >
-                  {roles[currentRole]}
+                  <HyperText
+                    className="text-2xl smm:text-3xl md:text-4xl font-medium"
+                    duration={600}
+                    animateOnHover={false}
+                  >
+                    {roles[currentRole]}
+                  </HyperText>
                 </motion.div>
               </AnimatePresence>
             </div>
@@ -118,7 +129,7 @@ export default function Hero() {
           </motion.p>
         </div>
 
-        <div className="relative p-4">
+        <div className="relative p-4" ref={imgRef}>
           <motion.div
             animate={{
               background: isImageHovered
@@ -142,6 +153,7 @@ export default function Hero() {
           />
           <div data-blobity-tooltip="Coder">
             <motion.div
+              style={{ rotate }}
               animate={{
                 boxShadow: isImageHovered
                   ? [
