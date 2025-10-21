@@ -1,5 +1,10 @@
 "use client";
 import Image from "next/image";
+import React from "react";
+import styles from "./TimelineItem.module.css";
+
+// @ts-ignore
+import "intersection-observer";
 import { useInView } from "react-intersection-observer";
 
 export default function TimelineItem({
@@ -17,42 +22,52 @@ export default function TimelineItem({
   duration: string;
   stuffIDid: string[];
 }) {
-  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
+  const { ref, inView } = useInView({
+    threshold: 0.1,
+    rootMargin: "-60px 0px",
+    triggerOnce: true,
+  });
 
   return (
     <div
       ref={ref}
-      className={`flex items-start gap-4 ${
-        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+      className={`flex items-start gap-4 relative duration-1000 ${
+        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"
       }`}
     >
-      {/* Timeline Icon */}
-      <div className="flex-shrink-0 mt-2">
-        <Image src="/position-icon.svg" width={24} height={24} alt="icon" />
-      </div>
+      <Image
+        src="/position-icon.svg"
+        width={24}
+        height={24}
+        alt="current"
+        className="absolute -translate-x-[29px] sm:-translate-x-8 left-0"
+      />
 
-      {/* Content */}
-      <div className="flex flex-col gap-1">
-        {/* Company Logo + Text */}
-        <div className="flex items-start gap-2">
-          <Image src={companyImg} width={70} height={70} alt="logo" />
-          <div className="flex flex-col gap-0">
-            <h3 className="text-2xl font-bold text-white m-0">{jobTitle}</h3>
-            <p className="text-white/80 font-semibold text-sm m-0">
+      <div className="grid grid-cols-5 sm:flex items-start gap-4 pl-4">
+        <Image
+          src={companyImg}
+          width={70}
+          height={70}
+          alt="company-image"
+          className="col-span-1"
+        />
+
+        {/* ALL THE TEXT*/}
+        <div className={`${styles.timeline} col-span-4`}>
+          <div className="leading-tight">
+            <h1 className="text-2xl sm:text-[2rem] font-bold">{jobTitle}</h1>
+            <p className="text-base sm:text-lg font-bold my-2 sm:my-3">
               {company} | {jobType}
             </p>
-            <p className="text-white/60 text-xs m-0">{duration}</p>
           </div>
-        </div>
+          <p className="text-base sm:text-lg text-white/60 my-3">{duration}</p>
 
-        {/* Bullet points */}
-        <ul className="list-disc list-inside text-white/70 ml-0 mt-1 pl-5">
-          {stuffIDid.map((item, i) => (
-            <li key={i} className="text-sm">
-              {item}
-            </li>
-          ))}
-        </ul>
+          <ul>
+            {stuffIDid.map((stuff, index) => (
+              <li key={index}>{stuff}</li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
