@@ -4,7 +4,7 @@ import { Syne } from "next/font/google";
 import { motion } from "framer-motion";
 import Title from "../ui/Title";
 import TimelineItem from "./TimelineItem";
-import FolioCard from "../folio-section/FolioCard";
+import FolioCard from "./FolioCard";
 
 const syne = Syne({ subsets: ["latin"] });
 
