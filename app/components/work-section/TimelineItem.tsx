@@ -1,11 +1,10 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import styles from "./TimelineItem.module.css";
+import { useInView } from "react-intersection-observer";
 
 // @ts-ignore
 import "intersection-observer";
-import { useInView } from "react-intersection-observer";
 
 export default function TimelineItem({
   companyImg,
@@ -35,39 +34,42 @@ export default function TimelineItem({
         inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"
       }`}
     >
-      <Image
-        src="/position-icon.svg"
-        width={24}
-        height={24}
-        alt="current"
-        className="absolute -translate-x-[29px] sm:-translate-x-8 left-0"
-      />
-
-      <div className="grid grid-cols-5 sm:flex items-start gap-4 pl-4">
+      {/* Timeline Icon */}
+      <div className="flex-shrink-0 mt-2">
         <Image
-          src={companyImg}
-          width={70}
-          height={70}
-          alt="company-image"
-          className="col-span-1"
+          src="/position-icon.svg"
+          width={24}
+          height={24}
+          alt="current"
         />
+      </div>
 
-        {/* ALL THE TEXT*/}
-        <div className={`${styles.timeline} col-span-4`}>
-          <div className="leading-tight">
-            <h1 className="text-2xl sm:text-[2rem] font-bold">{jobTitle}</h1>
-            <p className="text-base sm:text-lg font-bold my-2 sm:my-3">
+      {/* Content */}
+      <div className="flex flex-col gap-2">
+        {/* Company Logo and Title */}
+        <div className="flex items-start gap-4">
+          <Image
+            src={companyImg}
+            width={70}
+            height={70}
+            alt="company-image"
+            className="flex-shrink-0"
+          />
+          <div className="flex flex-col gap-1">
+            <h1 className="text-2xl sm:text-3xl font-bold">{jobTitle}</h1>
+            <p className="text-base sm:text-lg font-semibold text-white/80">
               {company} | {jobType}
             </p>
+            <p className="text-sm sm:text-base text-white/60">{duration}</p>
           </div>
-          <p className="text-base sm:text-lg text-white/60 my-3">{duration}</p>
-
-          <ul>
-            {stuffIDid.map((stuff, index) => (
-              <li key={index}>{stuff}</li>
-            ))}
-          </ul>
         </div>
+
+        {/* Stuff I did */}
+        <ul className="list-disc list-inside text-white/70 ml-2 mt-2">
+          {stuffIDid.map((stuff, index) => (
+            <li key={index}>{stuff}</li>
+          ))}
+        </ul>
       </div>
     </div>
   );
