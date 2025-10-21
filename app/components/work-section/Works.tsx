@@ -44,15 +44,6 @@ export default function Works() {
 
   const works = [
     {
-      title: "AWS - KYC Verification System",
-      gitLink: "https://github.com/asif-mp3/kyc-automator-aws",
-      liveLink: "https://main.d2oxvljh00najc.amplifyapp.com/",
-      about:
-        "Serverless KYC solution that streamlines data extraction and face matching, reducing manual effort by 80%. Leverages AWS Textract for OCR and Rekognition for identity validation, orchestrated via Step Functions with robust API endpoints.",
-      img: "/kyc-img.jpg",
-      showInfo: false,
-    },
-    {
       title: "Marine Oil Spill Detection System",
       gitLink: "https://github.com/asif-mp3/oil-spill-detection",
       liveLink: "https://www.youtube.com/watch?v=h8ATo3vHwoQ",
@@ -79,6 +70,15 @@ export default function Works() {
       showInfo: true,
       infoMessage:
         "🎯 Crucial Problem Solving: This project helps numerous students avoid missing important placement opportunities and deadlines. It automatically monitors placement emails, verifies eligibility criteria, and creates calendar reminders - ensuring no student misses out on career opportunities due to overlooked emails.",
+    },
+    {
+      title: "AWS - KYC Verification System",
+      gitLink: "https://github.com/asif-mp3/kyc-automator-aws",
+      liveLink: "https://main.d2oxvljh00najc.amplifyapp.com/",
+      about:
+        "Serverless KYC solution that streamlines data extraction and face matching, reducing manual effort by 80%. Leverages AWS Textract for OCR and Rekognition for identity validation, orchestrated via Step Functions with robust API endpoints.",
+      img: "/kyc-img.jpg",
+      showInfo: false,
     },
     {
       title: "Smart Resume Parser",
@@ -183,7 +183,7 @@ export default function Works() {
                       >
                         <Info className="h-3.5 w-3.5" />
                       </motion.div>
-                      <span className="whitespace-nowrap">Student Pick</span>
+                      <span className="whitespace-nowrap">Students Pick</span>
                     </motion.button>
                   </motion.div>
                 )}
