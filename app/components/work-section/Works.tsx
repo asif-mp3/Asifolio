@@ -50,6 +50,7 @@ export default function Works() {
       about: `Developed a deep learning system that automatically detects oil spills using satellite images from Sentinel-1 and vessel data from AIS. 
               A CNN model trained on real maritime data achieved 97.3% accuracy and reduced false detections by 85%. 
               The system analyzes over 500 satellite images daily through a FastAPI backend and provides real-time visualization for marine safety monitoring.`,
+      stack: ["FastAPI", "CNN", "Sentinel-1 SAR", "AIS"],
       img: "/oil2.png",
       showInfo: false,
     },
@@ -60,6 +61,7 @@ export default function Works() {
       about: `A Next.js-based AI recommender that personalizes product suggestions for users using browsing behavior and preferences. 
               Combines content-based and collaborative filtering methods with Google Gemini integration for AI-generated explanations. 
               Features a dashboard-like interface with search, filters, and sorting for an intuitive online shopping experience.`,
+      stack: ["Next.js", "Google Gemini API", "AI Recommender", "Tailwind CSS"],
       img: "/smartshop.png",
       showInfo: false,
     },
@@ -69,6 +71,7 @@ export default function Works() {
       liveLink: "https://github.com/asif-mp3/placement-calendar-automation",
       about: `Automated the placement notification process using Google APIs to parse emails, check eligibility, and schedule calendar reminders. 
               Reduces manual effort by 90% by reading placement emails, extracting Excel or PDF attachments, and automatically creating event reminders for eligible students.`,
+      stack: ["Google Apps Script", "Gmail API", "Calendar API", "JavaScript"],
       img: "/calendar.png",
       showInfo: true,
       infoMessage: `🎯 Problem Solving Impact: This system ensures students never miss placement opportunities by automating eligibility verification and event scheduling directly from email data.`,
@@ -80,6 +83,7 @@ export default function Works() {
       about: `Designed a serverless identity verification platform using AWS Textract for OCR and Rekognition for face matching. 
               Step Functions orchestrate the workflow, while API Gateway enables secure integration. 
               The system reduced manual verification efforts by 80% and improved document accuracy for KYC processes.`,
+      stack: ["AWS Textract", "AWS Rekognition", "Lambda", "API Gateway"],
       img: "/kyc-img.jpg",
       showInfo: false,
     },
@@ -90,6 +94,7 @@ export default function Works() {
       about: `Created a Python NLP system to extract structured data from resume PDFs using spaCy, regex, and PdfPlumber. 
               It identifies skills, experience, and education, then uses a regex-based similarity model to recommend suitable jobs. 
               Helps recruiters analyze resumes efficiently and match candidates to job openings automatically.`,
+      stack: ["spaCy", "Regex", "PdfPlumber"],
       img: "/smart_resume.png",
       showInfo: false,
     },
@@ -100,6 +105,7 @@ export default function Works() {
       about: `Developed a fully serverless cheque verification platform using AWS Textract, Lambda, RDS, and S3. 
               Automates handwritten cheque reading, validation, and record management while ensuring secure data handling with AWS IAM and API Gateway. 
               CloudWatch and SNS provide real-time alerts for failed transactions or anomalies.`,
+      stack: ["AWS Textract", "Lambda", "RDS", "S3"],
       img: "/cheque_mate.png",
       showInfo: false,
     },
@@ -110,6 +116,7 @@ export default function Works() {
       about: `An IoT and Arduino-based device designed to help patients take medicines on time. 
               Controlled via Bluetooth, it dispenses tablets at scheduled times and notifies users with alerts. 
               Useful for elderly or chronically ill patients to ensure adherence to prescriptions.`,
+      stack: ["Arduino", "IoT", "Bluetooth"],
       img: "/medic_dispenser.png",
       showInfo: false,
     },
@@ -168,7 +175,14 @@ export default function Works() {
                   title={work.title}
                   gitLink={work.gitLink}
                   liveLink={work.liveLink}
-                  about={work.about}
+                  about={
+                    <>
+                      <p>{work.about}</p>
+                      <p className="mt-3 text-sm text-gray-400 dark:text-gray-300">
+                        <strong>Tech Stack:</strong> {work.stack.join(", ")}
+                      </p>
+                    </>
+                  }
                 />
                 {work.showInfo && (
                   <motion.div
