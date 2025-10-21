@@ -1,52 +1,59 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import { useEffect, useRef, useState } from "react"
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
-import { useInView } from "react-intersection-observer"
-import { HyperText } from "@/components/ui/hyper-text"
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useView } from "@/contexts/ViewContext";
+
+// Local cn helper (no @/lib/utils dependency)
+const cn = (...classes: (string | undefined | false | null)[]) =>
+  classes.filter(Boolean).join(" ");
 
 const roles = [
   "AWS Engineer",
   "Full Stack Developer",
   "UI/UX Designer",
   "Problem Solver",
-  "Data Science Enthusiast"
-]
+  "Data Science Enthusiast",
+];
 
 export default function Hero() {
-  const [isImageHovered, setIsImageHovered] = useState(false)
-  const [currentRole, setCurrentRole] = useState(0)
+  const [isImageHovered, setIsImageHovered] = useState(false);
+  const [currentRole, setCurrentRole] = useState(0);
 
-  const imgRef = useRef(null)
-  const { scrollYProgress } = useScroll({ target: imgRef })
-  const { ref, inView } = useInView({ threshold: 0.4, rootMargin: "-100px 0px" })
+  const { setSectionInView } = useView();
+  const imgRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: imgRef });
+  const { ref, inView } = useInView({ threshold: 0.4, rootMargin: "-100px 0px" });
 
   const handWaveAnimation = {
     rotate: [0, 15, -10, 15, -10, 15, -10, 15, -10, 15, 0],
     transition: { duration: 1.5, ease: "easeInOut" },
-  }
+  };
 
   const animateIn1 = {
     opacity: [0, 1],
     y: ["1rem", "0px"],
     transition: { delay: 1.5, duration: 0.7, ease: "easeIn" },
-  }
+  };
 
   const animateIn2 = {
     ...animateIn1,
     transition: { ...animateIn1.transition, delay: 2 },
-  }
+  };
 
   useEffect(() => {
+    if (inView) setSectionInView("home");
+
     const interval = setInterval(() => {
-      setCurrentRole((prev) => (prev + 1) % roles.length)
-    }, 3000)
+      setCurrentRole((prev) => (prev + 1) % roles.length);
+    }, 3000);
 
-    return () => clearInterval(interval)
-  }, [])
+    return () => clearInterval(interval);
+  }, [inView, setSectionInView]);
 
-  const rotate = useTransform(scrollYProgress, [0, 1], ["0deg", "-15deg"])
+  const rotate = useTransform(scrollYProgress, [0, 1], ["0deg", "-15deg"]);
 
   return (
     <div className="pt-24 md:pt-14">
@@ -69,11 +76,7 @@ export default function Hero() {
             <p className="text-white/60 text-xl smm:text-2xl mb-3 smm:mb-0 lg:text-3xl col-span-6">
               Hey, there
             </p>
-            <motion.div
-              animate={handWaveAnimation}
-              style={{ transformOrigin: "bottom right" }}
-              className="col-span-3"
-            >
+            <motion.div animate={handWaveAnimation} style={{ transformOrigin: "bottom right" }} className="col-span-3">
               <Image src="/hand-wave.svg" width={30} height={30} alt="hand-waving" />
             </motion.div>
           </motion.div>
@@ -110,11 +113,6 @@ export default function Hero() {
           >
             Building expertise in data science and cloud.
           </motion.p>
-
-          {/* Example HyperText usage */}
-          <HyperText className="mt-4" duration={1200}>
-            Hello from HyperText!
-          </HyperText>
         </div>
 
         {/* Image Section */}
@@ -133,41 +131,43 @@ export default function Hero() {
                     "radial-gradient(circle, rgba(0,200,255,0.1) 0%, rgba(0,144,255,0.05) 50%, rgba(0,80,255,0.025) 100%)",
                   ],
             }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ duration: 5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
             className="absolute inset-0 rounded-full blur-3xl"
           />
 
-          <motion.div
-            animate={{
-              boxShadow: isImageHovered
-                ? [
-                    "0 0 30px rgba(0, 255, 255, 0.9)",
-                    "0 0 50px rgba(0, 192, 255, 0.7)",
-                    "0 0 70px rgba(0, 128, 255, 0.6)",
-                    "0 0 40px rgba(0, 160, 255, 0.8)",
-                  ]
-                : [
-                    "0 0 20px rgba(0, 255, 255, 0.5)",
-                    "0 0 40px rgba(0, 192, 255, 0.3)",
-                    "0 0 60px rgba(0, 128, 255, 0.2)",
-                    "0 0 30px rgba(0, 160, 255, 0.4)",
-                  ],
-            }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            className="relative rounded-full overflow-hidden w-full max-w-[350px] mx-auto"
-            onMouseEnter={() => setIsImageHovered(true)}
-            onMouseLeave={() => setIsImageHovered(false)}
-          >
-            <Image
-              src="/asifbest.jpg"
-              alt="Profile"
-              width={300}
-              height={250}
-              className="relative w-full h-full object-cover rounded-full"
-            />
-          </motion.div>
+          <div data-blobity-tooltip="Coder">
+            <motion.div
+              animate={{
+                boxShadow: isImageHovered
+                  ? [
+                      "0 0 30px rgba(0, 255, 255, 0.9)",
+                      "0 0 50px rgba(0, 192, 255, 0.7)",
+                      "0 0 70px rgba(0, 128, 255, 0.6)",
+                      "0 0 40px rgba(0, 160, 255, 0.8)",
+                    ]
+                  : [
+                      "0 0 20px rgba(0, 255, 255, 0.5)",
+                      "0 0 40px rgba(0, 192, 255, 0.3)",
+                      "0 0 60px rgba(0, 128, 255, 0.2)",
+                      "0 0 30px rgba(0, 160, 255, 0.4)",
+                    ],
+              }}
+              transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+              className="relative rounded-full overflow-hidden w-full max-w-[350px] mx-auto"
+              onMouseEnter={() => setIsImageHovered(true)}
+              onMouseLeave={() => setIsImageHovered(false)}
+            >
+              <Image
+                src="/asifbest.jpg"
+                alt="Profile"
+                width={300}
+                height={250}
+                className="relative w-full h-full object-cover rounded-full"
+              />
+            </motion.div>
+          </div>
         </div>
       </motion.section>
     </div>
-  )
+  );
 }
