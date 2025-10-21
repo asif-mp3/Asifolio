@@ -88,11 +88,12 @@ export default function Timeline() {
     <section className="relative w-full py-20 px-6 sm:px-12 md:px-24 text-white">
       <div className="max-w-6xl mx-auto">
         {/* Experience + Education */}
-        <Title>my experience</Title>
+        <div className="text-left">
+          <Title className="text-left">my experience</Title>
+        </div>
 
         <div className="flex mt-6 gap-4 pl-3">
-          <div className="w-3 h-auto bg-linear-to-b from-white to-transparent" />
-
+          <div className="w-[2px] bg-gradient-to-b from-white to-transparent rounded-full" />
           <div className="flex flex-col gap-10">
             {TimelineData.map((item, index) => (
               <TimelineItem
@@ -110,13 +111,13 @@ export default function Timeline() {
 
         {/* Clubs Section */}
         <motion.div
-          className="mt-24 flex flex-col gap-12"
+          className="mt-24 flex flex-col gap-12 text-left"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <Title>Club Involvement</Title>
+          <Title className="text-left">club involvement</Title>
 
           {ClubsData.map((club, index) => (
             <FolioCard
