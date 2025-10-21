@@ -7,8 +7,9 @@ import { useInView } from "react-intersection-observer";
 import { useView } from "@/contexts/ViewContext";
 
 const roles = [
-  "AWS Engineer",
-  "Full Stack Developer",
+  "AWS Certified Solution Architect",
+  "MERN Stack Developer",
+  "Cloud Engineer",
   "UI/UX Designer",
   "Problem Solver",
   "Data Science Enthusiast"
