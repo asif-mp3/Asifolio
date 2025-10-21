@@ -3,7 +3,7 @@
 import { Syne } from "next/font/google";
 import Title from "../ui/Title";
 import TimelineItem from "./TimelineItem";
-import FolioCard from "../folio-section/FolioCard"; // adjust import path as needed
+import FolioCard from "./FolioCard"; // adjust import path as needed
 
 const syne = Syne({ subsets: ["latin"] });
 
