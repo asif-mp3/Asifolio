@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import FolioCard from "./FolioCard"
 import Title from "../ui/Title"
 import { useView } from "@/contexts/ViewContext"
@@ -40,6 +40,7 @@ export default function Works() {
   const [currentPage, setCurrentPage] = useState(1)
   const [showPopup, setShowPopup] = useState(false)
   const projectsPerPage = 3
+  const sectionRef = useRef<HTMLDivElement>(null)
 
   const works = [
     {
@@ -123,10 +124,16 @@ export default function Works() {
 
   const handlePrevPage = () => {
     setCurrentPage((prev) => Math.max(prev - 1, 1))
+    setTimeout(() => {
+      sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+    }, 50)
   }
 
   const handleNextPage = () => {
     setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+    setTimeout(() => {
+      sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+    }, 50)
   }
 
   const handleInfoClick = (work: any) => {
@@ -136,7 +143,7 @@ export default function Works() {
   }
 
   return (
-    <section className="flex flex-col gap-6 md:gap-10 pt-[110px]" ref={ref} id="work">
+    <section className="flex flex-col gap-6 md:gap-10 pt-32 md:pt-20" ref={sectionRef} id="work">
       <Title>Projects</Title>
 
       <AnimatePresence mode="wait">
@@ -251,42 +258,59 @@ export default function Works() {
         )}
       </AnimatePresence>
 
-      {/* Pagination Controls */}
-      <div className="flex justify-center items-center gap-6 mt-8">
+      <div className="flex justify-center items-center gap-4 md:gap-8 mt-8">
         <motion.button
           type="button"
           onClick={handlePrevPage}
-          whileHover={{ scale: 1.1 }}
+          whileHover={{ scale: 1.1, x: -2 }}
           whileTap={{ scale: 0.9 }}
           disabled={currentPage === 1}
-          className={`w-12 h-12 flex items-center justify-center rounded-full border-2 transition-all duration-300 ease-in-out ${
+          className={`relative w-12 h-12 flex items-center justify-center rounded-full transition-all duration-300 ${
             currentPage === 1
-              ? "border-gray-300 dark:border-gray-600 opacity-50 cursor-not-allowed"
-              : "border-gray-300 dark:border-gray-600 hover:bg-gray-700 hover:text-white hover:border-gray-700"
+              ? "opacity-40 cursor-not-allowed bg-white/5 border border-white/10"
+              : "bg-gradient-to-br from-purple-600 to-purple-500 border border-purple-400/50 hover:shadow-lg hover:shadow-purple-500/50 text-white"
           }`}
         >
-          <ChevronLeft className="h-6 w-6" />
+          <ChevronLeft className="h-5 w-5" />
         </motion.button>
 
-        <div className="flex items-center gap-2 text-lg font-semibold text-gray-700 dark:text-gray-200">
-          <span>{currentPage}</span>
-          <span className="text-gray-500">/</span>
-          <span>{totalPages}</span>
+        <div className="flex items-center gap-3">
+          <div className="flex gap-2">
+            {Array.from({ length: totalPages }).map((_, i) => (
+              <motion.div
+                key={i}
+                animate={{
+                  scale: currentPage === i + 1 ? 1.2 : 1,
+                  opacity: currentPage === i + 1 ? 1 : 0.4,
+                }}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  currentPage === i + 1 ? "w-8 bg-purple-500" : "w-2 bg-white/30 hover:bg-white/50 cursor-pointer"
+                }`}
+                onClick={() => {
+                  setCurrentPage(i + 1)
+                  sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+                }}
+              />
+            ))}
+          </div>
+          <span className="text-sm font-semibold text-gray-300 ml-2 whitespace-nowrap">
+            {currentPage} / {totalPages}
+          </span>
         </div>
 
         <motion.button
           type="button"
           onClick={handleNextPage}
-          whileHover={{ scale: 1.1 }}
+          whileHover={{ scale: 1.1, x: 2 }}
           whileTap={{ scale: 0.9 }}
           disabled={currentPage === totalPages}
-          className={`w-12 h-12 flex items-center justify-center rounded-full border-2 transition-all duration-300 ease-in-out ${
+          className={`relative w-12 h-12 flex items-center justify-center rounded-full transition-all duration-300 ${
             currentPage === totalPages
-              ? "border-gray-300 dark:border-gray-600 opacity-50 cursor-not-allowed"
-              : "border-gray-300 dark:border-gray-600 hover:bg-gray-700 hover:text-white hover:border-gray-700"
+              ? "opacity-40 cursor-not-allowed bg-white/5 border border-white/10"
+              : "bg-gradient-to-br from-purple-600 to-purple-500 border border-purple-400/50 hover:shadow-lg hover:shadow-purple-500/50 text-white"
           }`}
         >
-          <ChevronRight className="h-6 w-6" />
+          <ChevronRight className="h-5 w-5" />
         </motion.button>
       </div>
 
