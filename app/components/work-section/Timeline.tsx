@@ -1,9 +1,13 @@
 "use client";
+
 import { Syne } from "next/font/google";
 import Title from "../ui/Title";
+import TimelineItem from "./TimelineItem";
+import FolioCard from "../folio-section/FolioCard"; // adjust import path as needed
 
 const syne = Syne({ subsets: ["latin"] });
 
+// ---------------- MAIN TIMELINE DATA ----------------
 const TimelineData = [
   {
     companyImg: "/VITLOGO.png",
@@ -41,60 +45,74 @@ const TimelineData = [
       "Published utility patent (Application No. 202541080926) for Smart Buoy System with automated oil spill detection and response capabilities.",
     ],
   },
+];
+
+// ---------------- CLUB DATA ----------------
+const ClubData = [
   {
     companyImg: "/tamil-mandram-logo.png",
-    jobTitle: "Arignar Anna Tamil Mandram",
-    company: "VIT Chennai",
-    jobType: "Co-Lead",
+    title: "Arignar Anna Tamil Mandram",
+    role: "Co-Lead",
     duration: "2023 - 2025",
-    stuffIDid: [
+    description: [
       "Directed content strategy and organized successful cultural events including Pongal celebration.",
       "Delivered stage speeches and presentations to inspire and engage audiences at various cultural programs.",
     ],
   },
   {
     companyImg: "/icons8-codechef (1).svg",
-    jobTitle: "CodeChef Student Chapter",
-    company: "VIT Chennai",
-    jobType: "Club Member",
+    title: "CodeChef Student Chapter",
+    role: "Club Member",
     duration: "2024 - 2025",
-    stuffIDid: [
+    description: [
       "Marketing club member coordinating campaigns and promoting coding events to increase student participation.",
       "Actively participated in competitive programming contests, improving algorithmic thinking and problem-solving skills.",
     ],
   },
 ];
 
+// ---------------- COMPONENT ----------------
 export default function Timeline() {
   return (
     <div className="mt-10 md:mt-[110px]">
-      <Title>My Experience</Title>
+      {/* MAIN EXPERIENCE SECTION */}
+      <Title>my experience</Title>
 
-      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {TimelineData.map((item, index) => (
-          <div
-            key={index}
-            className="bg-gradient-to-br from-white/5 to-white/10 rounded-2xl shadow-lg p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300"
-          >
-            <div className="flex items-center gap-4 mb-4">
-              <img
-                src={item.companyImg}
-                alt={item.company}
-                className="w-12 h-12 object-contain rounded-full border border-white/20"
-              />
-              <div>
-                <h3 className="text-white font-semibold text-lg">{item.jobTitle}</h3>
-                <p className="text-white/70 text-sm">{item.company} • {item.jobType}</p>
-                <p className="text-white/50 text-xs">{item.duration}</p>
-              </div>
-            </div>
-            <ul className="text-white/60 list-disc list-inside space-y-2 text-sm">
-              {item.stuffIDid.map((task, idx) => (
-                <li key={idx}>{task}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
+      <div className="flex mt-6 gap-4 pl-3">
+        {/* Vertical line indicator */}
+        <div className="w-[3px] bg-gradient-to-b from-white to-transparent rounded-full" />
+
+        {/* Timeline items */}
+        <div className="flex flex-col gap-10">
+          {TimelineData.map((item, index) => (
+            <TimelineItem
+              key={index}
+              companyImg={item.companyImg}
+              jobTitle={item.jobTitle}
+              company={item.company}
+              jobType={item.jobType}
+              duration={item.duration}
+              stuffIDid={item.stuffIDid}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* CLUBS & ACTIVITIES SECTION */}
+      <div className="mt-20">
+        <Title>Clubs & Activities</Title>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          {ClubData.map((club, index) => (
+            <FolioCard
+              key={index}
+              image={club.companyImg}
+              title={club.title}
+              role={club.role}
+              duration={club.duration}
+              description={club.description}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
