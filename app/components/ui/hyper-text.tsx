@@ -4,10 +4,9 @@ import { useEffect, useRef, useState } from "react"
 import type React from "react"
 import { AnimatePresence, motion, type MotionProps } from "motion/react"
 
-// simple classNames joiner to replace cn from utils
-const cn = (...classes: (string | undefined | false | null)[]) => {
-  return classes.filter(Boolean).join(" ");
-};
+// Local cn helper (no need for external utils)
+const cn = (...classes: (string | undefined | false | null)[]) =>
+  classes.filter(Boolean).join(" ")
 
 type CharacterSet = string[] | readonly string[]
 
@@ -37,9 +36,7 @@ export function HyperText({
   characterSet = DEFAULT_CHARACTER_SET,
   ...props
 }: HyperTextProps) {
-  const MotionComponent = motion.create(Component, {
-    forwardMotionProps: true,
-  })
+  const MotionComponent = motion.create(Component, { forwardMotionProps: true })
 
   const [displayText, setDisplayText] = useState<string[]>(() => children.split(""))
   const [isAnimating, setIsAnimating] = useState(false)
@@ -55,28 +52,21 @@ export function HyperText({
 
   useEffect(() => {
     if (!startOnView) {
-      const startTimeout = setTimeout(() => {
-        setIsAnimating(true)
-      }, delay)
+      const startTimeout = setTimeout(() => setIsAnimating(true), delay)
       return () => clearTimeout(startTimeout)
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setTimeout(() => {
-            setIsAnimating(true)
-          }, delay)
+          setTimeout(() => setIsAnimating(true), delay)
           observer.disconnect()
         }
       },
       { threshold: 0.1, rootMargin: "-30% 0px -30% 0px" },
     )
 
-    if (elementRef.current) {
-      observer.observe(elementRef.current)
-    }
-
+    if (elementRef.current) observer.observe(elementRef.current)
     return () => observer.disconnect()
   }, [delay, startOnView])
 
