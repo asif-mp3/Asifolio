@@ -4,11 +4,10 @@ import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import Tag from "./Tag"
-import { ChevronDown } from "lucide-react"
+import { useInView } from "react-intersection-observer"
 
 // @ts-ignore
 import "intersection-observer"
-import { useInView } from "react-intersection-observer"
 
 export default function FolioCard({
   title,
@@ -16,14 +15,14 @@ export default function FolioCard({
   gitLink,
   liveLink,
   about,
-  stack, // optional now
+  stack, // optional
 }: {
   img: string
   title: string
   gitLink?: string
   liveLink: string
-  about: string
-  stack?: string[] // <-- made optional
+  about: string | React.ReactNode // ✅ now accepts both string and JSX
+  stack?: string[]
 }) {
   const { ref, inView } = useInView({
     threshold: 0.3,
@@ -64,6 +63,7 @@ export default function FolioCard({
           </h2>
 
           <div className="flex gap-3 md:gap-4 text-2xl sm:text-3xl xl:text-4xl flex-shrink-0">
+            {/* Live Link */}
             <Link
               href={liveLink}
               className="rounded-full bg-gradient-to-br from-blue-500 to-blue-600 p-3 hover:shadow-lg relative group transition-all duration-300"
@@ -79,6 +79,8 @@ export default function FolioCard({
                 className="relative z-10 text-white group-hover:text-blue-100 transition-colors"
               />
             </Link>
+
+            {/* GitHub Link */}
             <Link
               href={gitLink ?? "#"}
               className="rounded-full bg-gradient-to-br from-slate-700 to-slate-800 p-3 relative group transition-all duration-300"
@@ -92,7 +94,9 @@ export default function FolioCard({
               <div className="absolute inset-0 rounded-full bg-slate-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-md -z-10" />
               <Icon
                 icon="mingcute:github-line"
-                className={`relative z-10 text-white group-hover:text-slate-200 transition-colors ${!gitLink ? "opacity-30" : ""}`}
+                className={`relative z-10 text-white group-hover:text-slate-200 transition-colors ${
+                  !gitLink ? "opacity-30" : ""
+                }`}
               />
             </Link>
           </div>
@@ -100,7 +104,12 @@ export default function FolioCard({
 
         {/* About Section */}
         <div className="flex flex-col gap-3">
-          <p className="text-base sm:text-lg text-white/80 leading-relaxed text-justify">{about}</p>
+          {/* ✅ now supports both string or JSX for about */}
+          {typeof about === "string" ? (
+            <p className="text-base sm:text-lg text-white/80 leading-relaxed text-justify">{about}</p>
+          ) : (
+            about
+          )}
         </div>
 
         {/* Tech Stack Tags */}
