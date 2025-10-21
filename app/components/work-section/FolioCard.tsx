@@ -2,10 +2,9 @@
 import { Icon } from "@iconify/react/dist/iconify.js"
 import Image from "next/image"
 import Link from "next/link"
-import { useState } from "react"
+import { motion } from "framer-motion"
 import Tag from "./Tag"
 import { ChevronDown } from "lucide-react"
-import { motion } from "framer-motion"
 
 // @ts-ignore
 import "intersection-observer"
@@ -31,11 +30,6 @@ export default function FolioCard({
     rootMargin: "-100px 0px",
     triggerOnce: true,
   })
-
-  const [isExpanded, setIsExpanded] = useState(false)
-  const lines = about.split("\n")
-  const twoLineText = lines.slice(0, 2).join(" ").substring(0, 20) + (about.length > 150 ? "..." : "")
-  const shouldShowSeeMore = about.length > 150
 
   return (
     <motion.div
@@ -107,25 +101,9 @@ export default function FolioCard({
           </div>
         </div>
 
+        {/* About Section */}
         <div className="flex flex-col gap-3">
-          <p className="text-base sm:text-lg text-white/80 leading-relaxed text-justify">
-            {isExpanded ? about : twoLineText}
-          </p>
-
-          {shouldShowSeeMore && (
-            <motion.button
-              onClick={() => setIsExpanded(!isExpanded)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors w-fit"
-              data-no-blobity
-            >
-              <span>{isExpanded ? "See Less" : "See More"}</span>
-              <motion.div animate={{ rotate: isExpanded ? 180 : 0 }} transition={{ duration: 0.3 }}>
-                <ChevronDown className="w-4 h-4" />
-              </motion.div>
-            </motion.button>
-          )}
+          <p className="text-base sm:text-lg text-white/80 leading-relaxed text-justify">{about}</p>
         </div>
 
         {/* Tech Stack Tags */}
