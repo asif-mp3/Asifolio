@@ -49,7 +49,8 @@ const TimelineData = [
   },
 ];
 
-// Clubs displayed using FolioCard
+// =================== CLUBS ===================
+
 const ClubsData = [
   {
     img: "/tamil-mandram-logo.png",
@@ -88,12 +89,13 @@ export default function Timeline() {
     <section className="relative w-full py-20 px-6 sm:px-12 md:px-24 text-white">
       <div className="max-w-6xl mx-auto">
         {/* Experience + Education */}
-        <div className="text-left">
-          <Title className="text-left">my experience</Title>
+        <div className="text-left mb-6">
+          <Title>my experience</Title>
         </div>
 
         <div className="flex mt-6 gap-4 pl-3">
-          <div className="w-[2px] bg-gradient-to-b from-white to-transparent rounded-full" />
+          <div className="w-3 h-auto bg-linear-to-b from-white to-transparent" />
+
           <div className="flex flex-col gap-10">
             {TimelineData.map((item, index) => (
               <TimelineItem
@@ -111,13 +113,15 @@ export default function Timeline() {
 
         {/* Clubs Section */}
         <motion.div
-          className="mt-24 flex flex-col gap-12 text-left"
+          className="mt-24 flex flex-col gap-12"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <Title className="text-left">club involvement</Title>
+          <div className="text-left mb-6">
+            <Title>club involvement</Title>
+          </div>
 
           {ClubsData.map((club, index) => (
             <FolioCard
