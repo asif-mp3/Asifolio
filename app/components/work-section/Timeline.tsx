@@ -57,7 +57,7 @@ const ClubsData = [
     title: "Arignar Anna Tamil Mandram",
     liveLink: "#",
     about: (
-      <div className="flex flex-col gap-2 text-white/80 text-sm sm:text-base">
+      <div className="flex flex-col gap-1 text-white/80 text-sm sm:text-base">
         <p className="font-semibold text-white/90">Co-Lead | VIT Chennai</p>
         <p className="italic text-white/60">2023 - 2025</p>
         <p>• Directed content strategy and organized successful cultural events including Pongal celebration.</p>
@@ -71,7 +71,7 @@ const ClubsData = [
     title: "CodeChef Student Chapter",
     liveLink: "#",
     about: (
-      <div className="flex flex-col gap-2 text-white/80 text-sm sm:text-base">
+      <div className="flex flex-col gap-1 text-white/80 text-sm sm:text-base">
         <p className="font-semibold text-white/90">Club Member | VIT Chennai</p>
         <p className="italic text-white/60">2024 - 2025</p>
         <p>• Coordinated marketing campaigns and promoted coding events to boost student participation.</p>
@@ -93,10 +93,12 @@ export default function Timeline() {
           <Title>my experience</Title>
         </div>
 
-        <div className="flex mt-6 gap-4 pl-3">
-          <div className="w-3 h-auto bg-linear-to-b from-white to-transparent" />
+        <div className="flex mt-6 gap-4">
+          {/* Vertical line */}
+          <div className="w-1 bg-gradient-to-b from-white to-transparent rounded" />
 
-          <div className="flex flex-col gap-10">
+          {/* Timeline Items */}
+          <div className="flex flex-col gap-8">
             {TimelineData.map((item, index) => (
               <TimelineItem
                 key={index}
@@ -113,7 +115,7 @@ export default function Timeline() {
 
         {/* Clubs Section */}
         <motion.div
-          className="mt-24 flex flex-col gap-12"
+          className="mt-24 flex flex-col gap-10"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -123,16 +125,18 @@ export default function Timeline() {
             <Title>club involvement</Title>
           </div>
 
-          {ClubsData.map((club, index) => (
-            <FolioCard
-              key={index}
-              img={club.img}
-              title={club.title}
-              liveLink={club.liveLink}
-              about={club.about}
-              stack={club.stack}
-            />
-          ))}
+          <div className="flex flex-col gap-6">
+            {ClubsData.map((club, index) => (
+              <FolioCard
+                key={index}
+                img={club.img}
+                title={club.title}
+                liveLink={club.liveLink}
+                about={club.about}
+                stack={club.stack}
+              />
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>
