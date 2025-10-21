@@ -14,7 +14,6 @@ const certificates = [
     date: "2024-10-17",
     description:
       "Validated expertise in designing resilient, high-performing, secure, and cost-optimized architectures on AWS.",
-    skills: ["AWS", "Cloud Architecture", "EC2", "S3", "VPC", "RDS", "CloudFormation", "Solution Design"],
     image: "/aws-cert.jpg",
     link: "https://www.credly.com/badges/82ec75b5-203c-47dc-b2e4-d540cdc78a1f/public_url"
   },
@@ -23,7 +22,6 @@ const certificates = [
     issuer: "Google",
     date: "2025-03-23",
     description: "Cybersecurity principles, INFOSEC, and NIST Cybersecurity Framework fundamentals.",
-    skills: ["Cybersecurity", "INFOSEC", "CSF", "Risk Management"],
     image: "/cyberg.jpeg",
     link: "https://www.coursera.org/account/accomplishments/verify/YU2WUX3EDFWE",
   },
@@ -32,7 +30,6 @@ const certificates = [
     issuer: "Microsoft",
     date: "2024-04-20",
     description: "Core AI concepts, Azure AI services, machine learning models, and responsible AI principles.",
-    skills: ["Azure", "AI Ethics", "Power BI"],
     image: "/ai900img.png",
     link: "https://drive.google.com/file/d/1XiEKw013Na4a0UoEnRjyh_oy7KiniZxj/view?usp=sharing",
   },
@@ -41,7 +38,6 @@ const certificates = [
     issuer: "Udemy",
     date: "2024-03-30",
     description: "Front-end and back-end development using React, Node.js, Express, and MongoDB.",
-    skills: ["React.js", "Node.js", "MongoDB"],
     image: "/full stack img.jpg",
     link: "https://www.udemy.com/certificate/UC-281fff44-5721-4581-9d81-96e1eea63333/",
   },
@@ -50,7 +46,6 @@ const certificates = [
     issuer: "DeepLearning.AI",
     date: "2025-03-05",
     description: "Supervised learning techniques: linear regression, logistic regression, and gradient descent.",
-    skills: ["Linear Regression", "Logistic Regression", "Gradient Descent"],
     image: "/macl.jpg",
     link: "https://coursera.org/share/3c450b82f786504df292321f778960e4",
   },
@@ -59,7 +54,6 @@ const certificates = [
     issuer: "Coursera Project Network",
     date: "2024-02-15",
     description: "Complex SQL queries, database performance optimization, and relational database techniques.",
-    skills: ["SQL", "Stored Procedures", "Query Optimization"],
     image: "/relnsqlimg.jpeg",
     link: "https://www.coursera.org/account/accomplishments/verify/NC9S2YNTJ5WE",
   },
@@ -68,7 +62,6 @@ const certificates = [
     issuer: "IBM (Coursera)",
     date: "2024-11-05",
     description: "AI prompt engineering fundamentals and prompt patterns. Grade: 93.75%.",
-    skills: ["Artificial Intelligence (AI)", "Prompt Engineering", "ChatGPT", "Prompt Patterns", "Generative AI"],
     image: "/prompt.png",
     link: "https://www.coursera.org/account/accomplishments/verify/T4GY61DH6ZWK",
   },
@@ -77,11 +70,11 @@ const certificates = [
     issuer: "Udemy (Up Degree)",
     date: "2024-08-16",
     description: "Algorithm design, analysis, time complexity, sorting, and graph theory.",
-    skills: ["Algorithm Analysis", "Time Complexity", "Sorting Algorithms", "Graph Theory"],
     image: "/Daa img.png",
     link: "https://www.udemy.com/certificate/UC-c13adf8d-ac66-4560-9e8f-f28bbe758137/",
   },
 ];
+
 const CertificateCard = ({ certificate, index }: { certificate: (typeof certificates)[0]; index: number }) => {
   const [isExpanded, setIsExpanded] = useState(false)
 
@@ -163,18 +156,6 @@ const CertificateCard = ({ certificate, index }: { certificate: (typeof certific
             <time dateTime={certificate.date} className="font-medium">
               {format(new Date(certificate.date), "MMM d, yyyy")}
             </time>
-          </div>
-
-          <div className="flex flex-wrap gap-2 mb-4">
-            {certificate.skills.map((skill) => (
-              <motion.div
-                key={skill}
-                whileHover={{ scale: 1.05 }}
-                className="bg-blue-500/10 hover:bg-blue-500/20 text-blue-300 border border-blue-500/30 px-2.5 py-1 rounded-full transition-all duration-300 text-xs font-medium"
-              >
-                {skill}
-              </motion.div>
-            ))}
           </div>
         </div>
 
