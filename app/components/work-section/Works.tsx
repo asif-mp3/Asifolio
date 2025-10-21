@@ -7,11 +7,11 @@ import Title from "../ui/Title"
 import { useView } from "@/contexts/ViewContext"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronLeft, ChevronRight, Info, X } from "lucide-react"
+import Timeline from "./Timeline"
 
 // @ts-ignore
 import "intersection-observer"
 import { useInView } from "react-intersection-observer"
-import Timeline from "./Timeline"
 
 const AnimatedCard = ({ children, index }: { children: React.ReactNode; index: number }) => {
   const { ref, inView } = useInView({
@@ -175,14 +175,8 @@ export default function Works() {
                   title={work.title}
                   gitLink={work.gitLink}
                   liveLink={work.liveLink}
-                  about={
-                    <>
-                      <p>{work.about}</p>
-                      <p className="mt-3 text-sm text-gray-400 dark:text-gray-300">
-                        <strong>Tech Stack:</strong> {work.stack.join(", ")}
-                      </p>
-                    </>
-                  }
+                  about={work.about}
+                  stack={work.stack} // ✅ fixed, required prop
                 />
                 {work.showInfo && (
                   <motion.div
