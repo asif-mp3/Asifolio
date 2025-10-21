@@ -63,7 +63,7 @@ export default function About() {
             Want to know more about my journey and technical expertise? Here&apos;s <br className="hidden md:block" />
             <Link
               className="underline"
-              href="https://drive.google.com/file/d/1vN0XDQvU8-07_lF5TNjol-noUiMkb8GD/view?usp=sharing"
+              href="https://drive.google.com/file/d/1AT9dNMDc2_P3la3VvxkUd-XAWak7TpyM/view"
               target="_blank"
               rel="noopener noreferrer"
             >
