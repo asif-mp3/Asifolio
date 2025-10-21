@@ -47,8 +47,8 @@ export default function Works() {
       title: "Marine Oil Spill Detection System",
       gitLink: "https://github.com/asif-mp3/oil-spill-detection",
       liveLink: "https://www.youtube.com/watch?v=h8ATo3vHwoQ",
-      about:
-        "Integrated AIS and Sentinel-1 APIs to process 500+ satellite images daily for real-time maritime monitoring. Trained CNN achieving 97.3% accuracy, reducing false positives by 85% with real-time visualization and analytical reporting.",
+      about: `Integrated AIS and Sentinel-1 APIs to process 500+ satellite images daily for real-time maritime monitoring. 
+              Trained CNN achieving 97.3% accuracy, reducing false positives by 85% with real-time visualization and analytical reporting.`,
       img: "/oil2.png",
       showInfo: false,
     },
@@ -56,7 +56,9 @@ export default function Works() {
       title: "E-commerce Product Recommender",
       gitLink: "https://github.com/asif-mp3/smart-shop",
       liveLink: "https://smart-shop-steel.vercel.app",
-      about: `Elegant Next.js app that delivers personalized AI-driven product recommendations. It leverages user behavior, onboarding preferences, and product catalog data, applying content-based, collaborative, and profile-driven filtering. Recommendations come with AI-generated explanations via Google Gemini, offering a dashboard-like browsing experience with search, filters, and sorting for seamless product discovery.`,
+      about: `Elegant Next.js app that delivers personalized AI-driven product recommendations. 
+              It leverages user behavior, onboarding preferences, and product catalog data, applying content-based, collaborative, and profile-driven filtering. 
+              Recommendations come with AI-generated explanations via Google Gemini, offering a dashboard-like browsing experience with search, filters, and sorting for seamless product discovery.`,
       img: "/smartshop.png",
       showInfo: false,
     },
@@ -64,19 +66,19 @@ export default function Works() {
       title: "Smart Placement Calendar Automation",
       gitLink: "https://github.com/asif-mp3/placement-calendar-automation",
       liveLink: "https://github.com/asif-mp3/placement-calendar-automation",
-      about:
-        "Automated placement email parsing to verify eligibility and create calendar events with reminders, reducing manual effort by 90%. Ensures accurate event creation by parsing Excel/PDF attachments and email content using regex and Drive API.",
+      about: `Automated placement email parsing to verify eligibility and create calendar events with reminders, reducing manual effort by 90%. 
+              Ensures accurate event creation by parsing Excel/PDF attachments and email content using regex and Drive API.`,
       img: "/calendar.png",
       showInfo: true,
-      infoMessage:
-        "🎯 Crucial Problem Solving: This project helps numerous students avoid missing important placement opportunities and deadlines. It automatically monitors placement emails, verifies eligibility criteria, and creates calendar reminders - ensuring no student misses out on career opportunities due to overlooked emails.",
+      infoMessage: `🎯 Crucial Problem Solving: This project helps numerous students avoid missing important placement opportunities and deadlines. 
+                    It automatically monitors placement emails, verifies eligibility criteria, and creates calendar reminders - ensuring no student misses out on career opportunities due to overlooked emails.`,
     },
     {
       title: "AWS - KYC Verification System",
       gitLink: "https://github.com/asif-mp3/kyc-automator-aws",
       liveLink: "https://main.d2oxvljh00najc.amplifyapp.com/",
-      about:
-        "Serverless KYC solution that streamlines data extraction and face matching, reducing manual effort by 80%. Leverages AWS Textract for OCR and Rekognition for identity validation, orchestrated via Step Functions with robust API endpoints.",
+      about: `Serverless KYC solution that streamlines data extraction and face matching, reducing manual effort by 80%. 
+              Leverages AWS Textract for OCR and Rekognition for identity validation, orchestrated via Step Functions with robust API endpoints.`,
       img: "/kyc-img.jpg",
       showInfo: false,
     },
@@ -84,8 +86,8 @@ export default function Works() {
       title: "Smart Resume Parser",
       gitLink: "https://github.com/asif-mp3/Resume-Parser-and-Job-Recommendation-System",
       liveLink: "https://github.com/asif-mp3/Resume-Parser-and-Job-Recommendation-System",
-      about:
-        "Python-based NLP tool transforming unstructured resume PDFs into structured datasets using spaCy, regex, and PdfPlumber. Extracted key candidate metrics and developed regex similarity model to recommend job matches with scalable talent analysis.",
+      about: `Python-based NLP tool transforming unstructured resume PDFs into structured datasets using spaCy, regex, and PdfPlumber. 
+              Extracted key candidate metrics and developed regex similarity model to recommend job matches with scalable talent analysis.`,
       img: "/smart_resume.png",
       showInfo: false,
     },
@@ -93,8 +95,8 @@ export default function Works() {
       title: "AWS - Cheque Processing System",
       gitLink: "https://github.com/asif-mp3/aws-web-based-cheque-processing",
       liveLink: "https://cheque-mate-doc.vercel.app/",
-      about:
-        "Fully AWS-powered serverless solution automating cheque verification using Textract for OCR, S3 for storage, Lambda for processing logic, RDS for data management, and CloudWatch with SNS for real-time monitoring and alerts.",
+      about: `Fully AWS-powered serverless solution automating cheque verification using Textract for OCR, S3 for storage, Lambda for processing logic, RDS for data management, 
+              and CloudWatch with SNS for real-time monitoring and alerts.`,
       img: "/cheque_mate.png",
       showInfo: false,
     },
@@ -102,8 +104,8 @@ export default function Works() {
       title: "Smart Medication Dispenser",
       gitLink: "https://github.com/asif-mp3/Smart-Medication-Dispenser",
       liveLink: "https://github.com/asif-mp3/Smart-Medication-Dispenser",
-      about:
-        "Embedded system project designed to solve medication non-adherence using automation and Bluetooth control. Features Arduino-based dispensing with mobile app integration for scheduling and real-time alerts to improve patient compliance.",
+      about: `Embedded system project designed to solve medication non-adherence using automation and Bluetooth control. 
+              Features Arduino-based dispensing with mobile app integration for scheduling and real-time alerts to improve patient compliance.`,
       img: "/medic_dispenser.png",
       showInfo: false,
     },
@@ -138,9 +140,7 @@ export default function Works() {
   }
 
   const handleInfoClick = (work: any) => {
-    if (work.showInfo) {
-      setShowPopup(true)
-    }
+    if (work.showInfo) setShowPopup(true)
   }
 
   return (
@@ -159,15 +159,18 @@ export default function Works() {
           {currentProjects.map((work, index) => (
             <AnimatedCard key={`${currentPage}-${index}`} index={index}>
               <div className="relative">
-                <FolioCard img={work.img} title={work.title} gitLink={work.gitLink} liveLink={work.liveLink} about={work.about} />
+                <FolioCard
+                  img={work.img}
+                  title={work.title}
+                  gitLink={work.gitLink}
+                  liveLink={work.liveLink}
+                  about={work.about}
+                />
                 {work.showInfo && (
                   <motion.div
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{
-                      duration: 0.5,
-                      delay: 0.4 + index * 0.15,
-                    }}
+                    transition={{ duration: 0.5, delay: 0.4 + index * 0.15 }}
                     className="absolute top-[-16px] right-4 z-[5]"
                   >
                     <motion.button
