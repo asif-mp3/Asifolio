@@ -6,16 +6,12 @@ import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { useInView } from "react-intersection-observer";
 import { useView } from "@/contexts/ViewContext";
 
-// Local cn helper (no @/lib/utils dependency)
-const cn = (...classes: (string | undefined | false | null)[]) =>
-  classes.filter(Boolean).join(" ");
-
 const roles = [
   "AWS Engineer",
   "Full Stack Developer",
   "UI/UX Designer",
   "Problem Solver",
-  "Data Science Enthusiast",
+  "Data Science Enthusiast"
 ];
 
 export default function Hero() {
@@ -131,41 +127,39 @@ export default function Hero() {
                     "radial-gradient(circle, rgba(0,200,255,0.1) 0%, rgba(0,144,255,0.05) 50%, rgba(0,80,255,0.025) 100%)",
                   ],
             }}
-            transition={{ duration: 5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
             className="absolute inset-0 rounded-full blur-3xl"
           />
 
-          <div data-blobity-tooltip="Coder">
-            <motion.div
-              animate={{
-                boxShadow: isImageHovered
-                  ? [
-                      "0 0 30px rgba(0, 255, 255, 0.9)",
-                      "0 0 50px rgba(0, 192, 255, 0.7)",
-                      "0 0 70px rgba(0, 128, 255, 0.6)",
-                      "0 0 40px rgba(0, 160, 255, 0.8)",
-                    ]
-                  : [
-                      "0 0 20px rgba(0, 255, 255, 0.5)",
-                      "0 0 40px rgba(0, 192, 255, 0.3)",
-                      "0 0 60px rgba(0, 128, 255, 0.2)",
-                      "0 0 30px rgba(0, 160, 255, 0.4)",
-                    ],
-              }}
-              transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-              className="relative rounded-full overflow-hidden w-full max-w-[350px] mx-auto"
-              onMouseEnter={() => setIsImageHovered(true)}
-              onMouseLeave={() => setIsImageHovered(false)}
-            >
-              <Image
-                src="/asifbest.jpg"
-                alt="Profile"
-                width={300}
-                height={250}
-                className="relative w-full h-full object-cover rounded-full"
-              />
-            </motion.div>
-          </div>
+          <motion.div
+            animate={{
+              boxShadow: isImageHovered
+                ? [
+                    "0 0 30px rgba(0, 255, 255, 0.9)",
+                    "0 0 50px rgba(0, 192, 255, 0.7)",
+                    "0 0 70px rgba(0, 128, 255, 0.6)",
+                    "0 0 40px rgba(0, 160, 255, 0.8)",
+                  ]
+                : [
+                    "0 0 20px rgba(0, 255, 255, 0.5)",
+                    "0 0 40px rgba(0, 192, 255, 0.3)",
+                    "0 0 60px rgba(0, 128, 255, 0.2)",
+                    "0 0 30px rgba(0, 160, 255, 0.4)",
+                  ],
+            }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            className="relative rounded-full overflow-hidden w-full max-w-[350px] mx-auto"
+            onMouseEnter={() => setIsImageHovered(true)}
+            onMouseLeave={() => setIsImageHovered(false)}
+          >
+            <Image
+              src="/asifbest.jpg"
+              alt="Profile"
+              width={300}
+              height={250}
+              className="relative w-full h-full object-cover rounded-full"
+            />
+          </motion.div>
         </div>
       </motion.section>
     </div>
