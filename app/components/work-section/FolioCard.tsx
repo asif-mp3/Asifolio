@@ -16,14 +16,14 @@ export default function FolioCard({
   gitLink,
   liveLink,
   about,
-  stack,
+  stack, // optional now
 }: {
   img: string
   title: string
   gitLink?: string
   liveLink: string
   about: string
-  stack: string[]
+  stack?: string[] // <-- made optional
 }) {
   const { ref, inView } = useInView({
     threshold: 0.3,
@@ -37,11 +37,11 @@ export default function FolioCard({
       initial={{ opacity: 0, y: 12 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
       transition={{ duration: 0.7 }}
-      className={`w-full rounded-[20px] std-backdrop-blur bg-linear-to-r from-[#d9d9d91f] to-[#7373731f] grid grid-cols-1 items-start lg:grid-cols-12 gap-5 xl:gap-8 p-6 duration-700 hover:shadow-2xl transition-shadow border border-white/5 cursor-pointer group`}
+      className="w-full rounded-[20px] std-backdrop-blur bg-linear-to-r from-[#d9d9d91f] to-[#7373731f] grid grid-cols-1 items-start lg:grid-cols-12 gap-5 xl:gap-8 p-6 duration-700 hover:shadow-2xl transition-shadow border border-white/5 cursor-pointer group"
       data-no-blobity
       whileHover={{ scale: 0.98, borderRadius: "24px" }}
     >
-      {/* Image Section with Perfect Fit */}
+      {/* Image Section */}
       <div className="relative w-full lg:col-span-5 rounded-[10px] overflow-hidden bg-gradient-to-br from-gray-800/50 to-gray-900/50 group">
         <div className="relative w-full aspect-[4/3] flex items-center justify-center">
           <Image
@@ -52,13 +52,12 @@ export default function FolioCard({
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 420px"
           />
         </div>
-        {/* Gradient Overlay on Hover */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
 
       {/* Content Section */}
       <div className="flex flex-col gap-4 lg:col-span-7">
-        {/* Title and Action Buttons */}
+        {/* Title & Actions */}
         <div className="flex items-start justify-between gap-4">
           <h2 className="text-2xl sm:text-3xl xl:text-4xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
             {title}
@@ -81,21 +80,19 @@ export default function FolioCard({
               />
             </Link>
             <Link
-              href={`${gitLink ? gitLink : "#"}`}
+              href={gitLink ?? "#"}
               className="rounded-full bg-gradient-to-br from-slate-700 to-slate-800 p-3 relative group transition-all duration-300"
               target="_blank"
               aria-label="View Github Repo"
               data-blobity
               data-blobity-radius="34"
               data-blobity-magnetic="true"
-              {...(!gitLink && {
-                "data-blobity-tooltip": "Privately owned by Offset",
-              })}
+              {...(!gitLink && { "data-blobity-tooltip": "Privately owned by Offset" })}
             >
               <div className="absolute inset-0 rounded-full bg-slate-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-md -z-10" />
               <Icon
                 icon="mingcute:github-line"
-                className={`relative z-10 text-white group-hover:text-slate-200 transition-colors ${!gitLink && "opacity-30"}`}
+                className={`relative z-10 text-white group-hover:text-slate-200 transition-colors ${!gitLink ? "opacity-30" : ""}`}
               />
             </Link>
           </div>
@@ -107,17 +104,19 @@ export default function FolioCard({
         </div>
 
         {/* Tech Stack Tags */}
-        <div className="flex gap-2 md:gap-3 flex-wrap">
-          {stack.map((tech, index) => (
-            <div
-              key={index}
-              className="hover:scale-105 hover:-translate-y-0.5 transition-transform duration-200"
-              data-no-blobity
-            >
-              <Tag>{tech}</Tag>
-            </div>
-          ))}
-        </div>
+        {stack && stack.length > 0 && (
+          <div className="flex gap-2 md:gap-3 flex-wrap">
+            {stack.map((tech, index) => (
+              <div
+                key={index}
+                className="hover:scale-105 hover:-translate-y-0.5 transition-transform duration-200"
+                data-no-blobity
+              >
+                <Tag>{tech}</Tag>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </motion.div>
   )
