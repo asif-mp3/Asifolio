@@ -1,7 +1,6 @@
 "use client";
 import { Syne } from "next/font/google";
 import Title from "../ui/Title";
-import TimelineItem from "./TimelineItem";
 
 const syne = Syne({ subsets: ["latin"] });
 
@@ -65,28 +64,37 @@ const TimelineData = [
     ],
   },
 ];
+
 export default function Timeline() {
   return (
     <div className="mt-10 md:mt-[110px]">
-      <Title> my experience</Title>
+      <Title>My Experience</Title>
 
-      {/* THE THING, AFTER WHICH I WOULD DETERMINE THE HEIGHT */}
-      <div className="flex mt-6 gap-4 pl-3">
-        <div className="w-3 h-auto bg-linear-to-b from-white to-transparent" />
-
-        <div className="flex flex-col gap-10">
-          {TimelineData.map((item, index) => (
-            <TimelineItem
-              key={index}
-              companyImg={item.companyImg}
-              jobTitle={item.jobTitle}
-              company={item.company}
-              jobType={item.jobType}
-              duration={item.duration}
-              stuffIDid={item.stuffIDid}
-            />
-          ))}
-        </div>
+      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {TimelineData.map((item, index) => (
+          <div
+            key={index}
+            className="bg-gradient-to-br from-white/5 to-white/10 rounded-2xl shadow-lg p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-300"
+          >
+            <div className="flex items-center gap-4 mb-4">
+              <img
+                src={item.companyImg}
+                alt={item.company}
+                className="w-12 h-12 object-contain rounded-full border border-white/20"
+              />
+              <div>
+                <h3 className="text-white font-semibold text-lg">{item.jobTitle}</h3>
+                <p className="text-white/70 text-sm">{item.company} • {item.jobType}</p>
+                <p className="text-white/50 text-xs">{item.duration}</p>
+              </div>
+            </div>
+            <ul className="text-white/60 list-disc list-inside space-y-2 text-sm">
+              {item.stuffIDid.map((task, idx) => (
+                <li key={idx}>{task}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </div>
   );
