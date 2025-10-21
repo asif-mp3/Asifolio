@@ -15,7 +15,6 @@ const BackgroundAnimation = () => {
     <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
       <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          {/* Subtle grid pattern */}
           <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
             <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
           </pattern>
@@ -26,8 +25,6 @@ const BackgroundAnimation = () => {
             <stop offset="100%" stopColor="rgba(0,0,0,0)" />
           </radialGradient>
 
-
-          {/* Noise texture for depth */}
           <filter id="noise">
             <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" result="turbulence" />
             <feColorMatrix in="turbulence" type="saturate" values="0" />
@@ -37,7 +34,6 @@ const BackgroundAnimation = () => {
           </filter>
         </defs>
 
-        {/* Base layers */}
         <rect width="100%" height="100%" fill="url(#grid)" />
         <rect width="100%" height="100%" fill="url(#centerGlow)" />
         <rect width="100%" height="100%" filter="url(#noise)" opacity="0.3" />
@@ -47,7 +43,7 @@ const BackgroundAnimation = () => {
 };
 
 export default function Home() {
-  const blobity = useBlobity(initialBlobityOptions);
+  useBlobity(initialBlobityOptions);
 
   return (
     <main className="overflow-x-hidden sm:overflow-x-visible">
