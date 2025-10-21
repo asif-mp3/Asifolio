@@ -54,9 +54,10 @@ export default function Works() {
     },
     {
       title: "E-commerce Product Recommender",
-      gitLink:"https://github.com/asif-mp3/smart-shop",
+      gitLink: "https://github.com/asif-mp3/smart-shop",
       liveLink: "https://smart-shop-steel.vercel.app",
-      about: "Elegant Next.js app that delivers personalized AI-driven product recommendations. It leverages user behavior, onboarding preferences, and product catalog data, applying content-based, collaborative, and profile-driven filtering. Recommendations come with AI-generated explanations via Google Gemini, offering a dashboard-like browsing experience with search, filters, and sorting for seamless product discovery.",
+      about:
+        "Elegant Next.js app delivering personalized AI-driven product recommendations. It combines user behavior, onboarding preferences, and product catalog data, applying content-based, collaborative, and profile-driven filtering. Recommendations include AI-generated explanations via Google Gemini and a dashboard-like browsing experience with search, filters, and sorting.",
       img: "/smartshop.png",
       showInfo: false,
     },
@@ -159,7 +160,7 @@ export default function Works() {
           {currentProjects.map((work, index) => (
             <AnimatedCard key={`${currentPage}-${index}`} index={index}>
               <div className="relative">
-                <FolioCard img={work.img} title={work.title} gitLink={work.gitLink} liveLink={work.liveLink} about={work.about} stack={[]} />
+                <FolioCard img={work.img} title={work.title} gitLink={work.gitLink} liveLink={work.liveLink} about={work.about} />
                 {work.showInfo && (
                   <motion.div
                     initial={{ opacity: 0, x: 20 }}
