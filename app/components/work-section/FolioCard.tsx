@@ -34,8 +34,8 @@ export default function FolioCard({
 
   const [isExpanded, setIsExpanded] = useState(false)
   const lines = about.split("\n")
-  const twoLineText = lines.slice(0, 2).join(" ").substring(0, 150) + (about.length > 150 ? "..." : "")
-  const shouldShowSeeMore = about.length > 150
+  const twoLineText = lines.slice(0, 2).join(" ").substring(0, 20) + (about.length > 120 ? "..." : "")
+  const shouldShowSeeMore = about.length > 120
 
   return (
     <motion.div
