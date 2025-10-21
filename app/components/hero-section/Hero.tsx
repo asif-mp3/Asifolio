@@ -1,58 +1,52 @@
-"use client";
+"use client"
 
-import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import { useView } from "@/contexts/ViewContext";
-import { HyperText } from "@/app/components/ui/hyper-text"; // adjust path if needed
+import Image from "next/image"
+import { useEffect, useRef, useState } from "react"
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
+import { useInView } from "react-intersection-observer"
+import { HyperText } from "@/components/ui/hyper-text"
 
 const roles = [
   "AWS Engineer",
   "Full Stack Developer",
   "UI/UX Designer",
   "Problem Solver",
-  "Data Science Enthusiast",
-];
+  "Data Science Enthusiast"
+]
 
 export default function Hero() {
-  const [isImageHovered, setIsImageHovered] = useState(false);
-  const [currentRole, setCurrentRole] = useState(0);
+  const [isImageHovered, setIsImageHovered] = useState(false)
+  const [currentRole, setCurrentRole] = useState(0)
 
-  const { setSectionInView } = useView();
-  const imgRef = useRef(null);
-  const { scrollYProgress } = useScroll({ target: imgRef });
-  const { ref, inView } = useInView({ threshold: 0.4, rootMargin: "-100px 0px" });
+  const imgRef = useRef(null)
+  const { scrollYProgress } = useScroll({ target: imgRef })
+  const { ref, inView } = useInView({ threshold: 0.4, rootMargin: "-100px 0px" })
 
-  // Hand wave animation
   const handWaveAnimation = {
     rotate: [0, 15, -10, 15, -10, 15, -10, 15, -10, 15, 0],
     transition: { duration: 1.5, ease: "easeInOut" },
-  };
+  }
 
-  // Text entrance animation
   const animateIn1 = {
     opacity: [0, 1],
     y: ["1rem", "0px"],
     transition: { delay: 1.5, duration: 0.7, ease: "easeIn" },
-  };
+  }
+
   const animateIn2 = {
     ...animateIn1,
     transition: { ...animateIn1.transition, delay: 2 },
-  };
+  }
 
-  // Cycle roles every 3 seconds
   useEffect(() => {
-    if (inView) setSectionInView("home");
-
     const interval = setInterval(() => {
-      setCurrentRole((prev) => (prev + 1) % roles.length);
-    }, 3000);
+      setCurrentRole((prev) => (prev + 1) % roles.length)
+    }, 3000)
 
-    return () => clearInterval(interval);
-  }, [inView, setSectionInView]);
+    return () => clearInterval(interval)
+  }, [])
 
-  const rotate = useTransform(scrollYProgress, [0, 1], ["0deg", "-15deg"]);
+  const rotate = useTransform(scrollYProgress, [0, 1], ["0deg", "-15deg"])
 
   return (
     <div className="pt-24 md:pt-14">
@@ -67,12 +61,12 @@ export default function Hero() {
         {/* Text Section */}
         <div className="text sm:w-[60%]">
           <motion.div
-            className="grid grid-cols-9 w-fit sm:flex gap-2 mb-2 xl:mb-6"
+            className="grid grid-cols-9 w-fit smm:flex gap-2 mb-2 xl:mb-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.1, ease: "easeOut" }}
           >
-            <p className="text-white/60 text-xl sm:text-2xl mb-3 sm:mb-0 lg:text-3xl col-span-6">
+            <p className="text-white/60 text-xl smm:text-2xl mb-3 smm:mb-0 lg:text-3xl col-span-6">
               Hey, there
             </p>
             <motion.div
@@ -85,37 +79,46 @@ export default function Hero() {
           </motion.div>
 
           <motion.h1
-            className="text-[32px] sm:text-[40px] md:text-5xl lg:text-6xl xl:text-7xl leading-tight font-bold"
+            className="text-[32px] smm:text-[40px] md:text-5xl lg:text-6xl xl:text-7xl leading-tight font-bold"
             initial={{ opacity: 0 }}
             animate={animateIn1}
           >
-            <span className="text-white/60 inline">I&apos;m </span>
+            <p className="text-white/60 inline">I&apos;m </p>
             <span className="bg-linear-to-br bg-clip-text text-transparent from-[#7CC0C4] via-[#548FBA] to-[#3C84C7]">
               Mohamed Asif
             </span>
-
             <div className="h-16 mt-2 mb-4">
-              <HyperText
-                key={currentRole}
-                className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent font-medium"
-                duration={800}
-              >
-                {roles[currentRole]}
-              </HyperText>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentRole}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5 }}
+                  className="text-2xl smm:text-3xl md:text-4xl font-medium bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
+                >
+                  {roles[currentRole]}
+                </motion.div>
+              </AnimatePresence>
             </div>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0 }}
             animate={animateIn2}
-            className="text-white/40 text-l sm:text-2xl lg:text-2xl xl:text-3xl mt-3 sm:mt-6"
+            className="text-white/40 text-l smm:text-2xl lg:text-2xl xl:text-3xl mt-3 smm:mt-6"
           >
             Building expertise in data science and cloud.
           </motion.p>
+
+          {/* Example HyperText usage */}
+          <HyperText className="mt-4" duration={1200}>
+            Hello from HyperText!
+          </HyperText>
         </div>
 
         {/* Image Section */}
-        <div className="relative p-4" ref={imgRef}>
+        <div className="relative p-4">
           <motion.div
             animate={{
               background: isImageHovered
@@ -130,7 +133,7 @@ export default function Hero() {
                     "radial-gradient(circle, rgba(0,200,255,0.1) 0%, rgba(0,144,255,0.05) 50%, rgba(0,80,255,0.025) 100%)",
                   ],
             }}
-            transition={{ duration: 5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
             className="absolute inset-0 rounded-full blur-3xl"
           />
 
@@ -150,7 +153,7 @@ export default function Hero() {
                     "0 0 30px rgba(0, 160, 255, 0.4)",
                   ],
             }}
-            transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             className="relative rounded-full overflow-hidden w-full max-w-[350px] mx-auto"
             onMouseEnter={() => setIsImageHovered(true)}
             onMouseLeave={() => setIsImageHovered(false)}
@@ -166,5 +169,5 @@ export default function Hero() {
         </div>
       </motion.section>
     </div>
-  );
+  )
 }
