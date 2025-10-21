@@ -56,8 +56,7 @@ export default function Works() {
       title: "E-commerce Product Recommender",
       gitLink: "https://github.com/asif-mp3/smart-shop",
       liveLink: "https://smart-shop-steel.vercel.app",
-      about:
-        "Elegant Next.js app delivering personalized AI-driven product recommendations. It combines user behavior, onboarding preferences, and product catalog data, applying content-based, collaborative, and profile-driven filtering. Recommendations include AI-generated explanations via Google Gemini and a dashboard-like browsing experience with search, filters, and sorting.",
+      about: `Elegant Next.js app that delivers personalized AI-driven product recommendations. It leverages user behavior, onboarding preferences, and product catalog data, applying content-based, collaborative, and profile-driven filtering. Recommendations come with AI-generated explanations via Google Gemini, offering a dashboard-like browsing experience with search, filters, and sorting for seamless product discovery.`,
       img: "/smartshop.png",
       showInfo: false,
     },
