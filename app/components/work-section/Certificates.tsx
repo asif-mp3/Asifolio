@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useRef, useState } from "react"
+import React, { useRef } from "react"
 import { motion, AnimatePresence, useInView } from "framer-motion"
-import { Award, ExternalLink, Calendar, ChevronLeft, ChevronRight, ChevronDown } from "lucide-react"
+import { Award, ExternalLink, Calendar, ChevronLeft, ChevronRight } from "lucide-react"
 import Title from "../ui/Title"
 import { format } from "date-fns"
 import { useView } from "@/contexts/ViewContext"
@@ -76,8 +76,6 @@ const certificates = [
 ];
 
 const CertificateCard = ({ certificate, index }: { certificate: (typeof certificates)[0]; index: number }) => {
-  const [isExpanded, setIsExpanded] = useState(false)
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -114,41 +112,9 @@ const CertificateCard = ({ certificate, index }: { certificate: (typeof certific
           </h3>
 
           <div className="flex flex-col gap-2 mb-4">
-            <div className="text-gray-300 text-sm leading-relaxed">
-              {isExpanded ? (
-                <p>{certificate.description}</p>
-              ) : (
-                <p className="inline">
-                  {certificate.description}
-                  {certificate.description.length > 0 && (
-                    <motion.button
-                      onClick={() => setIsExpanded(true)}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="ml-2 text-blue-400 hover:text-blue-300 transition-colors font-semibold inline-flex items-center gap-1"
-                    >
-                      <span>See More</span>
-                      <motion.div animate={{ rotate: 0 }} transition={{ duration: 0.3 }}>
-                        <ChevronDown className="w-3 h-3" />
-                      </motion.div>
-                    </motion.button>
-                  )}
-                </p>
-              )}
-              {isExpanded && (
-                <motion.button
-                  onClick={() => setIsExpanded(false)}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="ml-2 text-blue-400 hover:text-blue-300 transition-colors font-semibold inline-flex items-center gap-1"
-                >
-                  <span>See Less</span>
-                  <motion.div animate={{ rotate: 180 }} transition={{ duration: 0.3 }}>
-                    <ChevronDown className="w-3 h-3" />
-                  </motion.div>
-                </motion.button>
-              )}
-            </div>
+            <p className="text-gray-300 text-sm leading-relaxed">
+              {certificate.description}
+            </p>
           </div>
 
           <div className="flex items-center gap-2 text-xs text-gray-400 mb-4">
