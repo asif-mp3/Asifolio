@@ -62,7 +62,7 @@ export default function Works() {
               Combines content-based and collaborative filtering methods with Google Gemini integration for AI-generated explanations. 
               Features a dashboard-like interface with search, filters, and sorting for an intuitive online shopping experience.`,
       stack: ["Next.js", "Google Gemini API", "AI Recommender", "Tailwind CSS"],
-      img: "/smartshop.png",
+      img: "/s8.png",
       showInfo: false,
     },
     {
@@ -84,7 +84,7 @@ export default function Works() {
               Step Functions orchestrate the workflow, while API Gateway enables secure integration. 
               The system reduced manual verification efforts by 80% and improved document accuracy for KYC processes.`,
       stack: ["AWS Textract", "AWS Rekognition", "Lambda", "API Gateway"],
-      img: "/kyc-img.jpg",
+      img: "/kkyc.png",
       showInfo: false,
     },
     {
