@@ -31,9 +31,9 @@ export default function MobileMenu({
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -20 }}
         transition={{ duration: 0.2 }}
-        className="fixed z-50 sm:hidden left-1/2 transform -translate-x-1/2 top-24 rounded-2xl 
-                   bg-gradient-to-r from-[#d9d9d91f] to-[#7373731f] backdrop-blur-md
-                   max-w-[90%] w-full mx-auto px-6 py-8 border border-white/10 shadow-2xl 
+        className="fixed z-50 sm:hidden left-1/2 transform -translate-x-1/2 top-20 rounded-2xl
+                   bg-[#030014]/95 backdrop-blur-xl
+                   max-w-[90%] w-full mx-auto px-6 py-8 border border-[#7042f8]/30 shadow-2xl shadow-[#7042f8]/10
                    max-h-[calc(100vh-6rem)] overflow-y-auto"
       >
         {/* Navigation Links */}
@@ -41,65 +41,60 @@ export default function MobileMenu({
           className="flex flex-col gap-5 text-white/25 mb-6"
           onClick={() => onMenuOpen(false)}
         >
-          {["home", "work", "certificates", "about", "contact"].map((section) => (
+          {[
+            { id: "home", label: "Home" },
+            { id: "about", label: "About" },
+            { id: "skills", label: "Skills" },
+            { id: "work", label: "Projects" },
+            { id: "experience", label: "Experience" },
+            { id: "contact", label: "Contact" },
+          ].map((item) => (
             <Link
-              key={section}
-              href={`#${section}`}
+              key={item.id}
+              href={`#${item.id}`}
               className={`${
-                sectionInView === section ? "text-white" : ""
-              } w-fit transition-colors duration-200 hover:text-white/80`}
+                sectionInView === item.id ? "text-[#7042f8]" : "text-gray-300"
+              } w-fit transition-colors duration-200 hover:text-[#7042f8]`}
             >
-              {section === "work" ? "Projects" : section.charAt(0).toUpperCase() + section.slice(1)}
+              {item.label}
             </Link>
           ))}
         </ul>
 
         {/* Social & Contact Buttons */}
-        <div className="flex flex-col gap-4">
-          <div className="flex gap-4">
-            <Link
-              className="p-4 flex-1 flex justify-center items-center rounded-lg 
-                         bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500
-                         transition-all duration-300 shadow-lg hover:shadow-blue-500/50 hover:shadow-xl border-0"
-              target="_blank"
-              href="https://www.linkedin.com/in/asif2107/"
-              aria-label="LinkedIn"
-            >
-              <Icon icon="hugeicons:linkedin-01" className="text-2xl text-white" />
-            </Link>
-            <Link
-              className="p-4 flex-1 flex justify-center items-center rounded-lg 
-                         bg-gradient-to-br from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700
-                         transition-all duration-300 shadow-lg hover:shadow-slate-500/50 hover:shadow-xl border-0"
-              target="_blank"
-              href="https://github.com/asif-mp3"
-              aria-label="GitHub"
-            >
-              <Icon icon="hugeicons:github" className="text-2xl text-white" />
-            </Link>
-          </div>
-          <div className="flex gap-4">
-            <Link
-              className="p-4 flex-1 flex justify-center items-center rounded-lg 
-                         bg-gradient-to-br from-black to-gray-900 hover:from-gray-800 hover:to-black
-                         transition-all duration-300 shadow-lg hover:shadow-gray-700/50 hover:shadow-xl border-0"
-              target="_blank"
-              href="https://x.com/asifitee"
-              aria-label="X (Twitter)"
-            >
-              <Icon icon="akar-icons:x-fill" className="text-2xl text-white" />
-            </Link>
-            <Link
-              className="p-4 flex-1 flex justify-center items-center rounded-lg 
-                         bg-gradient-to-br from-orange-500 to-red-500 hover:from-orange-400 hover:to-red-400
-                         transition-all duration-300 shadow-lg hover:shadow-orange-500/50 hover:shadow-xl border-0"
-              target="_blank"
-              href="mailto:asifoned@gmail.com"
-              aria-label="Email"
-            >
-              <Icon icon="ic:baseline-email" className="text-2xl text-white" />
-            </Link>
-          </div>
+        <div className="flex justify-center gap-6 pt-4 border-t border-[#7042f8]/20">
+          <Link
+            className="p-3 rounded-full bg-[#7042f8]/10 border border-[#7042f8]/30 hover:bg-[#7042f8]/20 hover:border-[#7042f8]/50 transition-all duration-300"
+            target="_blank"
+            href="https://www.linkedin.com/in/asif2107/"
+            aria-label="LinkedIn"
+          >
+            <Icon icon="mdi:linkedin" className="text-xl text-white" />
+          </Link>
+          <Link
+            className="p-3 rounded-full bg-[#7042f8]/10 border border-[#7042f8]/30 hover:bg-[#7042f8]/20 hover:border-[#7042f8]/50 transition-all duration-300"
+            target="_blank"
+            href="https://github.com/asif-mp3"
+            aria-label="GitHub"
+          >
+            <Icon icon="mdi:github" className="text-xl text-white" />
+          </Link>
+          <Link
+            className="p-3 rounded-full bg-[#7042f8]/10 border border-[#7042f8]/30 hover:bg-[#7042f8]/20 hover:border-[#7042f8]/50 transition-all duration-300"
+            target="_blank"
+            href="https://x.com/asifitee"
+            aria-label="X (Twitter)"
+          >
+            <Icon icon="ri:twitter-x-fill" className="text-xl text-white" />
+          </Link>
+          <Link
+            className="p-3 rounded-full bg-[#7042f8]/10 border border-[#7042f8]/30 hover:bg-[#7042f8]/20 hover:border-[#7042f8]/50 transition-all duration-300"
+            target="_blank"
+            href="mailto:asifoned@gmail.com"
+            aria-label="Email"
+          >
+            <Icon icon="ic:baseline-email" className="text-xl text-white" />
+          </Link>
         </div>
       </motion.div>
     </AnimatePresence>

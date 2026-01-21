@@ -5,13 +5,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import MobileMenu from "./MobileMenu";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
 const navItems = [
   { id: "home", label: "Home" },
-  { id: "work", label: "Projects" },
-  { id: "certificates", label: "Certificates" },
   { id: "about", label: "About" },
+  { id: "skills", label: "Skills" },
+  { id: "work", label: "Projects" },
+  { id: "experience", label: "Experience" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -25,75 +26,71 @@ export default function Header() {
 
   return (
     <>
-      <div className="fixed max-w-[90%] xl:max-w-[1223px] w-full z-10 select-none">
-        <div className="flex justify-between items-center px-6 py-4 rounded-2xl bg-[#ffffff10] backdrop-blur-lg mt-4 sm:mt-8">
-          <Image
-            src="/ade-logo.svg"
-            width={32}
-            height={36}
-            alt="logo"
-            className="select-none cursor-pointer"
-            onClick={handleLogoClick}
-          />
-          <Icon
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="cursor-pointer flex sm:hidden text-2xl"
-            icon={`${menuOpen ? "gg:close" : "lucide:menu"}`}
-          />
+      {/* Fixed full-width header */}
+      <div className="w-full h-[65px] fixed top-0 left-0 shadow-lg shadow-[#2A0E61]/50 bg-[#03001417] backdrop-blur-md z-50 px-4 md:px-10">
+        <div className="w-full h-full flex items-center justify-between m-auto max-w-[1400px]">
+          {/* Logo only */}
+          <Link href="#home" className="flex items-center" onClick={handleLogoClick}>
+            <Image
+              src="/ade-logo.svg"
+              width={38}
+              height={38}
+              alt="logo"
+              className="select-none cursor-pointer"
+              draggable={false}
+            />
+          </Link>
 
-          <ul className="hidden sm:flex gap-8 lg:gap-12 relative">
-            {navItems.map((item) => (
-              <Link
-                key={item.id}
-                href={`#${item.id}`}
-                className={`relative z-10 transition-colors duration-300 ${
-                  sectionInView === item.id
-                    ? "text-white"
-                    : "text-white/25 hover:text-white/50"
-                }`}
-              >
-                {item.label}
-                {sectionInView === item.id && (
-                  <motion.div
-                    layoutId="navIndicator"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
-              </Link>
-            ))}
-          </ul>
+          {/* Desktop Navigation - Elongated pill */}
+          <div className="hidden md:flex h-full items-center">
+            <div className="flex items-center justify-center gap-8 lg:gap-10 border border-[#7042f838] bg-[#0300145e] px-10 lg:px-14 py-2.5 rounded-full text-gray-200">
+              {navItems.map((item) => (
+                <Link
+                  key={item.id}
+                  href={`#${item.id}`}
+                  className={`cursor-pointer transition-colors duration-300 text-sm whitespace-nowrap ${
+                    sectionInView === item.id
+                      ? "text-[#b49bff]"
+                      : "text-gray-300 hover:text-[#7042f8]"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
 
-          <div className="gap-5 text-xl hidden sm:flex">
+          {/* Social Icons (Desktop) */}
+          <div className="hidden md:flex flex-row gap-5">
             <Link
               target="_blank"
               href="https://www.linkedin.com/in/asif2107/"
-              className="hover:text-cyan-400 transition-colors duration-300"
+              className="text-white hover:text-[#7042f8] transition-colors duration-300"
             >
-              <Icon icon="hugeicons:linkedin-01" />
+              <Icon icon="mdi:linkedin" className="h-6 w-6" />
             </Link>
             <Link
               target="_blank"
               href="https://github.com/asif-mp3"
-              className="hover:text-cyan-400 transition-colors duration-300"
+              className="text-white hover:text-[#7042f8] transition-colors duration-300"
             >
-              <Icon icon="hugeicons:github" />
+              <Icon icon="mdi:github" className="h-6 w-6" />
             </Link>
             <Link
               target="_blank"
               href="https://x.com/asifitee"
-              className="hover:text-cyan-400 transition-colors duration-300"
+              className="text-white hover:text-[#7042f8] transition-colors duration-300"
             >
-              <Icon icon="akar-icons:x-fill" />
-            </Link>
-            <Link
-              target="_blank"
-              href="mailto:asifoned@gmail.com"
-              className="hover:text-cyan-400 transition-colors duration-300"
-            >
-              <Icon icon="ic:baseline-email" />
+              <Icon icon="ri:twitter-x-fill" className="h-5 w-5" />
             </Link>
           </div>
+
+          {/* Mobile Menu Button */}
+          <Icon
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="cursor-pointer flex md:hidden text-2xl text-white"
+            icon={`${menuOpen ? "gg:close" : "lucide:menu"}`}
+          />
         </div>
       </div>
 

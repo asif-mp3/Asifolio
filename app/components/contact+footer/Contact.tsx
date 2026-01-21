@@ -1,18 +1,16 @@
-
-
-
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { Syne } from "next/font/google";
 import { useView } from "@/contexts/ViewContext";
+import { motion } from "framer-motion";
+import { Icon } from "@iconify/react";
 
 // @ts-ignore
 import "intersection-observer";
 import { useInView } from "react-intersection-observer";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import AnimatedTitle from "../ui/AnimatedTitle";
 import Link from "next/link";
-import { Icon } from "@iconify/react/dist/iconify.js";
 import { useForm } from "react-hook-form";
 import emailjs from "@emailjs/browser";
 import { ToastContainer, toast } from "react-toastify";
@@ -43,7 +41,6 @@ export default function Contact() {
   const { formState, register, handleSubmit, reset } = useForm();
   const { errors } = formState;
 
-  // For email.js
   const formRef = useRef<HTMLFormElement>(null);
 
   function onSubmit(data: any) {
@@ -92,6 +89,21 @@ export default function Contact() {
 
   return (
     <>
+      {/* Section Header */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="flex flex-col items-center mt-20 mb-8"
+      >
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
+            Contact Me
+          </span>
+        </h2>
+      </motion.div>
+
       <section
         ref={ref}
         id="contact"
@@ -102,7 +114,7 @@ export default function Contact() {
               : "perspective(300px) rotateY(-360deg)"
           }`,
         }}
-        className={`overflow-y-hidden card mt-12 sm:mt-16 md:mt-[100px] px-6 py-4 md:py-10 lg:py-12 flex flex-col lg:items-center lg:flex-row justify-between rounded-2xl bg-linear-to-r from-[#d9d9d91f] to-[#7373731f]`}
+        className={`overflow-y-hidden card mt-6 px-6 py-4 md:py-10 lg:py-12 flex flex-col lg:items-center lg:flex-row justify-between rounded-2xl bg-[#0a0118]/60 backdrop-blur-lg border border-[#2a0e61]`}
       >
         {!formDisplay ? (
           <div
@@ -126,7 +138,7 @@ export default function Contact() {
                   onClick={() => {
                     setFormDisplay(!formDisplay);
                   }}
-                  className="sm:mt-0 text-xl sm:text-2xl md:text-[32px] w-fit underline lg:text-[40px] font-bold leading-tight hidden sm:block lg:hidden"
+                  className="sm:mt-0 text-xl sm:text-2xl md:text-[32px] w-fit underline lg:text-[40px] font-bold leading-tight hidden sm:block lg:hidden text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400"
                 >
                   CONTACT ME
                 </span>
@@ -134,7 +146,7 @@ export default function Contact() {
             </div>
             <Link href="#footer">
               <button
-                className={`text-base ml-auto mt-6 lg:mt-0 lg:ml-0 block sm:hidden lg:block lg:text-2xl font-semibold px-4 py-2 md:px-3 lg:py-4 rounded-xl border-2 border-white leading-none ${
+                className={`text-base ml-auto mt-6 lg:mt-0 lg:ml-0 block sm:hidden lg:block lg:text-2xl font-semibold button-primary rounded-xl leading-none ${
                   viewCount <= 1 && "duration-500 delay-[1500ms]"
                 } ${
                   inView
@@ -166,7 +178,7 @@ export default function Contact() {
               }}
               className="w-full"
             >
-              <div className="ml-auto float-right md:absolute right-0 -top-5 text-2xl opacity-50">
+              <div className="ml-auto float-right md:absolute right-0 -top-5 text-2xl opacity-50 cursor-pointer hover:opacity-100 transition-opacity">
                 <Icon
                   icon="gg:close"
                   data-blobity
@@ -185,7 +197,7 @@ export default function Contact() {
                   <div className="flex gap-1 flex-col">
                     <label
                       htmlFor="from_name"
-                      className="opacity-70 text-sm lg:text-base "
+                      className="text-gray-400 text-sm lg:text-base"
                     >
                       Name
                     </label>
@@ -199,7 +211,7 @@ export default function Contact() {
                           message: "Please enter a valid name.",
                         },
                       })}
-                      className="bg-transparent rounded-md border border-[#737373c4] focus:border-[#9f9d9dc4] outline-hidden py-1 pl-2"
+                      className="bg-[#030014]/50 rounded-lg border border-[#2a0e61] focus:border-[#7c3aed] outline-none py-2 px-3 text-white transition-colors duration-300"
                     />
                     {errors?.from_name && (
                       <span className="text-red-400 text-xs">
@@ -210,7 +222,7 @@ export default function Contact() {
                   <div className="flex gap-1 flex-col">
                     <label
                       htmlFor="userEmail"
-                      className="opacity-70 text-sm lg:text-base "
+                      className="text-gray-400 text-sm lg:text-base"
                     >
                       Email
                     </label>
@@ -224,7 +236,7 @@ export default function Contact() {
                           message: "Please provide a valid email address",
                         },
                       })}
-                      className="bg-transparent rounded-md border border-[#737373c4] focus:border-[#9f9d9dc4] outline-hidden py-1 pl-2"
+                      className="bg-[#030014]/50 rounded-lg border border-[#2a0e61] focus:border-[#7c3aed] outline-none py-2 px-3 text-white transition-colors duration-300"
                     />
                     {errors?.userEmail && (
                       <span className="text-red-400 text-xs">
@@ -235,7 +247,7 @@ export default function Contact() {
                   <div className="flex gap-1 flex-col">
                     <label
                       htmlFor="message"
-                      className="opacity-70 text-sm lg:text-base"
+                      className="text-gray-400 text-sm lg:text-base"
                     >
                       Message
                     </label>
@@ -246,7 +258,7 @@ export default function Contact() {
                       })}
                       rows={4}
                       cols={50}
-                      className="bg-transparent rounded-md border border-[#737373c4] focus:border-[#9f9d9dc4] outline-hidden py-1 pl-2"
+                      className="bg-[#030014]/50 rounded-lg border border-[#2a0e61] focus:border-[#7c3aed] outline-none py-2 px-3 text-white transition-colors duration-300 resize-none"
                     />
                     {errors?.message && (
                       <span className="text-red-400 text-xs">
@@ -255,9 +267,9 @@ export default function Contact() {
                     )}
                   </div>
                   <button
-                    className={`rounded-md bg-linear-to-r from-[#d9d9d91f] to-[#7373731f] py-3 px-5 ${syne.className} font-bold uppercase mt-4`}
+                    className={`button-primary rounded-xl py-3 px-5 ${syne.className} font-bold uppercase mt-4 text-white`}
                   >
-                    Send
+                    Send Message
                   </button>
                 </form>
               </div>

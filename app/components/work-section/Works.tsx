@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useEffect, useState, useRef } from "react"
-import FolioCard from "./FolioCard"
-import Title from "../ui/Title"
-import { useView } from "@/contexts/ViewContext"
-import { motion, AnimatePresence } from "framer-motion"
-import { ChevronLeft, ChevronRight, Info, X } from "lucide-react"
-import Timeline from "./Timeline"
+import type React from "react";
+import { useEffect, useState, useRef } from "react";
+import FolioCard from "./FolioCard";
+import { useView } from "@/contexts/ViewContext";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight, Info, X } from "lucide-react";
+import Timeline from "./Timeline";
+import { Icon } from "@iconify/react";
 
 // @ts-ignore
-import "intersection-observer"
-import { useInView } from "react-intersection-observer"
+import "intersection-observer";
+import { useInView } from "react-intersection-observer";
 
 const AnimatedCard = ({ children, index }: { children: React.ReactNode; index: number }) => {
   const { ref, inView } = useInView({
@@ -156,7 +156,23 @@ export default function Works() {
 
   return (
     <section className="flex flex-col gap-6 md:gap-10 pt-32 md:pt-20" ref={sectionRef} id="work">
-      <Title>Projects</Title>
+      {/* Section Header */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="flex flex-col items-center mb-6"
+      >
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
+            Featured Projects
+          </span>
+        </h2>
+        <p className="text-gray-400 text-center mt-4 max-w-2xl">
+          A showcase of my technical projects spanning cloud architecture, machine learning, and full-stack development
+        </p>
+      </motion.div>
 
       <AnimatePresence mode="wait">
         <motion.div
@@ -215,7 +231,7 @@ export default function Works() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/30 backdrop-blur-md flex items-center justify-center z-50 p-4"
+            className="fixed inset-0 bg-[#030014]/80 backdrop-blur-md flex items-center justify-center z-50 p-4"
             onClick={() => setShowPopup(false)}
           >
             <motion.div
@@ -223,22 +239,22 @@ export default function Works() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl rounded-lg shadow-2xl max-w-lg w-full p-6 relative border border-white/20"
+              className="bg-[#0a0118]/95 backdrop-blur-xl rounded-2xl shadow-2xl max-w-lg w-full p-6 relative border border-[#2a0e61]"
             >
               <button
                 onClick={() => setShowPopup(false)}
-                className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors"
+                className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
               >
                 <X className="h-6 w-6" />
               </button>
 
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+              <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 mb-4">
                 Smart Placement Calendar Automation
               </h3>
 
-              <div className="text-gray-700 dark:text-gray-300 text-justify leading-relaxed">
+              <div className="text-gray-300 text-justify leading-relaxed">
                 <p className="mb-3">
-                  <span className="font-semibold text-red-500">🎯 Crucial Problem Solving:</span>
+                  <span className="font-semibold text-purple-400">Crucial Problem Solving:</span>
                 </p>
                 <p>
                   This project ensures students never miss placement opportunities by automating the verification and
@@ -249,7 +265,7 @@ export default function Works() {
 
               <button
                 onClick={() => setShowPopup(false)}
-                className="mt-6 w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
+                className="mt-6 w-full button-primary text-white font-semibold py-2.5 px-4 rounded-xl transition-colors"
               >
                 Got it!
               </button>

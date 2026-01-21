@@ -67,7 +67,7 @@ const TimelineData = [
 ];
 export default function Timeline() {
   return (
-    <div className="mt-10 md:mt-[110px]">
+    <div id="experience" className="mt-10 md:mt-[110px] scroll-mt-20">
       <Title> my experience</Title>
 
       {/* THE THING, AFTER WHICH I WOULD DETERMINE THE HEIGHT */}
