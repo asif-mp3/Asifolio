@@ -6,6 +6,9 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import Header from "./components/header-section/Header";
 import { ViewProvider } from "@/contexts/ViewContext";
+import SmoothScroll from "./components/ui/SmoothScroll";
+import ScrollProgress from "./components/ui/ScrollProgress";
+import MouseGradient from "./components/ui/MouseGradient";
 
 const kumbhSans = Kumbh_Sans({ subsets: ["latin"] });
 
@@ -81,14 +84,16 @@ export default function RootLayout({
       <body
         className={`${kumbhSans.className} max-w-[90%] xl:max-w-[1223px] w-full mx-auto overflow-x-hidden`}
       >
-        <>
+        <SmoothScroll>
+          <ScrollProgress />
+          <MouseGradient />
           <ViewProvider>
             <Header />
             {children}
           </ViewProvider>
           <Analytics />
           <SpeedInsights />
-        </>
+        </SmoothScroll>
       </body>
     </html>
   );

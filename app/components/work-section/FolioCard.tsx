@@ -6,6 +6,7 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import Tag from "./Tag"
 import { useInView } from "react-intersection-observer"
+import TiltCard from "../ui/TiltCard"
 
 // @ts-ignore
 import "intersection-observer"
@@ -32,15 +33,20 @@ export default function FolioCard({
   })
 
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 12 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
-      transition={{ duration: 0.7 }}
-      className="w-full rounded-[20px] std-backdrop-blur bg-linear-to-r from-[#d9d9d91f] to-[#7373731f] grid grid-cols-1 items-start lg:grid-cols-12 gap-5 xl:gap-8 p-6 duration-700 hover:shadow-2xl transition-shadow border border-white/5 cursor-pointer group"
-      data-no-blobity
-      whileHover={{ scale: 0.98, borderRadius: "24px" }}
-    >
+    <TiltCard tiltIntensity={5}>
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 12 }}
+        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+        transition={{ duration: 0.7 }}
+        className="w-full rounded-[20px] std-backdrop-blur bg-linear-to-r from-[#d9d9d91f] to-[#7373731f] grid grid-cols-1 items-start lg:grid-cols-12 gap-5 xl:gap-8 p-6 duration-500 hover:shadow-2xl hover:shadow-cyan-500/10 transition-all border border-white/5 hover:border-white/10 cursor-pointer group"
+        data-no-blobity
+        whileHover={{
+          scale: 1.02,
+          y: -8,
+          transition: { type: "spring", stiffness: 300, damping: 20 }
+        }}
+      >
       {/* Image Section */}
       <div className="relative w-full lg:col-span-5 rounded-[10px] overflow-hidden bg-gradient-to-br from-gray-800/50 to-gray-900/50 group">
         <div className="relative w-full aspect-[4/3] flex items-center justify-center">
@@ -125,6 +131,7 @@ export default function FolioCard({
           ))}
         </div>
       </div>
-    </motion.div>
+      </motion.div>
+    </TiltCard>
   )
 }
