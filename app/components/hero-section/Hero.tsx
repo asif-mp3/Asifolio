@@ -202,11 +202,11 @@ export default function Hero() {
                 transition={{ delay: 1, duration: 0.6 }}
                 className="mt-6 text-center italic text-gray-400 text-sm md:text-base max-w-[280px]"
               >
-                <span className="text-purple-400/80">"</span>
+                <span className="text-purple-400/80">&ldquo;</span>
                 <span className="bg-gradient-to-r from-gray-300 via-gray-400 to-gray-300 bg-clip-text text-transparent">
                   The best thing about time is, it changes...
                 </span>
-                <span className="text-purple-400/80">"</span>
+                <span className="text-purple-400/80">&rdquo;</span>
               </motion.p>
             </div>
           </motion.div>
