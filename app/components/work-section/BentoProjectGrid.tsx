@@ -34,8 +34,8 @@ export default function BentoProjectGrid({ projects }: BentoProjectGridProps) {
 
   return (
     <>
-      {/* Bento Grid with explicit rows */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 auto-rows-[280px] md:auto-rows-[320px]">
+      {/* Bento Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 auto-rows-[180px] md:auto-rows-[320px]">
         {projects.map((project, index) => (
           <BentoProjectCard
             key={project.title}

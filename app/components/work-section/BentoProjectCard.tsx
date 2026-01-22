@@ -38,6 +38,7 @@ export default function BentoProjectCard({
     7: "md:col-span-3 md:row-span-1", // Full width bottom
   };
 
+  // Desktop-only bento variations
   const isTall = index === 0;
   const isWide = index === 1 || index === 7;
 
@@ -76,16 +77,16 @@ export default function BentoProjectCard({
           <div className="absolute inset-0 bg-gradient-to-br from-blue-500/15 via-transparent to-indigo-500/15" />
         </div>
 
-        {/* Card layout changes based on variant */}
-        <div className={`h-full flex ${isTall ? "flex-col" : isWide ? "flex-row" : "flex-col"}`}>
-          {/* Image Section */}
+        {/* Mobile: horizontal layout | Desktop: bento variations */}
+        <div className={`h-full flex flex-row ${isTall ? "md:flex-col" : isWide ? "md:flex-row" : "md:flex-col"}`}>
+          {/* Image Section - fixed width on mobile, varies on desktop */}
           <div
-            className={`relative overflow-hidden ${
+            className={`relative overflow-hidden w-[40%] h-full ${
               isTall
-                ? "h-[55%] w-full"
+                ? "md:h-[55%] md:w-full"
                 : isWide
-                ? "w-[50%] h-full min-h-[200px]"
-                : "h-[55%] w-full"
+                ? "md:w-[50%] md:h-full md:min-h-[200px]"
+                : "md:h-[55%] md:w-full"
             }`}
           >
             <Image
@@ -139,28 +140,42 @@ export default function BentoProjectCard({
           </div>
 
           {/* Content Section */}
-          <div className={`flex-1 p-4 flex flex-col justify-between ${isWide ? "w-[50%]" : ""}`}>
+          <div className={`flex-1 p-3 md:p-4 flex flex-col justify-between w-[60%] md:w-auto ${isWide ? "md:w-[50%]" : ""}`}>
             <div>
-              <h3 className="font-bold text-white text-base md:text-lg mb-2 line-clamp-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-indigo-400 transition-all duration-300">
+              <h3 className="font-bold text-white text-sm md:text-lg mb-1 md:mb-2 line-clamp-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-indigo-400 transition-all duration-300">
                 {project.title}
               </h3>
-              <p className={`text-gray-400 text-sm leading-relaxed ${isTall ? "line-clamp-4" : "line-clamp-2"}`}>
+              <p className={`text-gray-400 text-xs md:text-sm leading-relaxed line-clamp-2 ${isTall ? "md:line-clamp-4" : "md:line-clamp-2"}`}>
                 {project.about}
               </p>
             </div>
 
-            {/* Tech Stack */}
-            <div className="flex flex-wrap gap-1.5 mt-3">
-              {project.stack.slice(0, isTall ? 4 : 3).map((tech, i) => (
+            {/* Tech Stack - fewer on mobile */}
+            <div className="flex flex-wrap gap-1 md:gap-1.5 mt-2 md:mt-3">
+              {project.stack.slice(0, 2).map((tech, i) => (
                 <span
                   key={i}
-                  className="px-2 py-0.5 text-[10px] md:text-xs font-medium text-blue-300/80 bg-blue-500/10 border border-blue-500/30 rounded"
+                  className="px-1.5 md:px-2 py-0.5 text-[9px] md:text-xs font-medium text-blue-300/80 bg-blue-500/10 border border-blue-500/30 rounded md:hidden"
                 >
                   {tech}
                 </span>
               ))}
+              {/* Desktop shows more */}
+              {project.stack.slice(0, isTall ? 4 : 3).map((tech, i) => (
+                <span
+                  key={i}
+                  className="hidden md:inline-block px-2 py-0.5 text-xs font-medium text-blue-300/80 bg-blue-500/10 border border-blue-500/30 rounded"
+                >
+                  {tech}
+                </span>
+              ))}
+              {project.stack.length > 2 && (
+                <span className="px-1.5 py-0.5 text-[9px] text-gray-500 md:hidden">
+                  +{project.stack.length - 2}
+                </span>
+              )}
               {project.stack.length > (isTall ? 4 : 3) && (
-                <span className="px-2 py-0.5 text-[10px] md:text-xs text-gray-500">
+                <span className="hidden md:inline-block px-2 py-0.5 text-xs text-gray-500">
                   +{project.stack.length - (isTall ? 4 : 3)}
                 </span>
               )}
