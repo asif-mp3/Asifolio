@@ -33,7 +33,7 @@ export default function MobileMenu({
         transition={{ duration: 0.2 }}
         className="fixed z-50 sm:hidden left-1/2 transform -translate-x-1/2 top-20 rounded-2xl
                    bg-[#030014]/95 backdrop-blur-xl
-                   max-w-[90%] w-full mx-auto px-6 py-8 border border-[#7042f8]/30 shadow-2xl shadow-[#7042f8]/10
+                   max-w-[90%] w-full mx-auto px-6 py-8 border border-blue-500/30 shadow-2xl shadow-blue-500/10
                    max-h-[calc(100vh-6rem)] overflow-y-auto"
       >
         {/* Navigation Links */}
@@ -43,10 +43,11 @@ export default function MobileMenu({
         >
           {[
             { id: "home", label: "Home" },
-            { id: "about", label: "About" },
-            { id: "skills", label: "Skills" },
             { id: "work", label: "Projects" },
             { id: "experience", label: "Experience" },
+            { id: "certificates", label: "Certifications" },
+            { id: "skills", label: "Skills" },
+            { id: "about", label: "About" },
             { id: "contact", label: "Contact" },
           ].map((item, index) => (
             <motion.li
@@ -58,8 +59,8 @@ export default function MobileMenu({
               <Link
                 href={`#${item.id}`}
                 className={`${
-                  sectionInView === item.id ? "text-[#7042f8] bg-[#7042f8]/10" : "text-gray-300"
-                } block w-full py-3 px-4 rounded-lg transition-all duration-200 hover:text-[#7042f8] hover:bg-[#7042f8]/5 active:bg-[#7042f8]/15 min-h-[48px] flex items-center tap-scale`}
+                  sectionInView === item.id ? "text-blue-400 bg-blue-500/10" : "text-gray-300"
+                } block w-full py-3 px-4 rounded-lg transition-all duration-200 hover:text-blue-400 hover:bg-blue-500/5 active:bg-blue-500/15 min-h-[48px] flex items-center tap-scale`}
               >
                 {item.label}
               </Link>
@@ -72,10 +73,10 @@ export default function MobileMenu({
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="flex justify-center gap-4 pt-4 border-t border-[#7042f8]/20"
+          className="flex justify-center gap-4 pt-4 border-t border-blue-500/20"
         >
           <Link
-            className="w-11 h-11 flex items-center justify-center rounded-full bg-[#7042f8]/10 border border-[#7042f8]/30 hover:bg-[#7042f8]/20 hover:border-[#7042f8]/50 active:bg-[#7042f8]/30 transition-all duration-300 tap-scale"
+            className="w-11 h-11 flex items-center justify-center rounded-full bg-blue-500/10 border border-blue-500/30 hover:bg-blue-500/20 hover:border-blue-500/50 active:bg-blue-500/30 transition-all duration-300 tap-scale"
             target="_blank"
             href="https://www.linkedin.com/in/asif2107/"
             aria-label="LinkedIn"
@@ -83,7 +84,7 @@ export default function MobileMenu({
             <Icon icon="mdi:linkedin" className="text-xl text-white" />
           </Link>
           <Link
-            className="w-11 h-11 flex items-center justify-center rounded-full bg-[#7042f8]/10 border border-[#7042f8]/30 hover:bg-[#7042f8]/20 hover:border-[#7042f8]/50 active:bg-[#7042f8]/30 transition-all duration-300 tap-scale"
+            className="w-11 h-11 flex items-center justify-center rounded-full bg-blue-500/10 border border-blue-500/30 hover:bg-blue-500/20 hover:border-blue-500/50 active:bg-blue-500/30 transition-all duration-300 tap-scale"
             target="_blank"
             href="https://github.com/asif-mp3"
             aria-label="GitHub"
@@ -91,7 +92,7 @@ export default function MobileMenu({
             <Icon icon="mdi:github" className="text-xl text-white" />
           </Link>
           <Link
-            className="w-11 h-11 flex items-center justify-center rounded-full bg-[#7042f8]/10 border border-[#7042f8]/30 hover:bg-[#7042f8]/20 hover:border-[#7042f8]/50 active:bg-[#7042f8]/30 transition-all duration-300 tap-scale"
+            className="w-11 h-11 flex items-center justify-center rounded-full bg-blue-500/10 border border-blue-500/30 hover:bg-blue-500/20 hover:border-blue-500/50 active:bg-blue-500/30 transition-all duration-300 tap-scale"
             target="_blank"
             href="https://x.com/asifitee"
             aria-label="X (Twitter)"
@@ -99,7 +100,7 @@ export default function MobileMenu({
             <Icon icon="ri:twitter-x-fill" className="text-xl text-white" />
           </Link>
           <Link
-            className="w-11 h-11 flex items-center justify-center rounded-full bg-[#7042f8]/10 border border-[#7042f8]/30 hover:bg-[#7042f8]/20 hover:border-[#7042f8]/50 active:bg-[#7042f8]/30 transition-all duration-300 tap-scale"
+            className="w-11 h-11 flex items-center justify-center rounded-full bg-blue-500/10 border border-blue-500/30 hover:bg-blue-500/20 hover:border-blue-500/50 active:bg-blue-500/30 transition-all duration-300 tap-scale"
             target="_blank"
             href="mailto:asifoned@gmail.com"
             aria-label="Email"

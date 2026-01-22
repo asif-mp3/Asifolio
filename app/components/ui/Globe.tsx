@@ -1,7 +1,7 @@
 "use client";
 
 import createGlobe, { COBEOptions } from "cobe";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
 const GLOBE_CONFIG: COBEOptions = {
@@ -38,8 +38,9 @@ export function Globe({
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pointerInteracting = useRef<number | null>(null);
-  const pointerInteractionMovement = useRef(0);
+  const pointerX = useRef(0);
   const phiRef = useRef(0);
+  const velocityRef = useRef(0);
   const widthRef = useRef(0);
 
   useEffect(() => {
@@ -58,9 +59,16 @@ export function Globe({
       height: widthRef.current * 2,
       onRender: (state) => {
         if (pointerInteracting.current === null) {
-          phiRef.current += 0.005;
+          // Apply velocity with friction when not dragging
+          phiRef.current += velocityRef.current;
+          velocityRef.current *= 0.95; // Friction
+
+          // Add slow auto-rotation when velocity is very low
+          if (Math.abs(velocityRef.current) < 0.001) {
+            phiRef.current += 0.003;
+          }
         }
-        state.phi = phiRef.current + pointerInteractionMovement.current / 200;
+        state.phi = phiRef.current;
         state.width = widthRef.current * 2;
         state.height = widthRef.current * 2;
       },
@@ -78,19 +86,33 @@ export function Globe({
     };
   }, [config]);
 
-  const updatePointerInteraction = (value: number | null) => {
-    pointerInteracting.current = value;
+  const onPointerDown = useCallback((e: React.PointerEvent) => {
+    pointerInteracting.current = e.clientX;
+    pointerX.current = e.clientX;
+    velocityRef.current = 0;
     if (canvasRef.current) {
-      canvasRef.current.style.cursor = value !== null ? "grabbing" : "grab";
+      canvasRef.current.style.cursor = "grabbing";
     }
-  };
+  }, []);
 
-  const updateMovement = (clientX: number) => {
-    if (pointerInteracting.current !== null) {
-      const delta = clientX - pointerInteracting.current;
-      pointerInteractionMovement.current = delta;
+  const onPointerUp = useCallback(() => {
+    pointerInteracting.current = null;
+    if (canvasRef.current) {
+      canvasRef.current.style.cursor = "grab";
     }
-  };
+  }, []);
+
+  const onPointerMove = useCallback((clientX: number) => {
+    if (pointerInteracting.current !== null) {
+      const delta = clientX - pointerX.current;
+      pointerX.current = clientX;
+
+      // Update phi directly and track velocity
+      const movement = delta * 0.01;
+      phiRef.current += movement;
+      velocityRef.current = movement;
+    }
+  }, []);
 
   return (
     <div
@@ -101,19 +123,15 @@ export function Globe({
     >
       <canvas
         className={cn(
-          "size-full opacity-0 transition-opacity duration-500 [contain:layout_paint_size]"
+          "size-full opacity-0 transition-opacity duration-500 [contain:layout_paint_size] cursor-grab"
         )}
         ref={canvasRef}
-        onPointerDown={(e) =>
-          updatePointerInteraction(
-            e.clientX - pointerInteractionMovement.current
-          )
-        }
-        onPointerUp={() => updatePointerInteraction(null)}
-        onPointerOut={() => updatePointerInteraction(null)}
-        onMouseMove={(e) => updateMovement(e.clientX)}
+        onPointerDown={onPointerDown}
+        onPointerUp={onPointerUp}
+        onPointerOut={onPointerUp}
+        onMouseMove={(e) => onPointerMove(e.clientX)}
         onTouchMove={(e) =>
-          e.touches[0] && updateMovement(e.touches[0].clientX)
+          e.touches[0] && onPointerMove(e.touches[0].clientX)
         }
       />
     </div>

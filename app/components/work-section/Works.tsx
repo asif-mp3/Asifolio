@@ -5,10 +5,13 @@ import { useView } from "@/contexts/ViewContext";
 import { motion } from "framer-motion";
 import Timeline from "./Timeline";
 import BentoProjectGrid from "./BentoProjectGrid";
+import { Syne } from "next/font/google";
 
 // @ts-ignore
 import "intersection-observer";
 import { useInView } from "react-intersection-observer";
+
+const syne = Syne({ subsets: ["latin"] });
 
 export default function Works() {
   const { setSectionInView } = useView();
@@ -111,17 +114,11 @@ export default function Works() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="flex flex-col items-center mb-12"
+        className="mb-12"
       >
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center">
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
-            Featured Projects
-          </span>
+        <h2 className={`uppercase ${syne.className} text-4xl md:text-5xl xl:text-6xl font-bold`}>
+          My Projects
         </h2>
-        <p className="text-gray-400 text-center mt-4 max-w-2xl">
-          A showcase of my technical projects spanning cloud architecture,
-          machine learning, and full-stack development
-        </p>
       </motion.div>
 
       {/* Bento Grid */}

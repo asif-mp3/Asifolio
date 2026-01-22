@@ -5,6 +5,9 @@ import { useState } from "react";
 import { Trophy, Award, Users, Cloud, X } from "lucide-react";
 import { Globe } from "@/app/components/ui/Globe";
 import GitHubCalendar from "@/app/components/ui/GitHubCalendar";
+import { Syne } from "next/font/google";
+
+const syne = Syne({ subsets: ["latin"] });
 
 const achievements = [
   {
@@ -94,16 +97,11 @@ export default function Encryption() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col items-center mb-12"
+          className="mb-12"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
-              Key Achievements
-            </span>
+          <h2 className={`uppercase ${syne.className} text-4xl md:text-5xl xl:text-6xl font-bold`}>
+            Key Achievements
           </h2>
-          <p className="text-gray-400 text-center mt-4 max-w-2xl">
-            Milestones and recognitions that highlight my journey in tech
-          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -207,31 +205,31 @@ export default function Encryption() {
               <div className="relative w-[320px] h-[320px] md:w-[420px] md:h-[420px] flex items-center justify-center">
                 {/* Outer orbital ring */}
                 <motion.div
-                  className="absolute w-[300px] h-[300px] md:w-[390px] md:h-[390px] rounded-full border border-purple-500/20"
+                  className="absolute w-[300px] h-[300px] md:w-[390px] md:h-[390px] rounded-full border border-blue-500/20"
                   animate={{ rotate: 360 }}
                   transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
                 >
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-purple-500 rounded-full shadow-lg shadow-purple-500/50" />
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-blue-500 rounded-full shadow-lg shadow-blue-500/50" />
                 </motion.div>
 
                 {/* Middle orbital ring */}
                 <motion.div
-                  className="absolute w-[260px] h-[260px] md:w-[340px] md:h-[340px] rounded-full border border-cyan-500/20"
+                  className="absolute w-[260px] h-[260px] md:w-[340px] md:h-[340px] rounded-full border border-indigo-500/20"
                   style={{ transform: "rotateX(60deg)" }}
                   animate={{ rotate: -360 }}
                   transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
                 >
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-cyan-400 rounded-full shadow-lg shadow-cyan-400/50" />
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-indigo-400 rounded-full shadow-lg shadow-indigo-400/50" />
                 </motion.div>
 
                 {/* Inner orbital ring */}
                 <motion.div
-                  className="absolute w-[220px] h-[220px] md:w-[290px] md:h-[290px] rounded-full border border-purple-400/15"
+                  className="absolute w-[220px] h-[220px] md:w-[290px] md:h-[290px] rounded-full border border-blue-400/15"
                   style={{ transform: "rotateY(60deg)" }}
                   animate={{ rotate: 360 }}
                   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                 >
-                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-1.5 h-1.5 bg-purple-400 rounded-full shadow-lg shadow-purple-400/50" />
+                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-1.5 h-1.5 bg-blue-400 rounded-full shadow-lg shadow-blue-400/50" />
                 </motion.div>
 
                 {/* Globe container */}
@@ -240,7 +238,7 @@ export default function Encryption() {
                 </div>
 
                 {/* Glow effect behind globe */}
-                <div className="absolute w-[200px] h-[200px] md:w-[260px] md:h-[260px] rounded-full bg-gradient-to-br from-purple-500/20 to-cyan-500/20 blur-xl -z-10" />
+                <div className="absolute w-[200px] h-[200px] md:w-[260px] md:h-[260px] rounded-full bg-gradient-to-br from-blue-500/20 to-indigo-500/20 blur-xl -z-10" />
               </div>
             </motion.div>
 

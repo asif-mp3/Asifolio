@@ -2,6 +2,9 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { Syne } from "next/font/google";
+
+const syne = Syne({ subsets: ["latin"] });
 
 // Skill rows in reverse pyramid layout (8 → 6 → 4)
 const skillRows = [
@@ -58,7 +61,7 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="relative flex flex-col items-center justify-center py-20 px-4 md:px-8 lg:px-12 overflow-hidden"
+      className="relative flex flex-col py-20 px-4 md:px-8 lg:px-12 overflow-hidden"
     >
       {/* Video Background */}
       <video
@@ -71,20 +74,21 @@ export default function Skills() {
         <source src="/videos/skills-bg.webm" type="video/webm" />
       </video>
 
-      {/* Header Text */}
-      <motion.p
+      {/* Section Header */}
+      <motion.div
         variants={fadeIn("down", 0.1)}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="text-gray-300 text-lg md:text-xl italic mb-12 text-center font-light"
-        style={{ fontFamily: "cursive" }}
+        className="mb-12"
       >
-        Never miss a task, deadline or idea
-      </motion.p>
+        <h2 className={`uppercase ${syne.className} text-4xl md:text-5xl xl:text-6xl font-bold`}>
+          My Skills
+        </h2>
+      </motion.div>
 
       {/* Skills Grid */}
-      <div className="flex flex-col items-center gap-8 w-full max-w-6xl px-4">
+      <div className="flex flex-col items-center gap-8 w-full max-w-6xl mx-auto px-4">
         {/* Row 1 */}
         <motion.div
           variants={fadeIn("right", 0.3)}
@@ -177,21 +181,6 @@ export default function Skills() {
         </motion.div>
       </div>
 
-      {/* Section Title */}
-      <motion.div
-        variants={fadeIn("up", 0.9)}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="mt-16 flex flex-col items-center"
-      >
-        <h3 className="text-xl md:text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 tracking-wide">
-          My Tech Stack
-        </h3>
-        <p className="text-gray-400 text-sm mt-2">
-          Building with modern technologies
-        </p>
-      </motion.div>
     </section>
   );
 }

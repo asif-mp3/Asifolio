@@ -90,22 +90,7 @@ export default function Contact() {
   return (
     <div className="py-20 px-4 md:px-8 lg:px-12">
       {/* Section Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="flex flex-col items-center mb-12"
-      >
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center">
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
-            Contact Me
-          </span>
-        </h2>
-        <p className="text-gray-400 text-center mt-4 max-w-2xl">
-          Have a project in mind? Let&apos;s connect and build something amazing together
-        </p>
-      </motion.div>
+
 
       <section
         ref={ref}
@@ -117,7 +102,7 @@ export default function Contact() {
               : "perspective(300px) rotateY(-360deg)"
           }`,
         }}
-        className={`overflow-y-hidden card px-6 py-4 md:py-10 lg:py-12 flex flex-col lg:items-center lg:flex-row justify-between rounded-2xl bg-[#0a0118]/60 backdrop-blur-lg border border-[#2a0e61]`}
+        className={`overflow-y-hidden card px-6 py-4 md:py-10 lg:py-12 flex flex-col lg:items-center lg:flex-row justify-between rounded-2xl bg-[#0a0118]/60 backdrop-blur-lg border border-blue-500/20`}
       >
         {!formDisplay ? (
           <div
@@ -141,7 +126,7 @@ export default function Contact() {
                   onClick={() => {
                     setFormDisplay(!formDisplay);
                   }}
-                  className="sm:mt-0 text-xl sm:text-2xl md:text-[32px] w-fit underline lg:text-[40px] font-bold leading-tight hidden sm:block lg:hidden text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400"
+                  className="sm:mt-0 text-xl sm:text-2xl md:text-[32px] w-fit underline lg:text-[40px] font-bold leading-tight hidden sm:block lg:hidden text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400"
                 >
                   CONTACT ME
                 </span>
@@ -214,7 +199,7 @@ export default function Contact() {
                           message: "Please enter a valid name.",
                         },
                       })}
-                      className="bg-[#030014]/50 rounded-lg border border-[#2a0e61] focus:border-[#7c3aed] outline-none py-2 px-3 text-white transition-colors duration-300"
+                      className="bg-[#030014]/50 rounded-lg border border-blue-500/20 focus:border-blue-500 outline-none py-2 px-3 text-white transition-colors duration-300"
                     />
                     {errors?.from_name && (
                       <span className="text-red-400 text-xs">
@@ -239,7 +224,7 @@ export default function Contact() {
                           message: "Please provide a valid email address",
                         },
                       })}
-                      className="bg-[#030014]/50 rounded-lg border border-[#2a0e61] focus:border-[#7c3aed] outline-none py-2 px-3 text-white transition-colors duration-300"
+                      className="bg-[#030014]/50 rounded-lg border border-blue-500/20 focus:border-blue-500 outline-none py-2 px-3 text-white transition-colors duration-300"
                     />
                     {errors?.userEmail && (
                       <span className="text-red-400 text-xs">
@@ -261,7 +246,7 @@ export default function Contact() {
                       })}
                       rows={4}
                       cols={50}
-                      className="bg-[#030014]/50 rounded-lg border border-[#2a0e61] focus:border-[#7c3aed] outline-none py-2 px-3 text-white transition-colors duration-300 resize-none"
+                      className="bg-[#030014]/50 rounded-lg border border-blue-500/20 focus:border-blue-500 outline-none py-2 px-3 text-white transition-colors duration-300 resize-none"
                     />
                     {errors?.message && (
                       <span className="text-red-400 text-xs">

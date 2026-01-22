@@ -4,6 +4,9 @@ import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { useView } from "@/contexts/ViewContext";
 import CertificateCarousel from "./CertificateCarousel";
+import { Syne } from "next/font/google";
+
+const syne = Syne({ subsets: ["latin"] });
 
 const certificates = [
   {
@@ -101,17 +104,11 @@ const Certificates = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="flex flex-col items-center mb-12"
+        className="mb-12"
       >
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center">
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
-            Certifications
-          </span>
+        <h2 className={`uppercase ${syne.className} text-4xl md:text-5xl xl:text-6xl font-bold`}>
+          Certifications
         </h2>
-        <p className="text-gray-400 text-center mt-4 max-w-2xl">
-          Industry-recognized certifications validating expertise in cloud
-          computing, AI/ML, and software development
-        </p>
       </motion.div>
 
       {/* Certificate Carousel */}

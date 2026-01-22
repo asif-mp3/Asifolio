@@ -2,21 +2,24 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { Syne } from "next/font/google";
+
+const syne = Syne({ subsets: ["latin"] });
 
 const achievements = [
   {
     title: "Patent Published",
     description: "Smart Buoy System for Oil Spill Detection",
     detail: "Application No. 202541080926",
-    color: "from-purple-500/20 to-purple-600/10",
-    borderColor: "border-purple-500/30",
+    color: "from-blue-500/20 to-blue-600/10",
+    borderColor: "border-blue-500/30",
   },
   {
     title: "SIH 2024 Finalist",
     description: "Smart India Hackathon National Finals",
     detail: "Ranked 38th out of 673 teams",
-    color: "from-cyan-500/20 to-cyan-600/10",
-    borderColor: "border-cyan-500/30",
+    color: "from-indigo-500/20 to-indigo-600/10",
+    borderColor: "border-indigo-500/30",
   },
   {
     title: "Azure AI-900",
@@ -42,16 +45,16 @@ export default function Achievements() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-4">
         {/* Section Title */}
-        <motion.h2
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-bold text-center mb-12"
+          className="mb-12"
         >
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
-            Key Achievements
-          </span>
-        </motion.h2>
+          <h2 className={`uppercase ${syne.className} text-4xl md:text-5xl xl:text-6xl font-bold`}>
+            Achievements
+          </h2>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left - Sticky Notes */}
@@ -100,13 +103,13 @@ export default function Achievements() {
             {/* Animated rings */}
             <div className="relative">
               {/* Outer glow */}
-              <div className="absolute inset-0 w-[250px] h-[250px] md:w-[300px] md:h-[300px] rounded-full bg-purple-500/10 blur-3xl" />
+              <div className="absolute inset-0 w-[250px] h-[250px] md:w-[300px] md:h-[300px] rounded-full bg-blue-500/10 blur-3xl" />
 
               {/* Rotating ring */}
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 w-[250px] h-[250px] md:w-[300px] md:h-[300px] rounded-full border border-dashed border-purple-500/30"
+                className="absolute inset-0 w-[250px] h-[250px] md:w-[300px] md:h-[300px] rounded-full border border-dashed border-blue-500/30"
               />
 
               {/* Inner content */}
@@ -133,7 +136,7 @@ export default function Achievements() {
               {[...Array(6)].map((_, i) => (
                 <motion.div
                   key={i}
-                  className="absolute w-2 h-2 rounded-full bg-purple-400/60"
+                  className="absolute w-2 h-2 rounded-full bg-blue-400/60"
                   style={{
                     top: `${20 + Math.random() * 60}%`,
                     left: `${10 + Math.random() * 80}%`,

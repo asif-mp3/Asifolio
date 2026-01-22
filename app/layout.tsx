@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Kumbh_Sans } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
@@ -7,7 +7,7 @@ import Header from "./components/header-section/Header";
 import { ViewProvider } from "@/contexts/ViewContext";
 import StarsCanvas from "./components/main/StarsCanvas";
 
-const kumbhSans = Kumbh_Sans({ subsets: ["latin"] });
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Asif-Folio",
@@ -79,7 +79,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${kumbhSans.className} bg-[#030014] overflow-y-scroll overflow-x-hidden`}
+        className={`${spaceGrotesk.className} bg-[#030014] overflow-y-scroll overflow-x-hidden`}
       >
         <StarsCanvas />
         <ViewProvider>

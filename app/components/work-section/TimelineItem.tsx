@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { ReactNode } from "react";
 import styles from "./TimelineItem.module.css";
 
 // @ts-ignore
@@ -20,7 +20,7 @@ export default function TimelineItem({
   company: string;
   jobType: string;
   duration: string;
-  stuffIDid: string[];
+  stuffIDid: ReactNode[];
 }) {
   const { ref, inView } = useInView({
     threshold: 0.1,
@@ -43,17 +43,17 @@ export default function TimelineItem({
         className="absolute -translate-x-[29px] sm:-translate-x-8 left-0"
       />
 
-      <div className="grid grid-cols-5 sm:flex items-start gap-4 pl-4">
+      <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 pl-2 sm:pl-4">
         <Image
           src={companyImg}
           width={70}
           height={70}
           alt="company-image"
-          className="col-span-1 w-[70px] h-auto"
+          className="w-[50px] sm:w-[70px] h-auto flex-shrink-0"
         />
 
         {/* ALL THE TEXT*/}
-        <div className={`${styles.timeline} col-span-4`}>
+        <div className={`${styles.timeline} w-full`}>
           <div className="leading-tight">
             <h1 className="text-2xl sm:text-[2rem] font-bold">{jobTitle}</h1>
             <p className="text-base sm:text-lg font-bold my-2 sm:my-3">
