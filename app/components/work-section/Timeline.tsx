@@ -31,18 +31,6 @@ const TimelineData = [
     ],
   },
   {
-    companyImg: "/SIH-logo.png",
-    jobTitle: "Smart India Hackathon 2024",
-    company: "Ministry of Education",
-    jobType: "Hackathon",
-    duration: "Dec 2024",
-    stuffIDid: [
-      "Developed oil spill detection system using CNN achieving 97.3% accuracy, reducing false positives by 85% through AIS and Sentinel-1 SAR data integration.",
-      "Built React Native frontend with real-time visualization processing 500+ satellite images daily for maritime monitoring.",
-      "Published utility patent (Application No. 202541080926) for Smart Buoy System with automated oil spill detection and response capabilities.",
-    ],
-  },
-  {
     companyImg: "/tamil-mandram-logo.png",
     jobTitle: "Arignar Anna Tamil Mandram",
     company: "VIT Chennai",

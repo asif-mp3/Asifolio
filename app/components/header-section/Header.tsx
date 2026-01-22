@@ -36,7 +36,7 @@ export default function Header() {
               width={38}
               height={38}
               alt="logo"
-              className="select-none cursor-pointer"
+              className="select-none cursor-pointer w-[38px] h-auto"
               draggable={false}
             />
           </Link>
@@ -85,12 +85,17 @@ export default function Header() {
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
-          <Icon
+          {/* Mobile Menu Button - 44px touch target */}
+          <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="cursor-pointer flex md:hidden text-2xl text-white"
-            icon={`${menuOpen ? "gg:close" : "lucide:menu"}`}
-          />
+            className="flex md:hidden items-center justify-center w-11 h-11 rounded-lg text-white hover:bg-white/5 active:bg-white/10 transition-colors touch-target tap-scale"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+          >
+            <Icon
+              className="text-2xl"
+              icon={`${menuOpen ? "gg:close" : "lucide:menu"}`}
+            />
+          </button>
         </div>
       </div>
 

@@ -1,55 +1,34 @@
 "use client";
 
-import type React from "react";
-import { useEffect, useState, useRef } from "react";
-import FolioCard from "./FolioCard";
+import { useEffect, useRef } from "react";
 import { useView } from "@/contexts/ViewContext";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Info, X } from "lucide-react";
+import { motion } from "framer-motion";
 import Timeline from "./Timeline";
-import { Icon } from "@iconify/react";
+import BentoProjectGrid from "./BentoProjectGrid";
 
 // @ts-ignore
 import "intersection-observer";
 import { useInView } from "react-intersection-observer";
 
-const AnimatedCard = ({ children, index }: { children: React.ReactNode; index: number }) => {
-  const { ref, inView } = useInView({
-    threshold: 0.2,
-    triggerOnce: true,
-  })
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{
-        duration: 0.6,
-        delay: index * 0.15,
-        ease: [0.25, 0.4, 0.25, 1],
-      }}
-    >
-      {children}
-    </motion.div>
-  )
-}
-
 export default function Works() {
-  const { setSectionInView } = useView()
-  const [currentPage, setCurrentPage] = useState(1)
-  const [showPopup, setShowPopup] = useState(false)
-  const projectsPerPage = 3
-  const sectionRef = useRef<HTMLDivElement>(null)
+  const { setSectionInView } = useView();
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   const works = [
+    {
+      title: "Voice Analytics Platform for Shopify Merchants",
+      gitLink: "https://github.com/asif-mp3/voice-analytics-shopify",
+      liveLink: "https://drive.google.com/file/d/1S3cNhyIm48LlofZiVq2RYnL8p8oxH_sa/view?usp=sharing",
+      about: `Built a RAG-based NL-to-SQL engine using ChromaDB with text-embedding-3-small for schema retrieval and DuckDB for query execution. Deployed 2-pod microservices architecture on Kubernetes with rolling updates and health probes. Implemented Redis caching layer for sales analytics queries and built CI/CD pipeline with GitHub Actions for automated Docker builds and K8s deployments.`,
+      stack: ["FastAPI", "Next.js", "Kubernetes", "Docker", "Redis", "RAG"],
+      img: "/voice-analytics.png",
+      showInfo: false,
+    },
     {
       title: "Deep Learning–Based Oil Spill Detection System",
       gitLink: "https://github.com/asif-mp3/oil-spill-detection",
       liveLink: "https://www.youtube.com/watch?v=h8ATo3vHwoQ",
-      about: `Developed a deep learning system that automatically detects oil spills using satellite images from Sentinel-1 and vessel data from AIS. 
-              A CNN model trained on real maritime data achieved 97.3% accuracy and reduced false detections by 85%. 
-              The system analyzes over 500 satellite images daily through a FastAPI backend and provides real-time visualization for marine safety monitoring.`,
+      about: `Developed a deep learning system that automatically detects oil spills using satellite images from Sentinel-1 and vessel data from AIS. A CNN model trained on real maritime data achieved 97.3% accuracy and reduced false detections by 85%. The system analyzes over 500 satellite images daily through a FastAPI backend and provides real-time visualization for marine safety monitoring.`,
       stack: ["FastAPI", "CNN", "Sentinel-1 SAR", "AIS"],
       img: "/oil2.png",
       showInfo: false,
@@ -58,9 +37,7 @@ export default function Works() {
       title: "E-commerce Product Recommender",
       gitLink: "https://github.com/asif-mp3/smart-shop",
       liveLink: "https://smart-shop-steel.vercel.app",
-      about: `A Next.js-based AI recommender that personalizes product suggestions for users using browsing behavior and preferences. 
-              Combines content-based and collaborative filtering methods with Google Gemini integration for AI-generated explanations. 
-              Features a dashboard-like interface with search, filters, and sorting for an intuitive online shopping experience.`,
+      about: `A Next.js-based AI recommender that personalizes product suggestions for users using browsing behavior and preferences. Combines content-based and collaborative filtering methods with Google Gemini integration for AI-generated explanations.`,
       stack: ["Next.js", "Google Gemini API", "AI Recommender", "Tailwind CSS"],
       img: "/s8.png",
       showInfo: false,
@@ -69,42 +46,35 @@ export default function Works() {
       title: "Smart Placement Calendar Automation",
       gitLink: "https://github.com/asif-mp3/placement-calendar-automation",
       liveLink: "https://github.com/asif-mp3/placement-calendar-automation",
-      about: `Automated the placement notification process using Google APIs to parse emails, check eligibility, and schedule calendar reminders. 
-              Reduces manual effort by 90% by reading placement emails, extracting Excel or PDF attachments, and automatically creating event reminders for eligible students.`,
+      about: `Automated the placement notification process using Google APIs to parse emails, check eligibility, and schedule calendar reminders. Reduces manual effort by 90% by reading placement emails and automatically creating event reminders.`,
       stack: ["Google Apps Script", "Gmail API", "Calendar API", "JavaScript"],
       img: "/calendar.png",
       showInfo: true,
-      infoMessage: `🎯 Problem Solving Impact: This system ensures students never miss placement opportunities by automating eligibility verification and event scheduling directly from email data.`,
+      infoMessage: `This system ensures students never miss placement opportunities by automating eligibility verification and event scheduling directly from email data.`,
     },
     {
       title: "AWS – KYC Verification System",
       gitLink: "https://github.com/asif-mp3/kyc-automator-aws",
       liveLink: "https://main.d2oxvljh00najc.amplifyapp.com/",
-      about: `Designed a serverless identity verification platform using AWS Textract for OCR and Rekognition for face matching. 
-              Step Functions orchestrate the workflow, while API Gateway enables secure integration. 
-              The system reduced manual verification efforts by 80% and improved document accuracy for KYC processes.`,
+      about: `Designed a serverless identity verification platform using AWS Textract for OCR and Rekognition for face matching. Reduced manual verification efforts by 80%.`,
       stack: ["AWS Textract", "AWS Rekognition", "Lambda", "API Gateway"],
       img: "/kkyc.png",
       showInfo: false,
     },
     {
-      title: "Smart Resume Parser – NLP-based Analysis Tool",
+      title: "Smart Resume Parser – NLP Tool",
       gitLink: "https://github.com/asif-mp3/Resume-Parser-and-Job-Recommendation-System",
       liveLink: "https://github.com/asif-mp3/Resume-Parser-and-Job-Recommendation-System",
-      about: `Created a Python NLP system to extract structured data from resume PDFs using spaCy, regex, and PdfPlumber. 
-              It identifies skills, experience, and education, then uses a regex-based similarity model to recommend suitable jobs. 
-              Helps recruiters analyze resumes efficiently and match candidates to job openings automatically.`,
+      about: `Python NLP system to extract structured data from resume PDFs using spaCy and regex. Recommends suitable jobs based on skills and experience.`,
       stack: ["spaCy", "Regex", "PdfPlumber"],
-      img: "/smart_resume.png",
+      img: "/smart-resume.png",
       showInfo: false,
     },
     {
       title: "AWS – Cheque Processing System",
       gitLink: "https://github.com/asif-mp3/aws-web-based-cheque-processing",
       liveLink: "https://cheque-mate-doc.vercel.app/",
-      about: `Developed a fully serverless cheque verification platform using AWS Textract, Lambda, RDS, and S3. 
-              Automates handwritten cheque reading, validation, and record management while ensuring secure data handling with AWS IAM and API Gateway. 
-              CloudWatch and SNS provide real-time alerts for failed transactions or anomalies.`,
+      about: `Serverless cheque verification platform using AWS Textract, Lambda, RDS, and S3. Automates handwritten cheque reading and validation.`,
       stack: ["AWS Textract", "Lambda", "RDS", "S3"],
       img: "/cheque_mate.png",
       showInfo: false,
@@ -113,56 +83,35 @@ export default function Works() {
       title: "Smart Medication Dispenser",
       gitLink: "https://github.com/asif-mp3/Smart-Medication-Dispenser",
       liveLink: "https://github.com/asif-mp3/Smart-Medication-Dispenser",
-      about: `An IoT and Arduino-based device designed to help patients take medicines on time. 
-              Controlled via Bluetooth, it dispenses tablets at scheduled times and notifies users with alerts. 
-              Useful for elderly or chronically ill patients to ensure adherence to prescriptions.`,
+      about: `An IoT and Arduino-based device designed to help patients take medicines on time. Controlled via Bluetooth, it dispenses tablets at scheduled times and notifies users with alerts. Useful for elderly or chronically ill patients to ensure adherence to prescriptions.`,
       stack: ["Arduino", "IoT", "Bluetooth"],
       img: "/medic_dispenser.png",
       showInfo: false,
     },
-  ]
-
-  const totalPages = Math.ceil(works.length / projectsPerPage)
-  const startIndex = (currentPage - 1) * projectsPerPage
-  const endIndex = startIndex + projectsPerPage
-  const currentProjects = works.slice(startIndex, endIndex)
+  ];
 
   const { ref, inView } = useInView({
     threshold: 0.1,
     rootMargin: "-100px 0px",
-  })
+  });
 
   useEffect(() => {
-    if (inView) setSectionInView("work")
-  }, [inView, setSectionInView])
-
-  const handlePrevPage = () => {
-    setCurrentPage((prev) => Math.max(prev - 1, 1))
-    setTimeout(() => {
-      sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
-    }, 50)
-  }
-
-  const handleNextPage = () => {
-    setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-    setTimeout(() => {
-      sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
-    }, 50)
-  }
-
-  const handleInfoClick = (work: any) => {
-    if (work.showInfo) setShowPopup(true)
-  }
+    if (inView) setSectionInView("work");
+  }, [inView, setSectionInView]);
 
   return (
-    <section className="flex flex-col gap-6 md:gap-10 pt-32 md:pt-20" ref={sectionRef} id="work">
+    <section
+      className="flex flex-col gap-6 md:gap-10 py-20 px-4 md:px-8 lg:px-12"
+      ref={sectionRef}
+      id="work"
+    >
       {/* Section Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="flex flex-col items-center mb-6"
+        className="flex flex-col items-center mb-12"
       >
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center">
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
@@ -170,168 +119,17 @@ export default function Works() {
           </span>
         </h2>
         <p className="text-gray-400 text-center mt-4 max-w-2xl">
-          A showcase of my technical projects spanning cloud architecture, machine learning, and full-stack development
+          A showcase of my technical projects spanning cloud architecture,
+          machine learning, and full-stack development
         </p>
       </motion.div>
 
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentPage}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="flex flex-col gap-6 md:gap-10"
-        >
-          {currentProjects.map((work, index) => (
-            <AnimatedCard key={`${currentPage}-${index}`} index={index}>
-              <div className="relative">
-                <FolioCard
-                  img={work.img}
-                  title={work.title}
-                  gitLink={work.gitLink}
-                  liveLink={work.liveLink}
-                  about={work.about}
-                  stack={work.stack} // ✅ fixed, required prop
-                />
-                {work.showInfo && (
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.4 + index * 0.15 }}
-                    className="absolute top-[-16px] right-4 z-[5]"
-                  >
-                    <motion.button
-                      whileHover={{ scale: 1.05, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => handleInfoClick(work)}
-                      className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-600 text-white text-xs font-semibold shadow-lg hover:shadow-xl transition-all cursor-pointer border border-red-700"
-                      aria-label="Show project info"
-                    >
-                      <motion.div
-                        animate={{ rotate: [0, 15, -15, 0] }}
-                        transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-                      >
-                        <Info className="h-3.5 w-3.5" />
-                      </motion.div>
-                      <span className="whitespace-nowrap">Students Pick</span>
-                    </motion.button>
-                  </motion.div>
-                )}
-              </div>
-            </AnimatedCard>
-          ))}
-        </motion.div>
-      </AnimatePresence>
-
-      {/* Info Popup */}
-      <AnimatePresence>
-        {showPopup && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-[#030014]/80 backdrop-blur-md flex items-center justify-center z-50 p-4"
-            onClick={() => setShowPopup(false)}
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-              className="bg-[#0a0118]/95 backdrop-blur-xl rounded-2xl shadow-2xl max-w-lg w-full p-6 relative border border-[#2a0e61]"
-            >
-              <button
-                onClick={() => setShowPopup(false)}
-                className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
-              >
-                <X className="h-6 w-6" />
-              </button>
-
-              <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 mb-4">
-                Smart Placement Calendar Automation
-              </h3>
-
-              <div className="text-gray-300 text-justify leading-relaxed">
-                <p className="mb-3">
-                  <span className="font-semibold text-purple-400">Crucial Problem Solving:</span>
-                </p>
-                <p>
-                  This project ensures students never miss placement opportunities by automating the verification and
-                  scheduling of placement emails into Google Calendar with reminders. It simplifies the entire process of
-                  checking eligibility and setting up events automatically.
-                </p>
-              </div>
-
-              <button
-                onClick={() => setShowPopup(false)}
-                className="mt-6 w-full button-primary text-white font-semibold py-2.5 px-4 rounded-xl transition-colors"
-              >
-                Got it!
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Pagination */}
-      <div className="flex justify-center items-center gap-4 md:gap-8 mt-8">
-        <motion.button
-          type="button"
-          onClick={handlePrevPage}
-          whileHover={{ scale: 1.1, x: -2 }}
-          whileTap={{ scale: 0.9 }}
-          disabled={currentPage === 1}
-          className={`relative w-12 h-12 flex items-center justify-center rounded-full transition-all duration-300 ${
-            currentPage === 1
-              ? "opacity-40 cursor-not-allowed bg-white/5 border border-white/10"
-              : "bg-gradient-to-br from-purple-600 to-purple-500 border border-purple-400/50 hover:shadow-lg hover:shadow-purple-500/50 text-white"
-          }`}
-        >
-          <ChevronLeft className="h-5 w-5" />
-        </motion.button>
-
-        <div className="flex items-center gap-3">
-          <div className="flex gap-2">
-            {Array.from({ length: totalPages }).map((_, i) => (
-              <motion.div
-                key={i}
-                animate={{
-                  scale: currentPage === i + 1 ? 1.2 : 1,
-                  opacity: currentPage === i + 1 ? 1 : 0.4,
-                }}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  currentPage === i + 1 ? "w-8 bg-purple-500" : "w-2 bg-white/30 hover:bg-white/50 cursor-pointer"
-                }`}
-                onClick={() => {
-                  setCurrentPage(i + 1)
-                  sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
-                }}
-              />
-            ))}
-          </div>
-          <span className="text-sm font-semibold text-gray-300 ml-2 whitespace-nowrap">
-            {currentPage} / {totalPages}
-          </span>
-        </div>
-
-        <motion.button
-          type="button"
-          onClick={handleNextPage}
-          whileHover={{ scale: 1.1, x: 2 }}
-          whileTap={{ scale: 0.9 }}
-          disabled={currentPage === totalPages}
-          className={`relative w-12 h-12 flex items-center justify-center rounded-full transition-all duration-300 ${
-            currentPage === totalPages
-              ? "opacity-40 cursor-not-allowed bg-white/5 border border-white/10"
-              : "bg-gradient-to-br from-purple-600 to-purple-500 border border-purple-400/50 hover:shadow-lg hover:shadow-purple-500/50 text-white"
-          }`}
-        >
-          <ChevronRight className="h-5 w-5" />
-        </motion.button>
+      {/* Bento Grid */}
+      <div ref={ref}>
+        <BentoProjectGrid projects={works} />
       </div>
 
       <Timeline />
     </section>
-  )
+  );
 }

@@ -17,10 +17,10 @@ export default function Home() {
   return (
     <main className="relative overflow-x-hidden">
       <Hero />
-      <Skills />
-      <Encryption />
       <Works />
       <Certificates />
+      <Encryption />
+      <Skills />
       <About />
       <Contact />
       <Footer />

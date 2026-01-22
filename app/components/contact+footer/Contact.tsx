@@ -88,20 +88,23 @@ export default function Contact() {
   }
 
   return (
-    <>
+    <div className="py-20 px-4 md:px-8 lg:px-12">
       {/* Section Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="flex flex-col items-center mt-20 mb-8"
+        className="flex flex-col items-center mb-12"
       >
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center">
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
             Contact Me
           </span>
         </h2>
+        <p className="text-gray-400 text-center mt-4 max-w-2xl">
+          Have a project in mind? Let&apos;s connect and build something amazing together
+        </p>
       </motion.div>
 
       <section
@@ -114,7 +117,7 @@ export default function Contact() {
               : "perspective(300px) rotateY(-360deg)"
           }`,
         }}
-        className={`overflow-y-hidden card mt-6 px-6 py-4 md:py-10 lg:py-12 flex flex-col lg:items-center lg:flex-row justify-between rounded-2xl bg-[#0a0118]/60 backdrop-blur-lg border border-[#2a0e61]`}
+        className={`overflow-y-hidden card px-6 py-4 md:py-10 lg:py-12 flex flex-col lg:items-center lg:flex-row justify-between rounded-2xl bg-[#0a0118]/60 backdrop-blur-lg border border-[#2a0e61]`}
       >
         {!formDisplay ? (
           <div
@@ -266,11 +269,13 @@ export default function Contact() {
                       </span>
                     )}
                   </div>
-                  <button
-                    className={`button-primary rounded-xl py-3 px-5 ${syne.className} font-bold uppercase mt-4 text-white`}
+                  <motion.button
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    className={`button-primary rounded-xl py-3 px-5 min-h-[48px] ${syne.className} font-bold uppercase mt-4 text-white touch-target`}
                   >
                     Send Message
-                  </button>
+                  </motion.button>
                 </form>
               </div>
             </motion.div>
@@ -278,6 +283,6 @@ export default function Contact() {
         )}
       </section>
       <ToastContainer />
-    </>
+    </div>
   );
 }

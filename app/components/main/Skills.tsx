@@ -3,34 +3,34 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-// Skill rows matching space portfolio structure
+// Skill rows in reverse pyramid layout (8 → 6 → 4)
 const skillRows = [
-  // Row 1 - Frontend Core
+  // Row 1 - Frontend & Languages (8 icons)
   [
     { src: "/skills/html.png", name: "HTML", width: 80, height: 80 },
     { src: "/skills/css.png", name: "CSS", width: 80, height: 80 },
     { src: "/skills/js.png", name: "JavaScript", width: 65, height: 65 },
-    { src: "/skills/tailwind.png", name: "Tailwind", width: 80, height: 80 },
-    { src: "/skills/react.png", name: "React", width: 80, height: 80 },
-    { src: "/skills/redux.png", name: "Redux", width: 80, height: 80 },
     { src: "/skills/ts.png", name: "TypeScript", width: 80, height: 80 },
+    { src: "/skills/react.png", name: "React", width: 80, height: 80 },
     { src: "/skills/next.png", name: "Next.js", width: 80, height: 80 },
+    { src: "/skills/tailwind.png", name: "Tailwind", width: 80, height: 80 },
+    { src: "/skills/python.png", name: "Python", width: 80, height: 80 },
   ],
-  // Row 2 - Backend
+  // Row 2 - Backend & Databases (6 icons)
   [
     { src: "/skills/node.png", name: "Node.js", width: 80, height: 80 },
-    { src: "/skills/express.png", name: "Express", width: 80, height: 80 },
-    { src: "/skills/firebase.png", name: "Firebase", width: 80, height: 80 },
+    { src: "/skills/java.png", name: "Java", width: 80, height: 80 },
+    { src: "/skills/mongodb.png", name: "MongoDB", width: 80, height: 80 },
     { src: "/skills/postgresql.png", name: "PostgreSQL", width: 80, height: 80 },
-    { src: "/skills/mysql.png", name: "MySQL", width: 80, height: 80 },
-    { src: "/skills/graphql.png", name: "GraphQL", width: 80, height: 80 },
+    { src: "/skills/redis.png", name: "Redis", width: 80, height: 80 },
+    { src: "/skills/github.png", name: "GitHub", width: 80, height: 80 },
   ],
-  // Row 3 - DevOps & Tools
+  // Row 3 - DevOps & Cloud (4 icons)
   [
     { src: "/skills/docker.png", name: "Docker", width: 80, height: 80 },
-    { src: "/skills/figma.png", name: "Figma", width: 80, height: 80 },
-    { src: "/skills/framer.png", name: "Framer", width: 80, height: 80 },
-    { src: "/skills/go.png", name: "Go", width: 80, height: 80 },
+    { src: "/skills/aws.png", name: "AWS", width: 80, height: 80 },
+    { src: "/skills/kubernetes.png", name: "Kubernetes", width: 80, height: 80 },
+    { src: "/skills/linux.png", name: "Linux", width: 80, height: 80 },
   ],
 ];
 
@@ -58,8 +58,7 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="relative flex flex-col items-center justify-center min-h-screen py-20 overflow-hidden"
-      style={{ transform: "scale(0.9)" }}
+      className="relative flex flex-col items-center justify-center py-20 px-4 md:px-8 lg:px-12 overflow-hidden"
     >
       {/* Video Background */}
       <video
@@ -98,8 +97,9 @@ export default function Skills() {
             <motion.div
               key={skill.name}
               whileHover={{ scale: 1.1, y: -5 }}
+              whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 300 }}
-              className="relative group"
+              className="relative group cursor-pointer"
             >
               <Image
                 src={skill.src}
@@ -109,7 +109,7 @@ export default function Skills() {
                 className="w-16 h-16 md:w-20 md:h-20 object-contain drop-shadow-lg"
               />
               {/* Tooltip */}
-              <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+              <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
                 {skill.name}
               </span>
             </motion.div>
@@ -128,8 +128,9 @@ export default function Skills() {
             <motion.div
               key={skill.name}
               whileHover={{ scale: 1.1, y: -5 }}
+              whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 300 }}
-              className="relative group"
+              className="relative group cursor-pointer"
             >
               <Image
                 src={skill.src}
@@ -138,7 +139,7 @@ export default function Skills() {
                 height={skill.height}
                 className="w-16 h-16 md:w-20 md:h-20 object-contain drop-shadow-lg"
               />
-              <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+              <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
                 {skill.name}
               </span>
             </motion.div>
@@ -157,8 +158,9 @@ export default function Skills() {
             <motion.div
               key={skill.name}
               whileHover={{ scale: 1.1, y: -5 }}
+              whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 300 }}
-              className="relative group"
+              className="relative group cursor-pointer"
             >
               <Image
                 src={skill.src}
@@ -167,7 +169,7 @@ export default function Skills() {
                 height={skill.height}
                 className="w-16 h-16 md:w-20 md:h-20 object-contain drop-shadow-lg"
               />
-              <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+              <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
                 {skill.name}
               </span>
             </motion.div>
