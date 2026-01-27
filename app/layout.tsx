@@ -69,7 +69,7 @@ export default function RootLayout({
         <StarsCanvas />
         <ViewProvider>
           <Header />
-          <main className="relative z-10 max-w-[90%] xl:max-w-[1223px] w-full mx-auto">
+          <main className="relative z-10 w-full px-4 sm:px-6 md:max-w-[90%] xl:max-w-[1223px] mx-auto">
             {children}
           </main>
         </ViewProvider>

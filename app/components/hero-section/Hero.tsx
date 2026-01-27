@@ -115,8 +115,8 @@ export default function Hero() {
       </video>
 
       {/* Content - Two column layout */}
-      <div className="relative z-[10] w-full max-w-6xl mx-auto px-6 pt-32 md:pt-40">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <div className="relative z-[10] w-full max-w-6xl mx-auto px-4 sm:px-6 pt-20 sm:pt-28 md:pt-40">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
           {/* Left - Text Content */}
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left order-2 lg:order-1">
             {/* Greeting - shows first, disappears after waving */}
@@ -127,11 +127,11 @@ export default function Hero() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20, transition: { duration: 0.5 } }}
                   transition={{ delay: 0.1, duration: 0.5 }}
-                  className="flex items-center gap-3 h-[200px] lg:h-auto"
+                  className="flex items-center gap-3 h-auto py-8 sm:py-12"
                 >
-                  <span className="text-3xl md:text-4xl lg:text-5xl text-gray-200 font-medium">Hey there</span>
+                  <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-gray-200 font-medium">Hey there</span>
                   <motion.div
-                    className="text-4xl md:text-5xl lg:text-6xl inline-block"
+                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl inline-block"
                     animate={{ rotate: [0, 14, -8, 14, -4, 10, 0] }}
                     transition={{
                       duration: 1.2,
@@ -154,7 +154,7 @@ export default function Hero() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0, duration: 0.5 }}
-                  className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4"
                 >
                   <span className="text-gray-200">I&apos;m </span>
                   <SparklesText className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-indigo-300">
@@ -167,9 +167,9 @@ export default function Hero() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.5 }}
-                  className="h-10 mb-6 flex items-center"
+                  className="h-8 sm:h-10 mb-4 sm:mb-6 flex items-center"
                 >
-                  <span className="text-xl md:text-2xl text-gray-300">
+                  <span className="text-lg sm:text-xl md:text-2xl text-gray-300">
                     {displayText}
                     <span className="inline-block w-[2px] h-6 bg-blue-500 ml-1 animate-pulse" />
                   </span>
@@ -180,7 +180,7 @@ export default function Hero() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.8, duration: 0.5 }}
-                  className="text-gray-400 max-w-md mb-8 text-sm md:text-base"
+                  className="text-gray-400 max-w-md mb-6 sm:mb-8 text-sm md:text-base"
                 >
                   Building intelligent systems that bridge innovation and impact.
                   Specializing in cloud architecture, ML, and scalable solutions.
@@ -220,9 +220,9 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex items-center justify-center lg:justify-end order-1 lg:order-2 lg:pr-8"
+            className="flex items-center justify-center lg:justify-end order-1 lg:order-2 lg:pr-8 mt-12 sm:mt-8 lg:mt-0"
           >
-            <div className="relative">
+            <div className="relative mx-auto lg:mx-0">
               {/* Ink Particles */}
               {inkParticles.map((particle, i) => (
                 <motion.div
@@ -268,7 +268,7 @@ export default function Hero() {
                   <div className="absolute -inset-4 rounded-2xl bg-gradient-to-br from-blue-500/30 via-transparent to-indigo-500/30 blur-2xl" />
 
                   {/* Paper Card */}
-                  <div className="relative w-[260px] h-[340px] md:w-[300px] md:h-[400px] bg-[#f5f0e6] rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.3),0_10px_20px_rgba(0,0,0,0.2)] overflow-hidden">
+                  <div className="relative w-[220px] h-[290px] sm:w-[260px] sm:h-[340px] md:w-[300px] md:h-[400px] bg-[#f5f0e6] rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.3),0_10px_20px_rgba(0,0,0,0.2)] overflow-hidden">
                     {/* Corner Pins */}
                     <div className="absolute top-3 left-3 w-4 h-4 bg-gradient-to-br from-blue-400 to-blue-600 rounded-sm rotate-45 shadow-md z-10" />
                     <div className="absolute top-3 right-3 w-4 h-4 bg-gradient-to-br from-blue-400 to-blue-600 rounded-sm rotate-45 shadow-md z-10" />
@@ -313,7 +313,7 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1, duration: 0.6 }}
-                className="mt-8 text-center italic text-gray-400 text-sm md:text-base max-w-[300px]"
+                className="mt-4 sm:mt-6 md:mt-8 text-center italic text-gray-400 text-xs sm:text-sm md:text-base max-w-[250px] sm:max-w-[300px] mx-auto"
               >
                 <span className="text-blue-400/80">&ldquo;</span>
                 <span className="bg-gradient-to-r from-gray-300 via-gray-400 to-gray-300 bg-clip-text text-transparent">
@@ -330,7 +330,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.5 }}
-          className="flex flex-col items-center mt-16"
+          className="flex flex-col items-center mt-8 sm:mt-12 md:mt-16"
         >
           <span className="text-gray-500 text-xs mb-2">SCROLL</span>
           <motion.div

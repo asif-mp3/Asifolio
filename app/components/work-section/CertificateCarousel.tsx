@@ -32,17 +32,17 @@ const CertificateCard = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
-      className="flex-shrink-0 w-[300px] sm:w-[340px] md:w-[420px] lg:w-[480px]"
+      className="flex-shrink-0 w-[260px] sm:w-[300px] md:w-[380px] lg:w-[420px]"
     >
       <div className="group h-full flex flex-col overflow-hidden rounded-2xl bg-gradient-to-b from-[#0f0520] to-[#0a0118] border border-white/5 hover:border-purple-500/30 shadow-lg hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-500">
         {/* Image Section */}
-        <div className="relative overflow-hidden h-48 md:h-56">
+        <div className="relative overflow-hidden h-40 sm:h-48 md:h-52">
           <Image
             src={certificate.image || "/placeholder.svg"}
             alt={certificate.title}
             fill
             className="object-cover transform group-hover:scale-110 transition-transform duration-700"
-            sizes="(max-width: 768px) 340px, 480px"
+            sizes="(max-width: 640px) 260px, (max-width: 768px) 300px, 420px"
           />
           {/* Gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0118] via-[#0a0118]/30 to-transparent" />
