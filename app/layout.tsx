@@ -32,32 +32,17 @@ export const metadata: Metadata = {
     title: "Asif-Folio",
     description:
       "Frontend Engineer passionate about crafting next-gen software and creative websites. I drive growth by crafting user experiences that blend aesthetics with functionality through my design and development skills. I thrive on turning ideas into seamless digital solutions.",
-    url: "https://www.asif.me",
-    siteName: "www.asif.me",
-    images: [
-      {
-        url: "https://i.ibb.co/FKMqc28/asif-profile.png",
-        width: 1200,
-        height: 630,
-        alt: "Mohamed Asif — Frontend Software Engineer",
-      },
-      {
-        url: "https://i.ibb.co/Y8hBTR4/asif-800.png",
-        width: 800,
-        height: 800,
-        alt: "Mohamed Asif — Frontend Software Engineer",
-      },
-    ],
+    url: "https://asifolio.vercel.app",
+    siteName: "asifolio.vercel.app",
     locale: "en-US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mohamed Asif — Data Science Enthusiast",
+    title: "Mohamed Asif — Frontend Software Engineer",
     description:
       "Frontend Engineer passionate about crafting next-gen software. I drive growth by crafting user experiences that blend aesthetics with functionality through my design and development skills. I thrive on turning ideas into seamless digital solutions.",
-    creator: "@Asif.mp3",
-    images: ["https://i.ibb.co/FKMqc28/asif-profile.png"],
+    creator: "@asifitee",
   },
   robots: {
     index: true,
