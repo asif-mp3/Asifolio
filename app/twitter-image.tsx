@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 
-export const alt = "Asif — Frontend Software Engineer";
+export const alt = "Asif — Full Stack Developer";
 export const size = {
   width: 1200,
   height: 630,
@@ -59,24 +59,24 @@ export default async function Image() {
         >
           <div
             style={{
-              fontSize: "120px",
-              fontWeight: 700,
+              fontSize: "140px",
+              fontWeight: 900,
               color: "white",
-              fontStyle: "italic",
-              letterSpacing: "2px",
-              marginBottom: "20px",
+              letterSpacing: "-2px",
+              marginBottom: "16px",
             }}
           >
-            Asif
+            Asif.
           </div>
           <div
             style={{
-              fontSize: "28px",
+              fontSize: "32px",
+              fontWeight: 500,
               color: "#94a3b8",
-              letterSpacing: "3px",
+              letterSpacing: "2px",
             }}
           >
-            Frontend Software Engineer
+            Full Stack Developer
           </div>
         </div>
       </div>
